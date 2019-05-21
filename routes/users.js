@@ -2,14 +2,14 @@ import express from 'express';
 const router = express.Router();
 
 const loginProc = (req, res, next) => {
-  res.send('respond with a resource');
+  res.render('users/login');
 };
 
-router.get('/', loginProc);
+router.all('/', loginProc);
 
-router.get('/login', loginProc);
+router.all('/login', loginProc);
 
-router.get('/signup', () => {
+router.all('/signup', () => {
 
 });
 
