@@ -1,13 +1,23 @@
 import createError from 'http-errors';
 import express from 'express';
+// var expressJwt = require('express-jwt');
+// var session = require('express-session');
+// var MySQLStore = require('express-mysql-session')(session);
+// var cors = require('cors');
+import expressJwt from 'express-jwt';
+import session from 'express-session';
+import expressMysqlSessionLib from 'express-mysql-session';
+import cors from 'cors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import config from 'config/config';
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 
 const app = express();
+const MySQLStore = expressMysqlSessionLib(session);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

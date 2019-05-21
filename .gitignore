@@ -76,3 +76,4 @@ typings/
 .fusebox/
 .idea/
 yarn.lock
+config/config.js
