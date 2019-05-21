@@ -16,8 +16,8 @@ head
     base(href='../')
     // end::Base Path
     meta(charset='utf-8')
-    title Iniciar sesión
-    meta(name='description' content='Login')
+    title Iniciar sesi&oacute;n
+    meta(name='description' content='Login page example')
     meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
     // begin::Fonts
     script(src='https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js')
@@ -109,11 +109,11 @@ head
             // begin::Aside
             // begin::Content
             .kt-grid__item.kt-grid__item--fluid.kt-grid__item--order-tablet-and-mobile-1.kt-login__wrapper
-                .kt-grid__item
+                .kt-grid__item.mobile-only-center
                     a.kt-login__logo(href='#')
                         img.kt-login__logo-image(src='images/logo-def1.png')
                 // begin::Head
-                .kt-login__head
+                .kt-login__head.desktop-only-item
                     span.kt-login__signup-label &iquest;No tienes cuenta?
                     a.kt-login__signup-link(href='/users/signup') Crear cuenta
                 // end::Head
@@ -130,6 +130,7 @@ head
                                 .kt-input-icon.kt-input-icon--left
                                     input#email.form-control(type='text' name='email' placeholder='Your E-Mail' autocomplete='off')
                                     span.kt-input-icon__icon.kt-input-icon__icon--left
+                                        // <span><i class="la la-envelope" aria-hidden="true"></i></span>
                                         span
                                             i.material-icons.material-icons-outlined.input-icon(aria-hidden='true') email
                             .form-group
@@ -186,6 +187,11 @@ head
                         // &lt;!&ndash;end::Options&ndash;&gt;
                     // end::Signin
                 // end::Body
+                // begin::Foot
+                .kt-login__head.mobile-only-item
+                    span.kt-login__signup-label &iquest;No tienes cuenta?
+                    a.kt-login__signup-link(href='/users/signup') Crear cuenta
+                // end::Foot
             // end::Content
 // end:: Page
 // begin::Global Config(global config for global JS sciprts)

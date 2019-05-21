@@ -86,11 +86,11 @@ head
             // begin::Aside
             // begin::Content
             .kt-grid__item.kt-grid__item--fluid.kt-grid__item--order-tablet-and-mobile-1.kt-login__wrapper
-                .kt-grid__item
+                .kt-grid__item.mobile-only-center
                     a.kt-login__logo(href='#')
                         img.kt-login__logo-image(src='images/logo-def1.png')
                 // begin::Head
-                .kt-login__head
+                .kt-login__head.desktop-only-item
                     span.kt-login__signup-label &iquest;Ya tienes cuenta?
                     a.kt-login__signup-link(href='/users/login') Entra
                 // end::Head
@@ -100,6 +100,7 @@ head
                     .kt-login__form
                         .kt-login__title
                             h3 &Uacute;NETE A LA PLATAFORMA L&Iacute;DER DE  GESTI&Oacute;N DE INMUEBLES EN ALQUILER
+                            h6(style='margin-top: 4rem !important;') El sitio para administrar propiedades en alquiler,  sin problemas
                         // begin::Form
                         form.kt-form(action='' novalidate='novalidate')
                             .form-group
@@ -131,7 +132,7 @@ head
                                         span
                                             i.material-icons.material-icons-round.input-icon(aria-hidden='true') vpn_key
                             // begin::Action
-                            .kt-login__actions
+                            .kt-login__actions(style='margin-bottom: 0 !important;')
                                 // <input id="kt_login_remember_me" type="checkbox" class="md-control">Recordarme</input>
                                 label.kt-checkbox.kt-checkbox--info
                                     input(type='checkbox')
@@ -139,7 +140,13 @@ head
                                     a.blue(href='#') Pol&iacute;tica de Privacidad
                                     | &nbsp;y&nbsp;
                                     a.blue(href='#') T&eacute;rminos Condiciones
-                                    | . Acepto recibir por email novedades del servicio y de Alquilerista.
+                                    | .
+                                    span
+                                // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
+                            .kt-login__actions(style='margin-top: 0 !important;')
+                                label.kt-checkbox.kt-checkbox--info
+                                    input(type='checkbox')
+                                    | Acepto recibir por email novedades del servicio y de Alquilerista.
                                     span
                                 // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
                             .kt-align-center
@@ -173,6 +180,11 @@ head
                         // &lt;!&ndash;end::Options&ndash;&gt;
                     // end::Signin
                 // end::Body
+                // begin::Foot
+                .kt-login__head.mobile-only-item
+                    span.kt-login__signup-label &iquest;Ya tienes cuenta?
+                    a.kt-login__signup-link(href='/users/login') Entra
+                // end::Foot
             // end::Content
 // end:: Page
 // begin::Global Config(global config for global JS sciprts)
