@@ -31,10 +31,10 @@ var KTLoginV1 = function () {
 				rules: {
 					email: {
 						required: true,
-						email: true
+						email: true,
 					},
 					password: {
-						required: true
+						required: true,
 					}
 				}
 			});
@@ -59,6 +59,60 @@ var KTLoginV1 = function () {
 				}
 			});
 		});
+
+		$('#kt_login_signup_submit').click(function (e) {
+			e.preventDefault();
+			var btn = $(this);
+			var form = $('.kt-login__form form');
+
+			form.validate({
+				errorElement: "span",
+				rules: {
+					name: {
+						required: true,
+					},
+					email: {
+						required: true,
+						email: true,
+					},
+					password: {
+						required: true,
+					}
+				}
+			});
+
+			if (!form.valid()) {
+				return;
+			}
+
+			btn.attr('disabled', true);
+			// btn.addClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', true);
+
+			form.ajaxSubmit({
+				url: '',
+				method: 'post',
+				success: function (response, status, xhr, $form) {
+					// similate 2s delay
+					setTimeout(function () {
+						btn.attr('disabled', false);
+						// btn.removeClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', false);
+						showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
+					}, 2000);
+				}
+			});
+		});
+
+
+		$(".show-hide-password-button").click(function() {
+
+			$(".show-hide-password-button i").toggleClass("fa-eye fa-eye-slash");
+			var input = $($(this).attr("toggle"));
+			if (input.attr("type") == "password") {
+				input.attr("type", "text");
+			} else {
+				input.attr("type", "password");
+			}
+		});
 	}
 
 	// Public Functions
@@ -73,15 +127,4 @@ var KTLoginV1 = function () {
 // Class Initialization
 jQuery(document).ready(function () {
 	KTLoginV1.init();
-
-	$(".show-hide-password-button").click(function() {
-
-		$(".show-hide-password-button i").toggleClass("fa-eye fa-eye-slash");
-		var input = $($(this).attr("toggle"));
-		if (input.attr("type") == "password") {
-			input.attr("type", "text");
-		} else {
-			input.attr("type", "password");
-		}
-	});
 });

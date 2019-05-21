@@ -120,12 +120,12 @@
 }
 
 .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__title > h3 {
-    font-size: 2rem;
+    font-size: 24px;
     color: #67666e;
 }
 
 .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-form {
-    margin: 4rem auto;
+    margin: 4rem 2rem;
 }
 
 .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-form .form-group {
@@ -147,8 +147,11 @@
     transition: background-color 0.3s ease;
 }
 
-input.form-control::placeholder {
+input.form-control {
     font-family: "Roboto";
+}
+
+input.form-control::placeholder {
     color: #E1E4E8;
 }
 
@@ -168,7 +171,7 @@ input.form-control::placeholder {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin: 2rem 0;
+    margin: 3rem 0;
 }
 
 .kt-login.kt-login--v1 .kt-login__wrapper .kt-login__body .kt-login__form .kt-login__actions .kt-login__link-forgot {
@@ -258,11 +261,17 @@ input.form-control::placeholder {
 }
 
 label.kt-checkbox {
+    font-family: "Roboto";
+    font-size: 14px;
     color: #808183;
 }
 
-label.kt-checkbox a {
+label.kt-checkbox a.gray {
     color: #808183;
+}
+
+label.kt-checkbox a.blue {
+    color: #1361fd;
 }
 
 .kt-login__btn-primary {
