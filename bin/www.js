@@ -8,6 +8,7 @@ import app from '../app';
 import debugLib from 'debug';
 import http from 'http';
 import cluster from 'cluster';
+import config from '../core/config';
 
 const debug = new debugLib('cms:server');
 
@@ -15,7 +16,7 @@ const debug = new debugLib('cms:server');
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || config.server.port);
 app.set('port', port);
 
 /**

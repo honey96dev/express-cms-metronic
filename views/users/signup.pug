@@ -135,7 +135,7 @@ head
                             .kt-login__actions(style='margin-bottom: 0 !important;')
                                 // <input id="kt_login_remember_me" type="checkbox" class="md-control">Recordarme</input>
                                 label.kt-checkbox.kt-checkbox--info
-                                    input(type='checkbox')
+                                    input#accept1.accept-term(type='checkbox' name='accept1')
                                     | Acepto la&nbsp;
                                     a.blue(href='#') Pol&iacute;tica de Privacidad
                                     | &nbsp;y&nbsp;
@@ -145,7 +145,7 @@ head
                                 // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
                             .kt-login__actions(style='margin-top: 0 !important;')
                                 label.kt-checkbox.kt-checkbox--info
-                                    input(type='checkbox')
+                                    input#accept2.accept-term(type='checkbox' name='accept2')
                                     | Acepto recibir por email novedades del servicio y de Alquilerista.
                                     span
                                 // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>

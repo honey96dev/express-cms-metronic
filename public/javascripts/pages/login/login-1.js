@@ -3,7 +3,11 @@
 // Class Definition
 var KTLoginV1 = function () {
 
-	var login = $('#kt_login');
+	// var login = $('#kt_login');
+	jQuery.validator.setDefaults({
+		debug: true,
+		success: "valid"
+	});
 
 	var showErrorMsg = function (form, type, msg) {
 		var alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
@@ -27,7 +31,6 @@ var KTLoginV1 = function () {
 			var form = $('.kt-login__form form');
 
 			form.validate({
-				errorElement: "span",
 				rules: {
 					email: {
 						required: true,
@@ -35,8 +38,12 @@ var KTLoginV1 = function () {
 					},
 					password: {
 						required: true,
-					}
-				}
+					},
+				},
+				messages: {
+					email: "Por favor introduzca su correo electrónico",
+					password: "Por favor introduzca su contraseña",
+				},
 			});
 
 			if (!form.valid()) {
@@ -66,7 +73,6 @@ var KTLoginV1 = function () {
 			var form = $('.kt-login__form form');
 
 			form.validate({
-				errorElement: "span",
 				rules: {
 					name: {
 						required: true,
@@ -77,8 +83,21 @@ var KTLoginV1 = function () {
 					},
 					password: {
 						required: true,
-					}
-				}
+					},
+					accept1: {
+						required: true,
+					},
+					accept2: {
+						required: true,
+					},
+				},
+				messages: {
+					name: "Por favor escriba su nombre",
+					email: "Por favor introduzca su correo electrónico",
+					password: "Por favor, introduzca su contraseña",
+					accept1: "Por favor acepta esto",
+					accept2: "Por favor acepta esto",
+				},
 			});
 
 			if (!form.valid()) {
@@ -92,12 +111,14 @@ var KTLoginV1 = function () {
 				url: '',
 				method: 'post',
 				success: function (response, status, xhr, $form) {
-					// similate 2s delay
-					setTimeout(function () {
-						btn.attr('disabled', false);
-						// btn.removeClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', false);
-						showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
-					}, 2000);
+					const result = response.result;
+					const message = response.message;
+					btn.attr('disabled', false);
+					if (result === 'success') {
+						showErrorMsg(form, 'success', message);
+					} else if (result === 'error') {
+						showErrorMsg(form, 'danger', message);
+					}
 				}
 			});
 		});
