@@ -16,6 +16,7 @@ module.exports = {
         secret: 'expresscmstoken@@'
     },
     smtp: {
+        service: 'gmail',
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,
