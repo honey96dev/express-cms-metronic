@@ -36,7 +36,7 @@ exports.sendVerificationMail = (to, tokenUrl) => {
             tokenUrl: tokenUrl,
         })
         .then((html) => {
-            console.log(html);
+            // console.log(html);
             let transporter = nodemailer.createTransport({
                 host: smtp.host,
                 port: smtp.port,
@@ -51,14 +51,15 @@ exports.sendVerificationMail = (to, tokenUrl) => {
                 from: sprintfJs.sprintf('%s<%s>', server.name, smtp.user),
                 to: to,
                 subject: 'Verify your account',
-                html: html
+                // html: html,
+                text: 'Verify your account',
             };
 
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log('Email sent: ' + info.response);
+                    console.log('Email sent: ' + JSON.stringify(info));
                 }
             });
         })
