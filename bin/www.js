@@ -1,47 +1,29 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 import app from '../app';
 import debugLib from 'debug';
 import http from 'http';
 import cluster from 'cluster';
 import config from '../core/config';
 
-const debug = new debugLib('cms:server');
-
-/**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.PORT || config.server.port);
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 if (cluster.isMaster) {
     cluster.fork();
-    cluster.on('exit', function(worker, code, signal) {
+    cluster.on('exit', function (worker, code, signal) {
         cluster.fork();
     });
+}
 
+let debug;
+let server;
+if (cluster.isWorker) {
+    debug = new debugLib('cms:server');
+
+    const port = normalizePort(process.env.PORT || config.server.port);
+    app.set('port', port);
+
+    server = http.createServer(app);
     server.listen(port);
     server.on('error', onError);
     server.on('listening', onListening);
 }
-
-/**
- * Normalize a port into a number, string, or false.
- */
 
 function normalizePort(val) {
     const port = parseInt(val, 10);
@@ -58,10 +40,6 @@ function normalizePort(val) {
 
     return false;
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
     if (error.syscall !== 'listen') {
@@ -86,10 +64,6 @@ function onError(error) {
             throw error;
     }
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening() {
     const addr = server.address();
