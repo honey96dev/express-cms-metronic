@@ -24,7 +24,7 @@ var KTLoginV1 = function () {
 
 	// Private Functions
 
-	var handleSignInFormSubmit = function () {
+	var handleLoginFormSubmit = function () {
 		$('#kt_login_signin_submit').click(function (e) {
 			e.preventDefault();
 			var btn = $(this);
@@ -140,7 +140,7 @@ var KTLoginV1 = function () {
 	return {
 		// public functions
 		init: function () {
-			handleSignInFormSubmit();
+			handleLoginFormSubmit();
 		}
 	};
 }();

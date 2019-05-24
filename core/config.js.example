@@ -1,8 +1,9 @@
 module.exports = {
     server: {
-        port: 3000,
-        baseUrl: 'http://127.0.0.1:3000/',
+        port: 3030,
+        baseUrl: 'http://127.0.0.1:3030/',
         name: 'CMS',
+        secret: 'expresscmstoken@@',
     },
     mysql: {
         connectionLimit: 10,
@@ -13,9 +14,11 @@ module.exports = {
         port: 3306
     },
     session: {
-        secret: 'expresscmstoken@@'
+        key: 'expresscms',
+        secret: 'expresscmstoken@@',
     },
     smtp: {
+        service: 'gmail',
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,

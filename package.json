@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start2": "node ./bin/start",
+    "nodemon": "nodemon ./bin/start localhost 3030",
     "start3": "npm run prod",
     "server": "babel-node ./bin/www",
     "server:prod": "node ./bin/www",
@@ -15,9 +15,9 @@
     "watch": "nodemon"
   },
   "dependencies": {
-    "bcrypt": "^3.0.6",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "debug": "~2.6.9",
     "email-templates": "^5.0.5",
     "express": "~4.16.1",
@@ -38,6 +38,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.19.0"
   }
 }

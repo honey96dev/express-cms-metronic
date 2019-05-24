@@ -77,3 +77,4 @@ typings/
 .idea/
 yarn.lock
 config/config.js
+core/config.js

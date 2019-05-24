@@ -36,7 +36,7 @@ exports.sendVerificationMail = (to, tokenUrl) => {
             tokenUrl: tokenUrl,
         })
         .then((html) => {
-            // console.log(html);
+            console.log(html);
             let transporter = nodemailer.createTransport({
                 // service: smtp.service,
                 host: smtp.host,

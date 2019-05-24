@@ -8,6 +8,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import config from './core/config';
+import dbConn from './core/dbConn';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 
@@ -25,10 +26,11 @@ app.use(logger('dev'));
 app.use(cors());
 app.use(cookieParser());
 app.use(session({
+    key: config.session.key,
     secret: config.session.secret,
     resave: false,
     saveUninitialized: true,
-    store: new MySQLStore(config.mysql)
+    store: new MySQLStore(config.mysql),
 }));
 // app.use('/api', expressJwt({secret: core.session.secret})
 //     .unless({
@@ -39,7 +41,7 @@ app.use(session({
 //     }));
 
 function requiresLogin(req, res, next) {
-    if (req.session && req.session.userId) {
+    if (req.session && req.session.user && req.session.user.id) {
         return next();
     } else {
         res.redirect('/users');
