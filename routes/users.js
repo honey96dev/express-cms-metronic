@@ -5,13 +5,13 @@ import sprintfJs from 'sprintf-js';
 import mailer from '../core/mailer';
 import myCrypto from '../core/myCrypto';
 
-function sendVerificationEmail(email) {
+function sendVerificationEmail(email, name) {
     const token = myCrypto.hmacHex(new Date().toISOString());
-    let expire = new Date(new Date().getTime() + 300000).toISOString();
-    const sql = sprintfJs.sprintf("INSERT INTO `tokens`(`token`, `expire`, `email`) VALUES('%s', '%s', '%s');", token, expire, email);
+    let expire = new Date().getTime() + 300000;
+    const sql = sprintfJs.sprintf("INSERT INTO `tokens`(`token`, `expire`, `email`) VALUES('%s', '%d', '%s');", token, expire, email);
     dbConn.query(sql, null, (error, results, fields) => {
         if (!error) {
-            const tokenUrl = sprintfJs.sprintf('%susers/verify_email?token=%s', config.server.baseUrl, token);
+            const tokenUrl = sprintfJs.sprintf('%susers/verifyEmail?token=%s&email=%s&name=%s', config.server.baseUrl, token, email, name);
             mailer.sendVerificationMail(email, tokenUrl);
         }
     });
@@ -33,6 +33,7 @@ const loginProc = (req, res, next) => {
                 res.status(200).send({
                     result: 'error',
                     message: 'Error desconocido',
+                    // message: '//Unknown error',
                 });
                 return;
             }
@@ -41,7 +42,8 @@ const loginProc = (req, res, next) => {
             if (count === 0) {
                 res.status(200).send({
                     result: 'error',
-                    message: 'Tu Correo Electrónico es Inválido',
+                    message: 'Email inválido',
+                    // message: 'Your Email is Invalid',
                 });
                 return;
             }
@@ -52,6 +54,7 @@ const loginProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'error',
                         message: 'Error desconocido',
+                        // message: '//Unknown error',
                     });
                     return;
                 }
@@ -60,7 +63,8 @@ const loginProc = (req, res, next) => {
                 if (count === 0) {
                     res.status(200).send({
                         result: 'error',
-                        message: 'Su contraseña es inválida',
+                        message: 'Contraseña inválida',
+                        // message: 'Your password is invalid',
                     });
                 } else {
                     req.session.user = {
@@ -70,7 +74,8 @@ const loginProc = (req, res, next) => {
                     };
                     res.status(200).send({
                         result: 'success',
-                        message: 'Registrado exitosamente',
+                        message: 'Logado con éxito',
+                        // message: 'Successfully logined',
                     });
                 }
             });
@@ -78,7 +83,8 @@ const loginProc = (req, res, next) => {
     } else if (method === 'GET') {
         res.render('users/login', {baseUrl: config.server.baseUrl});
     } else {
-        res.status(404).send('Not found');
+        res.status(404).send('No encontrado');
+        // res.status(404).send('Not found');
     }
 };
 
@@ -98,6 +104,7 @@ const signupProc = (req, res, next) => {
                 res.status(200).send({
                     result: 'error',
                     message: 'Error desconocido',
+                    // message: '//Unknown error',
                 });
                 return;
             }
@@ -106,7 +113,8 @@ const signupProc = (req, res, next) => {
             if (count > 0) {
                 res.status(200).send({
                     result: 'error',
-                    message: 'Este correo electrónico ya está registrado',
+                    message: 'Este email ya está registrado',
+                    // message: 'This email is already registered',
                 });
                 return;
             }
@@ -117,13 +125,15 @@ const signupProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'error',
                         message: 'Error desconocido',
+                        // message: '//Unknown error',
                     });
                     return;
                 }
-                sendVerificationEmail(email);
+                sendVerificationEmail(email, name);
                 res.status(200).send({
                     result: 'success',
-                    message: 'Registrado exitosamente. Por favor, active su cuenta mediante correo electrónico de validación.',
+                    message: 'Registrado con éxito. Te hemos enviado un email para activar tu cuenta.',
+                    // message: 'Successfully registered. Please activate your account by validation email.',
                 });
             });
         });
@@ -148,35 +158,139 @@ router.all('/logout', (req, res, next) => {
         res.status(404).send('Not found');
     } else {
         req.session.user = undefined;
-        res.status(200).send({
-            result: 'success',
-            message: 'Se ha cerrado la sesión correctamente.',
-        });
+        if (req.xhr) {
+            res.status(200).send({
+                baseUrl: config.server.baseUrl,
+                result: 'success',
+                message: 'Se ha cerrado la sesión correctamente.',
+                // message: 'Successfully logouted',
+            });
+        } else {
+            // res.redirect(config.server.baseUrl);
+            res.redirect('/');
+        }
     }
 });
 
-router.get('/verify_email', (req, res, next) => {
+router.get('/verifyEmail', (req, res, next) => {
     const token = req.query.token;
-    let sql = sprintfJs.sprintf("SELECT COUNT(T.token) `count`, T.* FROM `tokens` T WHERE BINARY T.token = '%s';", token);
+    const email = req.query.email;
+    const name = req.query.name;
+    let sql = sprintfJs.sprintf("SELECT COUNT(T.token) `count`, T.*, U.name FROM `tokens` T JOIN `users` U ON U.email = T.email WHERE BINARY T.token = '%s';", token);
+    const successView = 'users/verifyEmail/success';
+    const failView = 'users/verifyEmail/fail';
     dbConn.query(sql, null, (error, results, fields) => {
         if (error) {
-            res.status(200).send({
+            res.render(failView, {
+                baseUrl: config.server.baseUrl,
                 result: 'error',
-                message: 'Error desconocido',
+                message: '¡Lo siento! Error desconocido',
+                // message: '//Sorry! Unknown error',
+                email: email,
+                name: name,
             });
             return;
         }
         const count = parseInt(results[0].count);
 
         if (count === 0) {
-            res.status(200).send({
+            res.render(failView, {
+                baseUrl: config.server.baseUrl,
                 result: 'error',
-                message: 'Su contraseña es inválida',
+                message: '¡Lo siento! Tu cuenta no puede ser activada. Tu token no es válido.',
+                // message: 'Sorry! Your account can not be activated. Your token is invalid.',
+                email: email,
+                name: name,
             });
         } else {
-
+            const timestamp = new Date().getTime();
+            const expire = parseInt(results[0].expire);
+            console.log('verify', timestamp, expire);
+            if (timestamp < expire) {
+                sql = sprintfJs.sprintf("UPDATE `users` SET `emailVerified` = 1 WHERE BINARY `email` = '%s';", results[0].email);
+                dbConn.query(sql, null, (error) => {
+                    if (error) {
+                        res.render(failView, {
+                            baseUrl: config.server.baseUrl,
+                            result: 'error',
+                            message: '¡Lo siento! Error desconocido',
+                            // message: '//Sorry! Unknown error',
+                            email: email,
+                            name: name,
+                        });
+                    } else {
+                        res.render(successView, {
+                            baseUrl: config.server.baseUrl,
+                            result: 'success',
+                            message: 'Su cuenta se ha activado correctamente. Ahora puedes utilizar nuestro sitio web.',
+                            // message: 'Your account is successfully activated. Now you can use our website.',
+                            email: email,
+                            name: name,
+                        });
+                    }
+                });
+            } else {
+                res.render(failView, {
+                    baseUrl: config.server.baseUrl,
+                    result: 'error',
+                    message: '¡Lo siento! Tu cuenta no puede ser activada. Su token ha caducado.',
+                    // message: 'Sorry! Your account can not be activated. Your token is expired.',
+                    email: email,
+                    name: name,
+                });
+            }
         }
     });
+});
+
+router.post('/sendVerificationEmail', (req, res, next) => {
+    if (req.xhr) {
+        const email = req.body.email;
+
+        let sql = sprintfJs.sprintf("DELETE FROM `tokens` WHERE BINARY `email` = '%s';", email);
+        dbConn.query(sql, null, (error, results, fields) => {
+            if (error) {
+                res.status(200).send({
+                    email: email,
+                    result: 'error',
+                    message: '¡Lo siento! Error desconocido',
+                    // message: '//Sorry! Unknown error',
+                });
+            } else {
+                sql = sprintfJs.sprintf("SELECT COUNT(`name`) `count`, `name` FROM `users` WHERE BINARY `email` = '%s';", email);
+                dbConn.query(sql, null, (error, results, fields) => {
+                    if (error) {
+                        res.status(200).send({
+                            email: email,
+                            result: 'error',
+                            message: '¡Lo siento! Error desconocido',
+                            // message: '//Sorry! Unknown error',
+                        });
+                    } else {
+                        if (!!results && parseInt(results[0].count) > 0) {
+                            sendVerificationEmail(email, results[0].name);
+                            res.status(200).send({
+                                email: email,
+                                result: 'success',
+                                message: 'Successfully sent',
+                                // message: 'Successfully sent',
+                            });
+                        } else {
+                            res.status(200).send({
+                                email: email,
+                                result: 'error',
+                                message: '¡Lo siento! Error desconocido',
+                                // message: '//Sorry! Unknown error',
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    } else {
+        res.status(404).send('No encontrado');
+        // res.status(404).send('Not found');
+    }
 });
 
 module.exports = router;

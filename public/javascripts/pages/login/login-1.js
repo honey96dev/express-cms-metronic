@@ -42,7 +42,9 @@ var KTLoginV1 = function () {
 				},
 				messages: {
 					email: "Por favor introduzca su correo electrónico",
+					// email: "Please enter your Email",
 					password: "Por favor introduzca su contraseña",
+					// password: "Please enter your password",
 				},
 			});
 
@@ -57,12 +59,14 @@ var KTLoginV1 = function () {
 				url: '',
 				method: 'post',
 				success: function (response, status, xhr, $form) {
-					// similate 2s delay
-					setTimeout(function () {
-						btn.attr('disabled', false);
-						// btn.removeClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', false);
-						showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
-					}, 2000);
+					const result = response.result;
+					const message = response.message;
+					btn.attr('disabled', false);
+					if (result === 'success') {
+						window.location.href = "http://127.0.0.1:3030/";
+					} else if (result === 'error') {
+						showErrorMsg(form, 'danger', message);
+					}
 				}
 			});
 		});
@@ -93,10 +97,15 @@ var KTLoginV1 = function () {
 				},
 				messages: {
 					name: "Por favor escriba su nombre",
+					// name: "Please enter your name",
 					email: "Por favor introduzca su correo electrónico",
+					// email: "Please enter your Email",
 					password: "Por favor, introduzca su contraseña",
+					// password: "Please enter your password",
 					accept1: "Por favor acepta esto",
+					// accept1: "Please accept this",
 					accept2: "Por favor acepta esto",
+					// accept2: "Please accept this",
 				},
 			});
 
