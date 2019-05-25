@@ -31,8 +31,9 @@ const email = new emailTemplates({
     }
 });
 
-exports.sendVerificationMail = (to, tokenUrl) => {
+exports.sendVerificationMail = (to, name, tokenUrl) => {
     email.render('../email_templates/email_verify/html.pug', {
+            name: name,
             tokenUrl: tokenUrl,
         })
         .then((html) => {

@@ -12,7 +12,7 @@ function sendVerificationEmail(email, name) {
     dbConn.query(sql, null, (error, results, fields) => {
         if (!error) {
             const tokenUrl = sprintfJs.sprintf('%susers/verifyEmail?token=%s&email=%s&name=%s', config.server.baseUrl, token, email, name);
-            mailer.sendVerificationMail(email, tokenUrl);
+            mailer.sendVerificationMail(email, name, tokenUrl);
         }
     });
 }
