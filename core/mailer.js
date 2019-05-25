@@ -55,8 +55,8 @@ exports.sendVerificationMail = (to, tokenUrl) => {
             const mailOptions = {
                 from: sprintfJs.sprintf('%s<%s>', server.name, smtp.user),
                 // from: sprintfJs.sprintf('%s<%s>', server.name, smtp.user),
-                to: 'honey96dev@gmail.com',
-                // to: to,
+                // to: 'honey96dev@gmail.com',
+                to: to,
                 subject: 'Verify your account',
                 html: html,
                 // text: 'Verify your account',
