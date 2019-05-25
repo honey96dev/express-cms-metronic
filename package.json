@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "nodemon": "nodemon ./bin/start localhost 3030",
+    "nodemon": "nodemon ./bin/www localhost 3030",
     "start3": "npm run prod",
     "server": "babel-node ./bin/www",
     "server:prod": "node ./bin/www",

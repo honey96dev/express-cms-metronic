@@ -162,7 +162,7 @@ router.all('/logout', (req, res, next) => {
             res.status(200).send({
                 baseUrl: config.server.baseUrl,
                 result: 'success',
-                message: 'Se ha cerrado la sesión correctamente.',
+                message: 'Desconectado con éxito',
                 // message: 'Successfully logouted',
             });
         } else {
@@ -184,8 +184,8 @@ router.get('/verifyEmail', (req, res, next) => {
             res.render(failView, {
                 baseUrl: config.server.baseUrl,
                 result: 'error',
-                message: '¡Lo siento! Error desconocido',
-                // message: '//Sorry! Unknown error',
+                message: 'Lo sentimos. Error desconocido.',
+                // message: 'Sorry! Unknown error',
                 email: email,
                 name: name,
             });
@@ -197,7 +197,7 @@ router.get('/verifyEmail', (req, res, next) => {
             res.render(failView, {
                 baseUrl: config.server.baseUrl,
                 result: 'error',
-                message: '¡Lo siento! Tu cuenta no puede ser activada. Tu token no es válido.',
+                message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token inválido.',
                 // message: 'Sorry! Your account can not be activated. Your token is invalid.',
                 email: email,
                 name: name,
@@ -213,8 +213,8 @@ router.get('/verifyEmail', (req, res, next) => {
                         res.render(failView, {
                             baseUrl: config.server.baseUrl,
                             result: 'error',
-                            message: '¡Lo siento! Error desconocido',
-                            // message: '//Sorry! Unknown error',
+                            message: 'Lo sentimos. Error desconocido.',
+                            // message: 'Sorry! Unknown error',
                             email: email,
                             name: name,
                         });
@@ -222,7 +222,7 @@ router.get('/verifyEmail', (req, res, next) => {
                         res.render(successView, {
                             baseUrl: config.server.baseUrl,
                             result: 'success',
-                            message: 'Su cuenta se ha activado correctamente. Ahora puedes utilizar nuestro sitio web.',
+                            message: 'Tu cuenta ha sido activada con éxito, ahora puedes disfrutar de tu cuenta de Alquilerista',
                             // message: 'Your account is successfully activated. Now you can use our website.',
                             email: email,
                             name: name,
@@ -233,7 +233,7 @@ router.get('/verifyEmail', (req, res, next) => {
                 res.render(failView, {
                     baseUrl: config.server.baseUrl,
                     result: 'error',
-                    message: '¡Lo siento! Tu cuenta no puede ser activada. Su token ha caducado.',
+                    message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token caducado.',
                     // message: 'Sorry! Your account can not be activated. Your token is expired.',
                     email: email,
                     name: name,
@@ -253,8 +253,8 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                 res.status(200).send({
                     email: email,
                     result: 'error',
-                    message: '¡Lo siento! Error desconocido',
-                    // message: '//Sorry! Unknown error',
+                    message: 'Lo sentimos. Error desconocido.',
+                    // message: 'Sorry! Unknown error',
                 });
             } else {
                 sql = sprintfJs.sprintf("SELECT COUNT(`name`) `count`, `name` FROM `users` WHERE BINARY `email` = '%s';", email);
@@ -263,8 +263,8 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                         res.status(200).send({
                             email: email,
                             result: 'error',
-                            message: '¡Lo siento! Error desconocido',
-                            // message: '//Sorry! Unknown error',
+                            message: 'Lo sentimos. Error desconocido.',
+                            // message: 'Sorry! Unknown error',
                         });
                     } else {
                         if (!!results && parseInt(results[0].count) > 0) {
@@ -272,15 +272,15 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                             res.status(200).send({
                                 email: email,
                                 result: 'success',
-                                message: 'Successfully sent',
+                                message: 'Enviado con éxito',
                                 // message: 'Successfully sent',
                             });
                         } else {
                             res.status(200).send({
                                 email: email,
                                 result: 'error',
-                                message: '¡Lo siento! Error desconocido',
-                                // message: '//Sorry! Unknown error',
+                                message: 'Lo sentimos. Error desconocido.',
+                                // message: 'Sorry! Unknown error',
                             });
                         }
                     }
