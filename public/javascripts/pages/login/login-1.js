@@ -63,7 +63,7 @@ var KTLoginV1 = function () {
 					const message = response.message;
 					btn.attr('disabled', false);
 					if (result === 'success') {
-						window.location.href = "http://127.0.0.1:3030/";
+						window.location.href = "/";
 					} else if (result === 'error') {
 						showErrorMsg(form, 'danger', message);
 					}
