@@ -180,7 +180,7 @@ router.get('/verifyEmail', (req, res, next) => {
     const token = req.query.token;
     const email = req.query.email;
     const name = req.query.name;
-    let sql = sprintfJs.sprintf("SELECT COUNT(T.token) `count`, T.*, U.name FROM `tokens` T JOIN `users` U ON U.email = T.email WHERE BINARY T.token = '%s';", token);
+    let sql = sprintfJs.sprintf("SELECT T.*, U.name FROM `tokens` T JOIN `users` U ON U.email = T.email WHERE BINARY T.token = '%s';", token);
     const successView = 'users/verifyEmail/success';
     const failView = 'users/verifyEmail/fail';
     dbConn.query(sql, null, (error, results, fields) => {
@@ -196,7 +196,7 @@ router.get('/verifyEmail', (req, res, next) => {
             });
             return;
         }
-        const count = parseInt(results[0].count);
+        const count = results.length;
 
         if (count === 0) {
             res.render(failView, {
