@@ -33,6 +33,7 @@ const loginProc = (req, res, next) => {
                 res.status(200).send({
                     result: 'error',
                     message: 'Error desconocido',
+                    error: error,
                     // message: '//Unknown error',
                 });
                 return;
@@ -54,6 +55,7 @@ const loginProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'error',
                         message: 'Error desconocido',
+                        error: error,
                         // message: '//Unknown error',
                     });
                     return;
@@ -104,6 +106,7 @@ const signupProc = (req, res, next) => {
                 res.status(200).send({
                     result: 'error',
                     message: 'Error desconocido',
+                    error: error,
                     // message: '//Unknown error',
                 });
                 return;
@@ -125,6 +128,7 @@ const signupProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'error',
                         message: 'Error desconocido',
+                        error: error,
                         // message: '//Unknown error',
                     });
                     return;
@@ -185,6 +189,7 @@ router.get('/verifyEmail', (req, res, next) => {
                 baseUrl: config.server.baseUrl,
                 result: 'error',
                 message: 'Lo sentimos. Error desconocido.',
+                error: error,
                 // message: 'Sorry! Unknown error',
                 email: email,
                 name: name,
@@ -214,6 +219,7 @@ router.get('/verifyEmail', (req, res, next) => {
                             baseUrl: config.server.baseUrl,
                             result: 'error',
                             message: 'Lo sentimos. Error desconocido.',
+                            error: error,
                             // message: 'Sorry! Unknown error',
                             email: email,
                             name: name,
@@ -254,6 +260,7 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                     email: email,
                     result: 'error',
                     message: 'Lo sentimos. Error desconocido.',
+                    error: error,
                     // message: 'Sorry! Unknown error',
                 });
             } else {
@@ -264,6 +271,7 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                             email: email,
                             result: 'error',
                             message: 'Lo sentimos. Error desconocido.',
+                            error: error,
                             // message: 'Sorry! Unknown error',
                         });
                     } else {
