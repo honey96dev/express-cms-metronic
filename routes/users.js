@@ -250,10 +250,10 @@ router.get('/verifyEmail', (req, res, next) => {
 });
 
 router.post('/sendVerificationEmail', (req, res, next) => {
-    console.log('sendVerificationEmail');
+    // console.log('sendVerificationEmail');
     if (req.xhr) {
         const email = req.body.email;
-        console.log('sendVerificationEmail', email);
+        // console.log('sendVerificationEmail', email);
 
         let sql = sprintfJs.sprintf("DELETE FROM `tokens` WHERE BINARY `email` = '%s';", email);
         dbConn.query(sql, null, (error, results, fields) => {
@@ -266,8 +266,8 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                     // message: 'Sorry! Unknown error',
                 });
             } else {
-                sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count`, `name` FROM `users` WHERE BINARY `email` = '%s';", email);
-                console.log('verify-email', sql);
+                sql = sprintfJs.sprintf("SELECT `name` FROM `users` WHERE BINARY `email` = '%s';", email);
+                // console.log('verify-email', sql);
                 dbConn.query(sql, null, (error, results, fields) => {
                     if (error) {
                         res.status(200).send({
@@ -278,8 +278,8 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                             // message: 'Sorry! Unknown error',
                         });
                     } else {
-                        console.log('verify-email-sql-result', results);
-                        if (!!results && parseInt(results[0].count) > 0) {
+                        // console.log('verify-email-sql-result', results);
+                        if (!!results && results.length > 0) {
                             sendVerificationEmail(email, results[0].name);
                             res.status(200).send({
                                 email: email,
