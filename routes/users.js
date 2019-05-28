@@ -250,8 +250,10 @@ router.get('/verifyEmail', (req, res, next) => {
 });
 
 router.post('/sendVerificationEmail', (req, res, next) => {
+    console.log('sendVerificationEmail');
     if (req.xhr) {
         const email = req.body.email;
+        console.log('sendVerificationEmail', email);
 
         let sql = sprintfJs.sprintf("DELETE FROM `tokens` WHERE BINARY `email` = '%s';", email);
         dbConn.query(sql, null, (error, results, fields) => {
