@@ -1,5 +1,5 @@
 [Unit]
-Description=ROT13 demo service
+Description=Express CMS service
 After=network.target
 StartLimitIntervalSec=0
 [Service]
