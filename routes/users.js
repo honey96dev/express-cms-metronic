@@ -266,7 +266,7 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                     // message: 'Sorry! Unknown error',
                 });
             } else {
-                sql = sprintfJs.sprintf("SELECT COUNT(`name`) `count`, `name` FROM `users` WHERE BINARY `email` = '%s';", email);
+                sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count`, `name` FROM `users` WHERE BINARY `email` = '%s';", email);
                 console.log('verify-email', sql);
                 dbConn.query(sql, null, (error, results, fields) => {
                     if (error) {
