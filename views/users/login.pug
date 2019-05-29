@@ -73,6 +73,7 @@ head
     link(href='stylesheets/skins/header/menu/light.css' rel='stylesheet' type='text/css')
     link(href='stylesheets/skins/brand/dark.css' rel='stylesheet' type='text/css')
     link(href='stylesheets/skins/aside/dark.css' rel='stylesheet' type='text/css')
+    link(href='stylesheets/site/users/common.css' rel='stylesheet' type='text/css')
     // end::Layout Skins
     link(rel='shortcut icon' href='images/favicon.ico')
 // end::Head
@@ -82,7 +83,7 @@ head
     #kt_login.kt-grid.kt-grid--hor.kt-grid--root.kt-login.kt-login--v1
         .kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--desktop.kt-grid--ver-desktop.kt-grid--hor-tablet-and-mobile
             // begin::Aside
-            .kt-grid__item.kt-grid__item--order-tablet-and-mobile-2.kt-grid.kt-grid--hor.kt-login__aside(style='background-image: url(images/login-bg.png);')
+            .kt-grid__item.kt-grid__item--order-tablet-and-mobile-2.kt-grid.kt-grid--hor.kt-login__aside(style='background-image: url(images/login-bg.jpg); background-position: center;')
                 // <div class="kt-grid__item">
                 // <a href="#" class="kt-login__logo">
                 // <img src="images/logo-def1.png">
@@ -115,7 +116,7 @@ head
                 // begin::Head
                 .kt-login__head.desktop-only-item
                     span.kt-login__signup-label &iquest;No tienes cuenta?
-                    a.kt-login__signup-link(href='/users/signup') Crear cuenta
+                    a.kt-login__signup-link(href='/users/registro') Crear cuenta
                 // end::Head
                 // begin::Body
                 .kt-login__body
@@ -190,7 +191,7 @@ head
                 // begin::Foot
                 .kt-login__head.mobile-only-item
                     span.kt-login__signup-label &iquest;No tienes cuenta?
-                    a.kt-login__signup-link(href='/users/signup') Crear cuenta
+                    a.kt-login__signup-link(href='/users/registro') Crear cuenta
                 // end::Foot
             // end::Content
 // end:: Page

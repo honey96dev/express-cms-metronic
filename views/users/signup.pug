@@ -73,6 +73,7 @@ head
     link(href='stylesheets/skins/header/menu/light.css' rel='stylesheet' type='text/css')
     link(href='stylesheets/skins/brand/dark.css' rel='stylesheet' type='text/css')
     link(href='stylesheets/skins/aside/dark.css' rel='stylesheet' type='text/css')
+    link(href='stylesheets/site/users/common.css' rel='stylesheet' type='text/css')
     // end::Layout Skins
     link(rel='shortcut icon' href='images/favicon.ico')
 // end::Head
@@ -82,7 +83,7 @@ head
     #kt_login.kt-grid.kt-grid--hor.kt-grid--root.kt-login.kt-login--v1
         .kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--desktop.kt-grid--ver-desktop.kt-grid--hor-tablet-and-mobile
             // begin::Aside
-            .kt-grid__item.kt-grid__item--order-tablet-and-mobile-2.kt-grid.kt-grid--hor.kt-login__aside(style='background-image: url(images/signup-bg.png);')
+            .kt-grid__item.kt-grid__item--order-tablet-and-mobile-2.kt-grid.kt-grid--hor.kt-login__aside(style='background-image: url(images/signup-bg.png); background-position: center;')
             // begin::Aside
             // begin::Content
             .kt-grid__item.kt-grid__item--fluid.kt-grid__item--order-tablet-and-mobile-1.kt-login__wrapper
@@ -99,8 +100,9 @@ head
                     // begin::Signin
                     .kt-login__form
                         .kt-login__title
-                            h3 &Uacute;NETE A LA PLATAFORMA L&Iacute;DER DE  GESTI&Oacute;N DE INMUEBLES EN ALQUILER
-                            h6(style='margin-top: 4rem !important;') El sitio para administrar propiedades en alquiler,  sin problemas
+                            h3 Regístrate gratis
+                            h6(style='margin-top: 4rem !important;') El sitio para administrar propiedades en alquiler, 
+                                span(style='color: orange; font-weight: 600;')  sin problemas
                         // begin::Form
                         form.kt-form(action='' novalidate='novalidate')
                             .form-group
@@ -143,12 +145,12 @@ head
                                     | .
                                     span
                                 // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
-                            .kt-login__actions(style='margin-top: 0 !important;')
-                                label.kt-checkbox.kt-checkbox--info
-                                    input#accept2.accept-term(type='checkbox' name='accept2')
-                                    | Acepto recibir por email novedades del servicio y de Alquilerista.
-                                    span
-                                // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
+                            //.kt-login__actions(style='margin-top: 0 !important;')
+                            //    label.kt-checkbox.kt-checkbox--info
+                            //        input#accept2.accept-term(type='checkbox' name='accept2')
+                            //        | Acepto recibir por email novedades del servicio y de Alquilerista.
+                            //        span
+                            //     <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
                             .kt-align-center
                                 button#kt_login_signup_submit.btn.btn-primary.btn-elevate.kt-login__btn-primary Crear cuenta
                             // end::Action

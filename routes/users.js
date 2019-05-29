@@ -48,7 +48,7 @@ const loginProc = (req, res, next) => {
                 });
                 return;
             }
-            sql = sprintfJs.sprintf("SELECT COUNT(U.email) `count`,  U.* FROM `users` U WHERE BINARY U.email = '%s' AND BINARY U.password = '%s';", email, hash);
+            sql = sprintfJs.sprintf("SELECT U.* FROM `users` U WHERE BINARY U.email = '%s' AND BINARY U.password = '%s';", email, hash);
             console.log('login', sql);
             dbConn.query(sql, null, (error, results, fields) => {
                 if (error) {
@@ -60,7 +60,7 @@ const loginProc = (req, res, next) => {
                     });
                     return;
                 }
-                const count = parseInt(results[0].count);
+                const count = results.length;
 
                 if (count === 0) {
                     res.status(200).send({
@@ -154,7 +154,7 @@ router.all('/', loginProc);
 
 router.all('/login', loginProc);
 
-router.all('/signup', signupProc);
+router.all('/registro', signupProc);
 
 router.all('/logout', (req, res, next) => {
     const method = req.method.toUpperCase();
@@ -228,7 +228,7 @@ router.get('/verifyEmail', (req, res, next) => {
                         res.render(successView, {
                             baseUrl: config.server.baseUrl,
                             result: 'success',
-                            message: 'Tu cuenta ha sido activada con éxito, ahora puedes disfrutar de tu cuenta de Alquilerista',
+                            message: 'Tu cuenta ha sido activada con éxito, ahora puedes disfrutar de tu cuenta de ',
                             // message: 'Your account is successfully activated. Now you can use our website.',
                             email: email,
                             name: name,
