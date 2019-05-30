@@ -1,6 +1,6 @@
 import app from '../app';
 import debugLib from 'debug';
-// import http from 'http';
+import http from 'http';
 import https from 'https';
 import cluster from 'cluster';
 import config from '../core/config';
@@ -15,21 +15,26 @@ if (cluster.isMaster) {
 
 let debug;
 let server;
+let serverSsl;
 if (cluster.isWorker) {
     debug = new debugLib('cms:server');
 
     const port = normalizePort(process.env.PORT || config.server.port);
+    const portSsl = normalizePort(process.env.PORT || config.server.portSsl);
     app.set('port', port);
 
-    // server = http.createServer(app);
+    server = http.createServer(app);
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
     var credentials = {
         key:  fs.readFileSync('./sslcert/key.pem'),
         cert: fs.readFileSync('./sslcert/cert.pem')
     };
-    server = https.createServer(credentials, app);
-    server.listen(port);
-    server.on('error', onError);
-    server.on('listening', onListening);
+    serverSsl = https.createServer(credentials, app);
+    serverSsl.listen(portSsl);
+    serverSsl.on('error', onError);
+    serverSsl.on('listening', onListeningSsl);
 }
 
 function normalizePort(val) {
@@ -74,6 +79,14 @@ function onError(error) {
 
 function onListening() {
     const addr = server.address();
+    const bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+}
+
+function onListeningSsl() {
+    const addr = serverSsl.address();
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
