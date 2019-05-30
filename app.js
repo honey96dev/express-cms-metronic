@@ -2,6 +2,7 @@ import express from 'express';
 // import expressJwt from 'express-jwt';
 import session from 'express-session';
 import expressMysqlSessionLib from 'express-mysql-session';
+import subdomain from 'express-subdomain';
 import cors from 'cors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
@@ -58,7 +59,12 @@ function alreadyLogin(req, res, next) {
         return next();
     }
 }
+// app.use('/users', alreadyLogin, usersRouter);
+// app.use('/admin', requiresLogin, adminRouter);
+// app.use('/', requiresLogin, indexRouter);
+app.use('/registro', alreadyLogin, usersRouter);
 app.use('/users', alreadyLogin, usersRouter);
+// app.use(subdomain('/registro'));
 app.use('/admin', requiresLogin, adminRouter);
 app.use('/', requiresLogin, indexRouter);
 

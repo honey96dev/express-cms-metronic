@@ -1,8 +1,10 @@
 import app from '../app';
 import debugLib from 'debug';
-import http from 'http';
+// import http from 'http';
+import https from 'https';
 import cluster from 'cluster';
 import config from '../core/config';
+import fs from 'fs';
 
 if (cluster.isMaster) {
     cluster.fork();
@@ -19,7 +21,12 @@ if (cluster.isWorker) {
     const port = normalizePort(process.env.PORT || config.server.port);
     app.set('port', port);
 
-    server = http.createServer(app);
+    // server = http.createServer(app);
+    var credentials = {
+        key:  fs.readFileSync('./sslcert/key.pem'),
+        cert: fs.readFileSync('./sslcert/cert.pem')
+    };
+    server = https.createServer(credentials, app);
     server.listen(port);
     server.on('error', onError);
     server.on('listening', onListening);
