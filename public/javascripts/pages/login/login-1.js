@@ -69,6 +69,7 @@ var KTLoginV1 = function () {
 					}
 				},
 				error: function (error) {
+					console.log('error', error);
 					btn.attr('disabled', false);
 				},
 			});
