@@ -67,7 +67,10 @@ var KTLoginV1 = function () {
 					} else if (result === 'error') {
 						showErrorMsg(form, 'danger', message);
 					}
-				}
+				},
+				fail: function (error) {
+					btn.attr('disabled', false);
+				},
 			});
 		});
 
@@ -128,7 +131,10 @@ var KTLoginV1 = function () {
 					} else if (result === 'error') {
 						showErrorMsg(form, 'danger', message);
 					}
-				}
+				},
+				fail: function (error) {
+					btn.attr('disabled', false);
+				},
 			});
 		});
 
