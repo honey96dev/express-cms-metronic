@@ -73,8 +73,8 @@ app.use(function (req, res, next) {
 // app.use('/admin', requiresLogin, adminRouter);
 // app.use('/', requiresLogin, indexRouter);
 app.use('/registro', alreadyLogin, usersRouter);
-app.use('/users', alreadyLogin, usersRouter);
-// app.use(subdomain('/registro'));
+// app.use('/users', alreadyLogin, usersRouter);
+app.use(subdomain('propietario', usersRouter));
 app.use('/admin', requiresLogin, adminRouter);
 app.use('/', requiresLogin, indexRouter);
 
