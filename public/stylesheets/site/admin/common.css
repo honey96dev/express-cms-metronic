@@ -50,8 +50,14 @@
 
 .navigation-icon-1 {
     font-size: 24px !important;
+    /*font-weight: 200 !important;*/
 }
 
 .margin-auto {
     margin: auto !important;
+}
+
+.kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-text,
+.kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-icon {
+    color: #FF5722 !important;
 }
