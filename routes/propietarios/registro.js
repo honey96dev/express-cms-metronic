@@ -1,23 +1,23 @@
 import express from 'express';
-import config from '../core/config';
-import dbConn from '../core/dbConn';
+import config from '../../core/config';
+import dbConn from '../../core/dbConn';
 import sprintfJs from 'sprintf-js';
-import mailer from '../core/mailer';
-import myCrypto from '../core/myCrypto';
+import mailer from '../../core/mailer';
+import myCrypto from '../../core/myCrypto';
 
-function sendVerificationEmail(email, name) {
+const router = express.Router();
+
+const sendVerificationEmail = (email, name) => {
     const token = myCrypto.hmacHex(new Date().toISOString());
     let expire = new Date().getTime() + 300000;
     const sql = sprintfJs.sprintf("INSERT INTO `tokens`(`token`, `expire`, `email`) VALUES('%s', '%d', '%s');", token, expire, email);
     dbConn.query(sql, null, (error, results, fields) => {
         if (!error) {
-            const tokenUrl = sprintfJs.sprintf('%susers/verifyEmail?token=%s&email=%s&name=%s', config.server.baseUrl, token, email, name);
+            const tokenUrl = sprintfJs.sprintf('%susers/verifyEmail?token=%s&email=%s&name=%s', config.server.propietariosBaseUrl, token, email, name);
             mailer.sendVerificationMail(email, name, tokenUrl);
         }
     });
 }
-
-const router = express.Router();
 
 const signupProc = (req, res, next) => {
     const method = req.method.toUpperCase();
@@ -29,7 +29,7 @@ const signupProc = (req, res, next) => {
         const name = params.name.trim();
         const hash = myCrypto.hmacHex(password);
 
-        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `users` WHERE BINARY `email` = '%s';", email);
+        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, email);
         dbConn.query(sql, null, (error, results, fields) => {
             if (error) {
                 res.status(200).send({
@@ -50,7 +50,7 @@ const signupProc = (req, res, next) => {
                 });
                 return;
             }
-            sql = sprintfJs.sprintf("INSERT INTO `users`(`email`, `password`, `name`, `emailVerified`, `allow`) VALUES('%s', '%s', '%s', '0', '0');",
+            sql = sprintfJs.sprintf("INSERT INTO `%s`(`email`, `password`, `name`, `emailVerified`, `allow`) VALUES('%s', '%s', '%s', '0', '0');", config.dbTblName.propietarios,
                 email, hash, name);
             dbConn.query(sql, null, (error, results, fields) => {
                 if (error) {
@@ -71,7 +71,7 @@ const signupProc = (req, res, next) => {
             });
         });
     } else if (method === 'GET') {
-        res.render('users/signup', {baseUrl: config.server.baseUrl});
+        res.render('propietarios/signup', {baseUrl: config.server.propietariosBaseUrl});
     } else {
         res.status(404).send('Not found');
     }
@@ -83,13 +83,13 @@ router.get('/verifyEmail', (req, res, next) => {
     const token = req.query.token;
     const email = req.query.email;
     const name = req.query.name;
-    let sql = sprintfJs.sprintf("SELECT T.*, U.name FROM `tokens` T JOIN `users` U ON U.email = T.email WHERE BINARY T.token = '%s';", token);
-    const successView = 'users/verifyEmail/success';
-    const failView = 'users/verifyEmail/fail';
+    let sql = sprintfJs.sprintf("SELECT T.*, U.name FROM `tokens` T JOIN `%s` U ON U.email = T.email WHERE BINARY T.token = '%s';", config.dbTblName.propietarios, token);
+    const successView = 'propietarios/verifyEmail/success';
+    const failView = 'propietarios/verifyEmail/fail';
     dbConn.query(sql, null, (error, results, fields) => {
         if (error) {
             res.render(failView, {
-                baseUrl: config.server.baseUrl,
+                baseUrl: config.server.propietariosBaseUrl,
                 result: 'error',
                 message: 'Lo sentimos. Error desconocido.',
                 error: error,
@@ -103,7 +103,7 @@ router.get('/verifyEmail', (req, res, next) => {
 
         if (count === 0) {
             res.render(failView, {
-                baseUrl: config.server.baseUrl,
+                baseUrl: config.server.propietariosBaseUrl,
                 result: 'error',
                 message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token inválido.',
                 // message: 'Sorry! Your account can not be activated. Your token is invalid.',
@@ -115,11 +115,11 @@ router.get('/verifyEmail', (req, res, next) => {
             const expire = parseInt(results[0].expire);
             console.log('verify', timestamp, expire);
             if (timestamp < expire) {
-                sql = sprintfJs.sprintf("UPDATE `users` SET `emailVerified` = 1 WHERE BINARY `email` = '%s';", results[0].email);
+                sql = sprintfJs.sprintf("UPDATE `%s` SET `emailVerified` = 1 WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, results[0].email);
                 dbConn.query(sql, null, (error) => {
                     if (error) {
                         res.render(failView, {
-                            baseUrl: config.server.baseUrl,
+                            baseUrl: config.server.propietariosBaseUrl,
                             result: 'error',
                             message: 'Lo sentimos. Error desconocido.',
                             error: error,
@@ -129,7 +129,7 @@ router.get('/verifyEmail', (req, res, next) => {
                         });
                     } else {
                         res.render(successView, {
-                            baseUrl: config.server.baseUrl,
+                            baseUrl: config.server.propietariosBaseUrl,
                             result: 'success',
                             message: 'Tu cuenta ha sido activada con éxito, ahora puedes disfrutar de tu cuenta de ',
                             // message: 'Your account is successfully activated. Now you can use our website.',
@@ -140,7 +140,7 @@ router.get('/verifyEmail', (req, res, next) => {
                 });
             } else {
                 res.render(failView, {
-                    baseUrl: config.server.baseUrl,
+                    baseUrl: config.server.propietariosBaseUrl,
                     result: 'error',
                     message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token caducado.',
                     // message: 'Sorry! Your account can not be activated. Your token is expired.',
@@ -169,7 +169,7 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                     // message: 'Sorry! Unknown error',
                 });
             } else {
-                sql = sprintfJs.sprintf("SELECT `name` FROM `users` WHERE BINARY `email` = '%s';", email);
+                sql = sprintfJs.sprintf("SELECT `name` FROM `%s` WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, email);
                 // console.log('verify-email', sql);
                 dbConn.query(sql, null, (error, results, fields) => {
                     if (error) {

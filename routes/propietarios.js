@@ -1,13 +1,13 @@
 import express from 'express';
-import loginRouter from './admin/login';
-import dashboardRouter from './admin/dashboard';
-import usersRouter from './admin/users';
+import registroRouter from './propietarios/registro';
+import loginRouter from './propietarios/login';
+import mainRouter from './propietarios/main';
 import config from "../core/config";
 
 const router = express.Router();
 
 function requiresLogin(req, res, next) {
-    if (req.session && req.session.admin && req.session.admin.id) {
+    if (req.session && req.session.propietarios && req.session.propietarios.id) {
         return next();
     } else {
         res.redirect('/login');
@@ -19,17 +19,17 @@ function alreadyLogin(req, res, next) {
     if (req.url === '/logout') {
         return next();
     }
-    if (req.session && req.session.admin && req.session.admin.id) {
+    if (req.session && req.session.propietarios && req.session.propietarios.id) {
         res.redirect('/');
     } else {
         return next();
     }
 }
 
+
+router.use('/registro', alreadyLogin, registroRouter);
 router.use('/login', alreadyLogin, loginRouter);
-router.use('/', requiresLogin, dashboardRouter);
-router.use('/dashboard', requiresLogin, dashboardRouter);
-router.use('/users', requiresLogin, usersRouter);
+router.use('/', requiresLogin, mainRouter);
 
 router.use(function(req, res, next){
     res.status(404);

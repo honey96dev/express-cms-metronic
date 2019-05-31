@@ -16,8 +16,8 @@ head
     base(href=baseUrl)
     // end::Base Path
     meta(charset='utf-8')
-    title Reg&iacute;strate
-    meta(name='description' content='Signup')
+    title Iniciar sesi&oacute;n
+    meta(name='description' content='Login page example')
     meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
     // begin::Fonts
     script(src='https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js')
@@ -83,7 +83,30 @@ head
     #kt_login.kt-grid.kt-grid--hor.kt-grid--root.kt-login.kt-login--v1
         .kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--desktop.kt-grid--ver-desktop.kt-grid--hor-tablet-and-mobile
             // begin::Aside
-            .kt-grid__item.kt-grid__item--order-tablet-and-mobile-2.kt-grid.kt-grid--hor.kt-login__aside(style='background-image: url(images/signup-bg.png); background-position: center;')
+            .kt-grid__item.kt-grid__item--order-tablet-and-mobile-2.kt-grid.kt-grid--hor.kt-login__aside(style='background-image: url(images/login-bg.jpg); background-position: center;')
+                // <div class="kt-grid__item">
+                // <a href="#" class="kt-login__logo">
+                // <img src="images/logo-def1.png">
+                // </a>
+                // </div>
+                // <div class="kt-grid__item kt-grid__item&#45;&#45;fluid kt-grid kt-grid&#45;&#45;ver">
+                // <div class="kt-grid__item kt-grid__item&#45;&#45;middle">
+                // <h3 class="kt-login__title">Welcome to Metronic!</h3>
+                // <h4 class="kt-login__subtitle">The ultimate Bootstrap & Angular 6 admin theme framework for next generation web apps.</h4>
+                // </div>
+                // </div>
+                // <div class="kt-grid__item">
+                // <div class="kt-login__info">
+                // <div class="kt-login__copyright">
+                // &copy 2018 Metronic
+                // </div>
+                // <div class="kt-login__menu">
+                // <a href="#" class="kt-link">Privacy</a>
+                // <a href="#" class="kt-link">Legal</a>
+                // <a href="#" class="kt-link">Contact</a>
+                // </div>
+                // </div>
+                // </div>
             // begin::Aside
             // begin::Content
             .kt-grid__item.kt-grid__item--fluid.kt-grid__item--order-tablet-and-mobile-1.kt-login__wrapper
@@ -92,27 +115,17 @@ head
                         img.kt-login__logo-image(src='images/logo-def1.png')
                 // begin::Head
                 .kt-login__head.desktop-only-item
-                    span.kt-login__signup-label &iquest;Ya tienes cuenta?
-                    a.kt-login__signup-link(href='/users/login') Entra
+                    span.kt-login__signup-label &iquest;No tienes cuenta?
+                    a.kt-login__signup-link(href!='/registro') Crear cuenta
                 // end::Head
                 // begin::Body
                 .kt-login__body
                     // begin::Signin
                     .kt-login__form
                         .kt-login__title
-                            h3 Regístrate gratis
-                            h6(style='margin-top: 4rem !important;') El sitio para administrar propiedades en alquiler, 
-                                span(style='font-weight: 600; text-decoration: underline; text-decoration-color: #FF5722;')  sin problemas
+                            h3 Acceso usuarios
                         // begin::Form
                         form.kt-form(action='' novalidate='novalidate')
-                            .form-group
-                                label.form-label Nombre
-                                .kt-input-icon.kt-input-icon--left
-                                    input#name.form-control(type='text' name='name' placeholder='Your Nombre' autocomplete='off')
-                                    span.kt-input-icon__icon.kt-input-icon__icon--left
-                                        // <span><i class="la la-envelope" aria-hidden="true"></i></span>
-                                        span
-                                            i.material-icons.material-icons-outlined.input-icon(aria-hidden='true') perm_identity
                             .form-group
                                 label.form-label E-Mail
                                 .kt-input-icon.kt-input-icon--left
@@ -134,25 +147,18 @@ head
                                         span
                                             i.material-icons.material-icons-round.input-icon(aria-hidden='true') vpn_key
                             // begin::Action
-                            .kt-login__actions(style='margin-bottom: 0 !important;')
+                            .kt-login__actions
                                 // <input id="kt_login_remember_me" type="checkbox" class="md-control">Recordarme</input>
                                 label.kt-checkbox.kt-checkbox--info
-                                    input#accept1.accept-term(type='checkbox' name='accept1')
-                                    | Acepto la&nbsp;
-                                    a.blue(href='#') Pol&iacute;tica de Privacidad
-                                    | &nbsp;y&nbsp;
-                                    a.blue(href='#') T&eacute;rminos Condiciones
-                                    | .
+                                    input#remember_me(type='checkbox' name='remember_me')
+                                    | Recordarme
                                     span
+                                label.kt-checkbox.kt-checkbox--info
+                                    a.gray(href='#')
+                                        | Olvidaste el password?
                                 // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
-                            //.kt-login__actions(style='margin-top: 0 !important;')
-                            //    label.kt-checkbox.kt-checkbox--info
-                            //        input#accept2.accept-term(type='checkbox' name='accept2')
-                            //        | Acepto recibir por email novedades del servicio y de Alquilerista.
-                            //        span
-                            //     <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
                             .kt-align-center
-                                button#kt_login_signup_submit.btn.btn-primary.btn-elevate.kt-login__btn-primary Crear cuenta
+                                button#kt_login_signin_submit.btn.btn-primary.btn-elevate.kt-login__btn-primary Entrar en Alquilerista
                             // end::Action
                         // end::Form
                         // &lt;!&ndash;begin::Divider&ndash;&gt;
@@ -184,8 +190,8 @@ head
                 // end::Body
                 // begin::Foot
                 .kt-login__head.mobile-only-item
-                    span.kt-login__signup-label &iquest;Ya tienes cuenta?
-                    a.kt-login__signup-link(href='/users/login') Entra
+                    span.kt-login__signup-label &iquest;No tienes cuenta?
+                    a.kt-login__signup-link(href!='/registro') Crear cuenta
                 // end::Foot
             // end::Content
 // end:: Page

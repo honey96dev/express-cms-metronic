@@ -3,9 +3,12 @@ extends ./layout
 block mainContent
     .kt-portlet__head
         .kt-portlet__head-label
+            span.kt-portlet__head-icon
+                i.margin-auto.material-icons.material-icons-outlined perm_identity
             h3.kt-portlet__head-title
                 | Lista de Usuarios
     .kt-portlet__body
+        .input#baseUrl(type='hidden' value!=baseUrl)
         .kt-content.kt-grid__item.kt-grid__item--fluid
             table#usersTable.table
                 thead
