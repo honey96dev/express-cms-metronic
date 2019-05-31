@@ -69,7 +69,7 @@ var KTLoginV1 = function () {
 					}
 				},
 				error: function (error) {
-					console.log('error', error);
+					showErrorMsg(form, 'danger', 'Error desconocido');
 					btn.attr('disabled', false);
 				},
 			});
@@ -134,6 +134,7 @@ var KTLoginV1 = function () {
 					}
 				},
 				error: function (error) {
+					showErrorMsg(form, 'danger', 'Error desconocido');
 					btn.attr('disabled', false);
 				},
 			});
