@@ -68,7 +68,7 @@ var KTLoginV1 = function () {
 						showErrorMsg(form, 'danger', message);
 					}
 				},
-				fail: function (error) {
+				error: function (error) {
 					btn.attr('disabled', false);
 				},
 			});
@@ -132,7 +132,7 @@ var KTLoginV1 = function () {
 						showErrorMsg(form, 'danger', message);
 					}
 				},
-				fail: function (error) {
+				error: function (error) {
 					btn.attr('disabled', false);
 				},
 			});
