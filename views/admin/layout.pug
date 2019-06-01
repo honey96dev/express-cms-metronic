@@ -52,13 +52,69 @@ html(lang='en')
     body.kt-page--fluid.kt-page-content-white.kt-quick-panel--right.kt-demo-panel--right.kt-offcanvas-panel--right.kt-header--fixed.kt-header-mobile--fixed.kt-subheader--enabled.kt-subheader--transparent.kt-aside--enabled.kt-aside--fixed.kt-page--loading
         #kt_header_mobile.kt-header-mobile.kt-header-mobile--fixed
             .kt-header-mobile__logo
-                a(href='demo11/index.html')
-                    img(alt='Logo', src='images/logo-def1.png')
+                a(href!=baseUrl)
+                    img.logo-img(alt='Logo', src='images/logo-def1.png')
             .kt-header-mobile__toolbar
+                //button#kt_header_mobile_topbar_toggler.kt-header-mobile__toolbar-topbar-toggler
+                //    i.flaticon-more-1
+                .kt-header__topbar-item.kt-header__topbar-item--user
+                    .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
+                        span.kt-header__topbar-icon.kt-bg-brand
+                            b S
+                    .dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-xl
+                        .kt-user-card.kt-user-card--skin-light.kt-notification-item-padding-x
+                            .kt-user-card__avatar
+                                span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold S
+                            .kt-user-card__name
+                                | Sebastian
+                            .kt-user-card__badge
+                                span.btn.btn-label-primary.btn-sm.btn-bold.btn-font-md 23 messages
+                        .kt-notification
+                            a.kt-notification__item(href='#')
+                                .kt-notification__item-icon
+                                    i.flaticon2-calendar-3.kt-font-success
+                                .kt-notification__item-details
+                                    .kt-notification__item-title.kt-font-bold
+                                        | My Profile
+                                    .kt-notification__item-time
+                                        | Account settings and more
+                            a.kt-notification__item(href='#')
+                                .kt-notification__item-icon
+                                    i.flaticon2-mail.kt-font-warning
+                                .kt-notification__item-details
+                                    .kt-notification__item-title.kt-font-bold
+                                        | My Messages
+                                    .kt-notification__item-time
+                                        | Inbox and tasks
+                            a.kt-notification__item(href='#')
+                                .kt-notification__item-icon
+                                    i.flaticon2-rocket-1.kt-font-danger
+                                .kt-notification__item-details
+                                    .kt-notification__item-title.kt-font-bold
+                                        | My Activities
+                                    .kt-notification__item-time
+                                        | Logs and notifications
+                            a.kt-notification__item(href='#')
+                                .kt-notification__item-icon
+                                    i.flaticon2-hourglass.kt-font-brand
+                                .kt-notification__item-details
+                                    .kt-notification__item-title.kt-font-bold
+                                        | My Tasks
+                                    .kt-notification__item-time
+                                        | latest tasks and projects
+                            a.kt-notification__item(href='#')
+                                .kt-notification__item-icon
+                                    i.flaticon2-cardiogram.kt-font-warning
+                                .kt-notification__item-details
+                                    .kt-notification__item-title.kt-font-bold
+                                        | Billing
+                                    .kt-notification__item-time
+                                        | billing & statements
+                                        span.kt-badge.kt-badge--danger.kt-badge--inline.kt-badge--pill.kt-badge--rounded 2 pending
+                            .kt-notification__custom.kt-space-between
+                                a.btn.btn-secondary.btn-pill.btn-bold(href!=baseUrl + 'login/logout', ) Sign Out
                 button#kt_aside_mobile_toggler.kt-header-mobile__toolbar-toggler.kt-header-mobile__toolbar-toggler--left
                     span
-                button#kt_header_mobile_topbar_toggler.kt-header-mobile__toolbar-topbar-toggler
-                    i.flaticon-more-1
         .kt-grid.kt-grid--hor.kt-grid--root
             .kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--ver.kt-page
                 #kt_wrapper.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor.kt-wrapper
@@ -66,8 +122,8 @@ html(lang='en')
                         .kt-container
                             #kt_header_brand.kt-header__brand
                                 .kt-header__brand-logo
-                                    a(href='demo11/index.html')
-                                        img(alt='Logo', src='images/logo-def1.png')
+                                    a(href!=baseUrl)
+                                        img.logo-img(alt='Logo', src='images/logo-def1.png')
                             .kt-header__topbar
                                 .kt-header__topbar-item.kt-header__topbar-item--user
                                     .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
@@ -145,14 +201,14 @@ html(lang='en')
                                         li.kt-menu__section
                                             h4.kt-menu__section-text LEGAL
                                             i.kt-menu__section-icon.flaticon-more-v2
-                                        if uri == 'addDocument'
+                                        if uri == 'documentos'
                                             li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'documents')
+                                                a.kt-menu__link(href!=baseUrl + 'documentos')
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-balance-scale
                                                     span.kt-menu__link-text Documentos
                                         else
                                             li.kt-menu__item(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'documents')
+                                                a.kt-menu__link(href!=baseUrl + 'documentos')
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-balance-scale
                                                     span.kt-menu__link-text Documentos
                                         if uri == 'addDocument'
@@ -184,10 +240,8 @@ html(lang='en')
                                                     span.kt-menu__link-text Lista de Usuarios
                         .kt-holder.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor
                             #kt_content.kt-content.kt-grid__item.kt-grid__item--fluid
-                                .row
-                                    .col-12
-                                        .kt-portlet.kt-portlet--height-fluid
-                                            block mainContent
+                                block mainContent
+
                     //#kt_footer.kt-footer.kt-grid__item
                     //    .kt-container
                     //        .kt-footer__wrapper

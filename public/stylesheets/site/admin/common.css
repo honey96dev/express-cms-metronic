@@ -53,11 +53,33 @@
     /*font-weight: 200 !important;*/
 }
 
+.kt-portlet__head-icon i {
+    font-size: 26px !important;
+}
+
 .margin-auto {
     margin: auto !important;
+}
+
+.kt-portlet__head-title {
+    font-size: 19px !important;
 }
 
 .kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-text,
 .kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-icon {
     color: #FF5722 !important;
+}
+
+@media (max-width: 1024px) {
+    .logo-img {
+        width: 280px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .logo-img {
+        width: 323px;
+        height: 46px;
+    }
 }

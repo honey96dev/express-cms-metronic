@@ -6311,7 +6311,7 @@ a.close.disabled {
 
 .modal {
     position: fixed;
-    top: 0;
+    top: 50px;
     left: 0;
     z-index: 1050;
     display: none;
@@ -29689,7 +29689,7 @@ and (max-width: 768px) {
     right: 20px;
     cursor: pointer;
     z-index: 90;
-    background: #5d78ff;
+    background: #7b98aa;
     -webkit-box-shadow: 0 0 15px 1px rgba(69, 65, 78, 0.2);
     box-shadow: 0 0 15px 1px rgba(69, 65, 78, 0.2);
     opacity: 0;
@@ -45861,6 +45861,27 @@ body {
     transition: all 0.3s;
 }
 
+.kt-header-mobile__toolbar .kt-header__topbar-item .kt-header__topbar-wrapper .kt-header__topbar-icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 37px;
+    width: 37px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
 .kt-header__topbar .kt-header__topbar-item .kt-header__topbar-wrapper .kt-header__topbar-icon i {
     line-height: 0;
     font-size: 1.4rem;
@@ -45868,6 +45889,13 @@ body {
 }
 
 .kt-header__topbar .kt-header__topbar-item .kt-header__topbar-wrapper .kt-header__topbar-icon b {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 0;
+    font-weight: 500;
+}
+
+.kt-header-mobile__toolbar .kt-header__topbar-item .kt-header__topbar-wrapper .kt-header__topbar-icon b {
     font-size: 2rem;
     color: rgba(255, 255, 255, 0.8);
     line-height: 0;
@@ -45941,7 +45969,7 @@ body {
         background-color: #fff;
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
-        margin-top: -50px;
+        margin-top: -100px;
         height: 50px;
         position: absolute;
         left: 0;
@@ -46032,7 +46060,7 @@ body {
         z-index: 1;
         -webkit-box-shadow: 0px 4px 30px -4px rgba(0, 51, 90, 0.1);
         box-shadow: 0px 4px 30px -4px rgba(0, 51, 90, 0.1);
-        background-color: #1e1e2d;
+        background-color: #fff;
     }
 
     .kt-header__topbar--mobile-on .kt-header-mobile {
@@ -46206,11 +46234,11 @@ body {
     }
 
     .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-toggler span {
-        background: #9aabff;
+        background: #7b98aa;
     }
 
     .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-toggler span::before, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-toggler span::after {
-        background: #9aabff;
+        background: #7b98aa;
     }
 
     .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-toggler:hover span {

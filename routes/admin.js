@@ -1,6 +1,7 @@
 import express from 'express';
 import loginRouter from './admin/login';
 import dashboardRouter from './admin/dashboard';
+import documentosRouter from './admin/documentos';
 import usersRouter from './admin/users';
 import config from "../core/config";
 
@@ -29,6 +30,7 @@ function alreadyLogin(req, res, next) {
 router.use('/login', alreadyLogin, loginRouter);
 router.use('/', requiresLogin, dashboardRouter);
 router.use('/dashboard', requiresLogin, dashboardRouter);
+router.use('/documentos', requiresLogin, documentosRouter);
 router.use('/users', requiresLogin, usersRouter);
 
 router.use(function(req, res, next){
