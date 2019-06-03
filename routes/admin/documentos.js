@@ -26,7 +26,7 @@ const indexProc = (req, res, next) => {
 
 const listProc = (req, res, next) => {
     if (req.xhr) {
-        let sql = sprintfJs.sprintf("SELECT * FROM `users`;");
+        let sql = sprintfJs.sprintf("SELECT * FROM `%s`;", config.dbTblName.documentos);
 
         dbConn.query(sql, null, (error, results, fields) => {
             if (error) {
@@ -48,22 +48,116 @@ const listProc = (req, res, next) => {
     }
 };
 
-const deleteProc = (req, res, next) => {
+const addProc = (req, res, next) => {
     const params = req.body;
-    const accountId = params.accountId;
+    const name = params.name;
+    const description = params.description;
+    const url = params.url;
 
-    let sql = sprintfJs.sprintf("DELETE FROM `%s` WHERE `id` = '%d';", config.dbTblName.propietarios, accountId);
+    let sql = sprintfJs.sprintf("INSERT INTO `%s`(`name`, `description`, `url`) VALUES('%s', '%s', '%s');", config.dbTblName.documentos, name, description, url);
     dbConn.query(sql, null, (error, results, fields) => {
         if (error) {
             res.status(200).send({
                 result: 'error',
-                message: 'Unknown error',
+                // message: 'Unknown error',
+                message: 'Error desconocido',
                 error: error,
             });
         } else {
+            sql = sprintfJs.sprintf("SELECT * FROM `%s`;", config.dbTblName.documentos);
+            dbConn.query(sql, null, (error, results1, fields) => {
+                if (error) {
+                    res.status(200).send({
+                        result: 'success',
+                        // message: 'Successfully saved',
+                        message: 'Successfully saved',
+                        data: [],
+                        insertId: results.insertId,
+                    });
+                } else {
+                    res.status(200).send({
+                        result: 'success',
+                        // message: 'Successfully saved',
+                        message: 'Successfully saved',
+                        data: results1,
+                        insertId: results.insertId,
+                    });
+                }
+            });
+        }
+    });
+};
+
+const editProc = (req, res, next) => {
+    const params = req.body;
+    const documentId = params.documentId;
+    const name = params.name;
+    const description = params.description;
+    const url = params.url;
+
+    let sql = sprintfJs.sprintf("UPDATE `%s` SET `name` = '%s', `description` = '%s', `url` = '%s' WHERE `id` = '%s';", config.dbTblName.documentos, name, description, url, documentId);
+    dbConn.query(sql, null, (error, results, fields) => {
+        if (error) {
             res.status(200).send({
-                result: 'success',
-                message: 'Successfully deleted',
+                result: 'error',
+                // message: 'Unknown error',
+                message: 'Error desconocido',
+                error: error,
+            });
+        } else {
+            sql = sprintfJs.sprintf("SELECT * FROM `%s`;", config.dbTblName.documentos);
+            dbConn.query(sql, null, (error, results1, fields) => {
+                if (error) {
+                    res.status(200).send({
+                        result: 'success',
+                        // message: 'Successfully edited',
+                        message: 'Successfully edited',
+                        data: [],
+                    });
+                } else {
+                    res.status(200).send({
+                        result: 'success',
+                        // message: 'Successfully edited',
+                        message: 'Successfully edited',
+                        data: results1,
+                    });
+                }
+            });
+        }
+    });
+};
+
+const deleteProc = (req, res, next) => {
+    const params = req.body;
+    const documentId = params.documentId;
+
+    let sql = sprintfJs.sprintf("DELETE FROM `%s` WHERE `id` = '%d';", config.dbTblName.documentos, documentId);
+    dbConn.query(sql, null, (error, results, fields) => {
+        if (error) {
+            res.status(200).send({
+                result: 'error',
+                // message: 'Unknown error',
+                message: 'Error desconocido',
+                error: error,
+            });
+        } else {
+            sql = sprintfJs.sprintf("SELECT * FROM `%s`;", config.dbTblName.documentos);
+            dbConn.query(sql, null, (error, results1, fields) => {
+                if (error) {
+                    res.status(200).send({
+                        result: 'success',
+                        // message: 'Successfully deleted',
+                        message: 'Successfully deleted',
+                        data: [],
+                    });
+                } else {
+                    res.status(200).send({
+                        result: 'success',
+                        // message: 'Successfully deleted',
+                        message: 'Successfully deleted',
+                        data: results1,
+                    });
+                }
             });
         }
     });
@@ -73,6 +167,10 @@ router.get('/', indexProc);
 
 router.get('/list', listProc);
 
-router.delete('/delete', deleteProc);
+router.post('/save', addProc);
+
+router.put('/save', editProc);
+
+router.delete('/save', deleteProc);
 
 module.exports = router;

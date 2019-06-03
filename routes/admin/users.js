@@ -26,7 +26,7 @@ const indexProc = (req, res, next) => {
 
 const listProc = (req, res, next) => {
     if (req.xhr) {
-        let sql = sprintfJs.sprintf("SELECT * FROM `users`;");
+        let sql = sprintfJs.sprintf("SELECT * FROM `%s`;", config.dbTblName.propietarios);
 
         dbConn.query(sql, null, (error, results, fields) => {
             if (error) {

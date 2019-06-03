@@ -50,6 +50,7 @@ html(lang='en')
         for style in styles
             link(href!=style, rel='stylesheet')
     body.kt-page--fluid.kt-page-content-white.kt-quick-panel--right.kt-demo-panel--right.kt-offcanvas-panel--right.kt-header--fixed.kt-header-mobile--fixed.kt-subheader--enabled.kt-subheader--transparent.kt-aside--enabled.kt-aside--fixed.kt-page--loading
+        input#baseUrl(type='hidden', value!=baseUrl)
         #kt_header_mobile.kt-header-mobile.kt-header-mobile--fixed
             .kt-header-mobile__logo
                 a(href!=baseUrl)
