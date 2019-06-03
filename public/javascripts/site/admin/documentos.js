@@ -35,11 +35,11 @@ Documentos.prototype.init = function () {
             },
             messages: {
                 // name: "Por favor introduzca su correo electrónico",
-                name: "Please enter name of document",
+                name: "Escribe el nombre del documento, por favor",
                 // description: "Por favor introduzca su contraseña",
-                description: "Please enter description of document",
+                description: "Escribe la descripción del documento, por favor",
                 // url: "Por favor introduzca su contraseña",
-                url: "Please enter url of document",
+                url: "Introduce la url del documento, por favor",
             },
         });
 
@@ -132,7 +132,8 @@ Documentos.prototype.editDocument = function(idx) {
 
 Documentos.prototype.deleteDocument = function(idx) {
     let self = this;
-    const button = confirm('Really?');
+    // const button = confirm('Really?');
+    const button = confirm('¿Estás seguro?');
     if (button) {
         $.ajax({
             url: self.baseUrl + 'documentos/save',

@@ -70,7 +70,7 @@ const addProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'success',
                         // message: 'Successfully saved',
-                        message: 'Successfully saved',
+                        message: 'Guardado correctamente',
                         data: [],
                         insertId: results.insertId,
                     });
@@ -78,7 +78,7 @@ const addProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'success',
                         // message: 'Successfully saved',
-                        message: 'Successfully saved',
+                        message: 'Guardado correctamente',
                         data: results1,
                         insertId: results.insertId,
                     });
@@ -111,14 +111,14 @@ const editProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'success',
                         // message: 'Successfully edited',
-                        message: 'Successfully edited',
+                        message: 'Editado correctamente',
                         data: [],
                     });
                 } else {
                     res.status(200).send({
                         result: 'success',
                         // message: 'Successfully edited',
-                        message: 'Successfully edited',
+                        message: 'Editado correctamente',
                         data: results1,
                     });
                 }
@@ -147,14 +147,14 @@ const deleteProc = (req, res, next) => {
                     res.status(200).send({
                         result: 'success',
                         // message: 'Successfully deleted',
-                        message: 'Successfully deleted',
+                        message: 'Eliminado correctamente',
                         data: [],
                     });
                 } else {
                     res.status(200).send({
                         result: 'success',
                         // message: 'Successfully deleted',
-                        message: 'Successfully deleted',
+                        message: 'Eliminado correctamente',
                         data: results1,
                     });
                 }

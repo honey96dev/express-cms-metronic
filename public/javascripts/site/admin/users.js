@@ -50,7 +50,8 @@ Users.prototype.init = function() {
 
 Users.prototype.deleteUser = function(id) {
     let self = this;
-    const button = confirm('Really?');
+    // const button = confirm('Really?');
+    const button = confirm('¿Estás seguro?');
     if (button) {
         $.ajax({
             method: 'delete',
