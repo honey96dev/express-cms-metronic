@@ -106,9 +106,9 @@ var KTLoginV1 = function () {
 					// email: "Please enter your Email",
 					password: "Escribe tu contraseña",
 					// password: "Please enter your password",
-					accept1: "Por favor, acepta esto ?¿?¿¿",
+					accept1: "Acepta esto ¿??",
 					// accept1: "Please accept this",
-					accept2: "Por favor, acepta esto ?¿?¿¿?",
+					accept2: "Acepta esto ¿??",
 					// accept2: "Please accept this",
 				},
 			});

@@ -9,13 +9,13 @@ block mainContent
                         span.kt-portlet__head-icon
                             i.margin-auto.la.la-balance-scale
                         h3.kt-portlet__head-title=title
-                    .kt-portlet__head-toolbar
+                    .kt-portlet__head-toolbar.add-button
                         button#addDocumento.btn.btn-light.btn-elevate.btn-pill(data-toggle='modal', data-target='#documentoDetailsModal')
                             span.kt-portlet__head-icon
                                 i.margin-auto.la.la-plus-circle
                             | Añadir documento
-                .kt-portlet__body(style='font-size: 16px; padding: 10px 25px;')
-                    | Mekao grado ok bis, muo priskriba supreniro antaŭhieraŭ li, vol liva prepoziciaĵo vo. Ec tra krome kelke centilitro, metr triangulo fratineto hu nun. Ia plus grupo igi. Anti domkonstrui hav jh, nk nevo afro konjunkcio nun. Mekao grado ok bis, muo priskriba supreniro antaŭhieraŭ li, vol liva prepoziciaĵo vo. Ec tra krome kelke centilitro, metr triangulo fratineto hu nun. Ia plus grupo igi. Anti domkonstrui hav jh, nk nevo afro konjunkcio nun.
+                //.kt-portlet__body(style='font-size: 16px; padding: 10px 25px;')
+                //    | Mekao grado ok bis, muo priskriba supreniro antaŭhieraŭ li, vol liva prepoziciaĵo vo. Ec tra krome kelke centilitro, metr triangulo fratineto hu nun. Ia plus grupo igi. Anti domkonstrui hav jh, nk nevo afro konjunkcio nun. Mekao grado ok bis, muo priskriba supreniro antaŭhieraŭ li, vol liva prepoziciaĵo vo. Ec tra krome kelke centilitro, metr triangulo fratineto hu nun. Ia plus grupo igi. Anti domkonstrui hav jh, nk nevo afro konjunkcio nun.
     #documentosList
 
     #documentoDetailsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='documentoDetailsModalLabel', aria-hidden='true')
@@ -32,7 +32,7 @@ block mainContent
                         input#name.form-control(type='text', name='name')
                     .form-group.document-details
                         label Descripción
-                        textarea#description.form-control(type='text', name='description', rows='5')
+                        textarea#description.form-control(type='text', name='description', rows='10')
                     .form-group.document-details
                         label URL
                         input#url.form-control(type='text', name='url')

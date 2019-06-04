@@ -6,6 +6,8 @@ function Users() {
 Users.prototype.init = function() {
     let self = this;
     self.table = $('#usersTable').DataTable({
+        responsive: true,
+        searching: false,
         ajax: self.baseUrl + 'users/list',
         columns: [
             {

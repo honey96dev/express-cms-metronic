@@ -13,7 +13,7 @@ const sendVerificationEmail = (email, name) => {
     const sql = sprintfJs.sprintf("INSERT INTO `tokens`(`token`, `expire`, `email`) VALUES('%s', '%d', '%s');", token, expire, email);
     dbConn.query(sql, null, (error, results, fields) => {
         if (!error) {
-            const tokenUrl = sprintfJs.sprintf('%susers/verifyEmail?token=%s&email=%s&name=%s', config.server.propietariosBaseUrl, token, email, name);
+            const tokenUrl = sprintfJs.sprintf('%sregistro/verifyEmail?token=%s&email=%s&name=%s', config.server.propietariosBaseUrl, token, email, name);
             mailer.sendVerificationMail(email, name, tokenUrl);
         }
     });

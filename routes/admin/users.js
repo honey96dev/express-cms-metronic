@@ -12,13 +12,16 @@ const indexProc = (req, res, next) => {
         uri: 'users',
         styles: [
             // 'vendors/general/jquery-datatable/css/jquery.dataTables.css',
+            // 'vendors/general/jquery-datatable/css/dataTables.responsive.min.css',
             'vendors/general/material-design-lite/material.css',
             'vendors/general/jquery-datatable/css/dataTables.material.css',
             'stylesheets/site/admin/users.css',
         ],
         scripts: [
-            'vendors/general/jquery-datatable/js/jquery.dataTables.js',
+            // 'vendors/general/jquery-datatable/js/jquery.dataTables.js',
+            'vendors/general/jquery-datatable/js/dataTables.responsive.min.js',
             'vendors/general/jquery-datatable/js/dataTables.bootstrap4.js',
+            // 'vendors/general/jquery-datatable/js/dataTables.material.js',
             'javascripts/site/admin/users.js',
         ],
     })

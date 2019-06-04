@@ -54,11 +54,11 @@ exports.sendVerificationMail = (to, name, tokenUrl) => {
             });
 
             const mailOptions = {
-                from: sprintfJs.sprintf('%s<%s>', server.name, smtp.user),
+                from: 'Mariona de Alquilerista',
                 // from: sprintfJs.sprintf('%s<%s>', server.name, smtp.user),
                 // to: 'honey96dev@gmail.com',
                 to: to,
-                subject: 'Verify your account',
+                subject: '¡Bienvenido a Alquilerista!',
                 html: html,
                 // text: 'Verify your account',
             };
