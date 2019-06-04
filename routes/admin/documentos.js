@@ -7,6 +7,7 @@ const router = express.Router();
 
 const indexProc = (req, res, next) => {
     res.render('admin/documentos', {
+        userName: req.session.admin.name,
         title: 'Documentos',
         baseUrl: config.server.adminBaseUrl,
         uri: 'documentos',

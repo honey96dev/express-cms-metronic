@@ -7,6 +7,7 @@ const router = express.Router();
 
 const dashboardProc = (req, res, next) => {
     res.render('admin/dashboard', {
+        userName: req.session.admin.name,
         title: 'Dashboard',
         baseUrl: config.server.adminBaseUrl,
         uri: 'dashboard',

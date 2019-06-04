@@ -7,6 +7,7 @@ const router = express.Router();
 
 const indexProc = (req, res, next) => {
     res.render('admin/users', {
+        userName: req.session.admin.name,
         title: 'Lista de Usuarios',
         baseUrl: config.server.adminBaseUrl,
         uri: 'users',

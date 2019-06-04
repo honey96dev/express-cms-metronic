@@ -3,13 +3,13 @@
     box-shadow: none !important;
 }
 
-.btn-secondary {
+.btn-secondary.edit-button {
     background-color: #0F9DE2;
     border: 1px solid #0F9DE2;
     color: #fff;
 }
 
-.show > .btn-secondary.dropdown-toggle, .btn-secondary:focus, .btn-secondary.active, .btn-secondary:active, .btn-secondary:hover {
+.show > .btn-secondary.dropdown-toggle, .btn-secondary.edit-button:focus, .btn-secondary.edit-button.active, .btn-secondary.edit-button:active, .btn-secondary.edit-button:hover {
     color: #fff !important;
     border-color: #0490e2 !important;
     background-color: #0490e2 !important;

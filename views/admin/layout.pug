@@ -61,13 +61,12 @@ html(lang='en')
                 .kt-header__topbar-item.kt-header__topbar-item--user
                     .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
                         span.kt-header__topbar-icon.kt-bg-brand
-                            b S
+                            b=userName.substr(0, 1).toUpperCase()
                     .dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-xl
                         .kt-user-card.kt-user-card--skin-light.kt-notification-item-padding-x
                             .kt-user-card__avatar
-                                span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold S
-                            .kt-user-card__name
-                                | Sebastian
+                                span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold=userName.substr(0, 1).toUpperCase()
+                            .kt-user-card__name=userName
                             .kt-user-card__badge
                                 span.btn.btn-label-primary.btn-sm.btn-bold.btn-font-md 23 messages
                         .kt-notification
@@ -129,13 +128,12 @@ html(lang='en')
                                 .kt-header__topbar-item.kt-header__topbar-item--user
                                     .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
                                         span.kt-header__topbar-icon.kt-bg-brand
-                                            b S
+                                            b=userName.substr(0, 1).toUpperCase()
                                     .dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-xl
                                         .kt-user-card.kt-user-card--skin-light.kt-notification-item-padding-x
                                             .kt-user-card__avatar
-                                                span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold S
-                                            .kt-user-card__name
-                                                | Sebastian
+                                                span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold=userName.substr(0, 1).toUpperCase()
+                                            .kt-user-card__name=userName
                                             .kt-user-card__badge
                                                 span.btn.btn-label-primary.btn-sm.btn-bold.btn-font-md 23 messages
                                         .kt-notification
@@ -192,12 +190,12 @@ html(lang='en')
                                         if uri == 'dashboard'
                                             li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'dashboard')
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.flaticon-collections
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined apps
                                                     span.kt-menu__link-text Dashboard
                                         else
                                             li.kt-menu__item(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'dashboard')
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.flaticon-collections
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined apps
                                                     span.kt-menu__link-text Dashboard
                                         li.kt-menu__section
                                             h4.kt-menu__section-text LEGAL
