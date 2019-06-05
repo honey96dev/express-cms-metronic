@@ -34,5 +34,6 @@ module.exports = {
         admins: 'admins',
         propietarios: 'users',
         documentos: 'documentos',
+        tokens: 'tokens',
     },
 };
