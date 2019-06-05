@@ -3,6 +3,7 @@ import config from "../core/config";
 import registroRouter from './propietarios/registro';
 import loginRouter from './propietarios/login';
 import dashboardRouter from "./propietarios/dashboard";
+import passwordRouter from "./admin/password";
 
 const router = express.Router();
 
@@ -15,7 +16,6 @@ function requiresLogin(req, res, next) {
 }
 
 function alreadyLogin(req, res, next) {
-    // console.log('alreadyLogin', req.url);
     if (req.url === '/logout') {
         return next();
     }
@@ -26,7 +26,7 @@ function alreadyLogin(req, res, next) {
     }
 }
 
-
+router.use('/password', alreadyLogin, passwordRouter);
 router.use('/registro', alreadyLogin, registroRouter);
 router.use('/login', alreadyLogin, loginRouter);
 router.use('/', requiresLogin, dashboardRouter);

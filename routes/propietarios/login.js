@@ -60,6 +60,7 @@ const loginProc = (req, res, next) => {
                         id: results[0].id,
                         email: results[0].email,
                         name: results[0].name,
+                        emailVerified: results[0].emailVerified,
                     };
                     res.status(200).send({
                         result: 'success',
