@@ -3,6 +3,7 @@ import config from "../core/config";
 import registroRouter from './propietarios/registro';
 import loginRouter from './propietarios/login';
 import dashboardRouter from "./propietarios/dashboard";
+import documentosRouter from "./propietarios/documentos";
 import passwordRouter from "./propietarios/password";
 
 const router = express.Router();
@@ -31,6 +32,7 @@ router.use('/registro', alreadyLogin, registroRouter);
 router.use('/login', alreadyLogin, loginRouter);
 router.use('/', requiresLogin, dashboardRouter);
 router.use('/dashboard', requiresLogin, dashboardRouter);
+router.use('/documentos', requiresLogin, documentosRouter);
 
 router.use(function(req, res, next){
     res.status(404);

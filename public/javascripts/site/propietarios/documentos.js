@@ -7,74 +7,74 @@ function Documentos() {
 
 Documentos.prototype.init = function () {
     let self = this;
-    $('#addDocumento').click(function (e) {
-        $('#documentoDetailsForm').find('.alert').remove();
-        $('#documentoDetailsForm').data('method', 'post');
-        $('#documentId').val('');
-        $('#name').val('');
-        $('#description').val('');
-        $('#url').val('');
-    });
-
-    $('#saveDocument').click(function (e) {
-        e.preventDefault();
-        const btn = $(this);
-        const form = $('#documentoDetailsForm');
-
-        form.validate({
-            rules: {
-                name: {
-                    required: true,
-                },
-                description: {
-                    required: true,
-                },
-                url: {
-                    required: true,
-                },
-            },
-            messages: {
-                // name: "Por favor introduzca su correo electrónico",
-                name: "Escribe el nombre del documento, por favor",
-                // description: "Por favor introduzca su contraseña",
-                description: "Escribe la descripción del documento, por favor",
-                // url: "Por favor introduzca su contraseña",
-                url: "Introduce la url del documento, por favor",
-            },
-        });
-
-        if (!form.valid()) {
-            return;
-        }
-
-        btn.attr('disabled', true);
-        // btn.addClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', true);
-
-        form.ajaxSubmit({
-            url: form[0].action,
-            method: form.data('method'),
-            dataType: 'json',
-            success: function (response, status, xhr, $form) {
-                const result = response.result;
-                const message = response.message;
-                const data = response.data;
-                const insertId = response.insertId;
-                btn.attr('disabled', false);
-                if (result === 'success') {
-                    self.showErrorMsg(form, 'success', message);
-                    $('#documentId').val(insertId);
-
-                    $('#documentosList').html(self.generateList(data));
-                } else if (result === 'error') {
-                    self.showErrorMsg(form, 'danger', message);
-                }
-            },
-            error: function (error) {
-                btn.attr('disabled', false);
-                self.showErrorMsg(form, 'danger', 'Error desconocido');
-            }
-        });
-    });
+    // $('#addDocumento').click(function (e) {
+    //     $('#documentoDetailsForm').find('.alert').remove();
+    //     $('#documentoDetailsForm').data('method', 'post');
+    //     $('#documentId').val('');
+    //     $('#name').val('');
+    //     $('#description').val('');
+    //     $('#url').val('');
+    // });
+    //
+    // $('#saveDocument').click(function (e) {
+    //     e.preventDefault();
+    //     const btn = $(this);
+    //     const form = $('#documentoDetailsForm');
+    //
+    //     form.validate({
+    //         rules: {
+    //             name: {
+    //                 required: true,
+    //             },
+    //             description: {
+    //                 required: true,
+    //             },
+    //             url: {
+    //                 required: true,
+    //             },
+    //         },
+    //         messages: {
+    //             // name: "Por favor introduzca su correo electrónico",
+    //             name: "Escribe el nombre del documento, por favor",
+    //             // description: "Por favor introduzca su contraseña",
+    //             description: "Escribe la descripción del documento, por favor",
+    //             // url: "Por favor introduzca su contraseña",
+    //             url: "Introduce la url del documento, por favor",
+    //         },
+    //     });
+    //
+    //     if (!form.valid()) {
+    //         return;
+    //     }
+    //
+    //     btn.attr('disabled', true);
+    //     // btn.addClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', true);
+    //
+    //     form.ajaxSubmit({
+    //         url: form[0].action,
+    //         method: form.data('method'),
+    //         dataType: 'json',
+    //         success: function (response, status, xhr, $form) {
+    //             const result = response.result;
+    //             const message = response.message;
+    //             const data = response.data;
+    //             const insertId = response.insertId;
+    //             btn.attr('disabled', false);
+    //             if (result === 'success') {
+    //                 self.showErrorMsg(form, 'success', message);
+    //                 $('#documentId').val(insertId);
+    //
+    //                 $('#documentosList').html(self.generateList(data));
+    //             } else if (result === 'error') {
+    //                 self.showErrorMsg(form, 'danger', message);
+    //             }
+    //         },
+    //         error: function (error) {
+    //             btn.attr('disabled', false);
+    //             self.showErrorMsg(form, 'danger', 'Error desconocido');
+    //         }
+    //     });
+    // });
 
     $.ajax({
         url: self.baseUrl + 'documentos/list',
@@ -108,7 +108,7 @@ Documentos.prototype.generateList = function (items) {
         if (idx %2 == 0) {
             list += '<div class="row">';
         }
-        list += '<div class="col-xl-6 col-lg-12"><div class="kt-portlet kt-portlet--height-fluid"><div class="kt-portlet__head"><div class="kt-portlet__head-label  document-title"><a href="' + item.url + '" target="_blank"><h3 class="kt-portlet__head-title" style="width: 100%">' + item.name + '</h3></a></div><div class="kt-portlet__head-toolbar document-toolbar"><button class="btn btn-secondary btn-pill edit-button" data-toggle="modal", data-target="#documentoDetailsModal" onclick="instance.editDocument(\'' + idx + '\')"><i class="fa fa-edit"></i><span class="button-text">Editar</span></button><button class="btn btn-danger btn-pill margin-1-left delete-button"onclick="instance.deleteDocument(\'' + idx + '\')"><i class="fa fa-trash"></i><span class="button-text">Eliminar</span></button></div></div><div class="kt-portlet__body">' + item.description + '</div></div></div>';
+        list += '<div class="col-xl-6 col-lg-12"><div class="kt-portlet kt-portlet--height-fluid"><div class="kt-portlet__head"><div class="kt-portlet__head-label  document-title"><a href="' + item.url + '" target="_blank"><h3 class="kt-portlet__head-title" style="width: 100%">' + item.name + '</h3></a></div><div class="kt-portlet__head-toolbar document-toolbar"><a href="' + item.url + '" target="_blank" class="btn btn-secondary btn-pill edit-button" ><i class="fa fa-eye"></i><span class="button-text">Ver</span></a></div></div><div class="kt-portlet__body">' + item.description + '</div></div></div>';
 
         if (idx %2 == 1) {
             list += '</div>';
@@ -117,49 +117,49 @@ Documentos.prototype.generateList = function (items) {
     }
     return list;
 };
-
-Documentos.prototype.editDocument = function(idx) {
-    let self = this;
-    // console.log('editDocument', id)
-    const data = self.dataSet[idx];
-    $('#documentoDetailsForm').find('.alert').remove();
-    $('#documentoDetailsForm').data('method', 'put');
-    $('#documentId').val(data.id);
-    $('#name').val(data.name);
-    $('#description').val(data.description);
-    $('#url').val(data.url);
-};
-
-Documentos.prototype.deleteDocument = function(idx) {
-    let self = this;
-    // const button = confirm('Really?');
-    const button = confirm('¿Estás seguro?');
-    if (button) {
-        $.ajax({
-            url: self.baseUrl + 'documentos/save',
-            method: 'DELETE',
-            dataType: 'json',
-            data: {
-                documentId: self.dataSet[idx].id,
-            },
-            success: function (response, status, xhr, $form) {
-                const result = response.result;
-                const message = response.message;
-                const data = response.data;
-                if (result === 'success') {
-                    $('#documentosList').html(self.generateList(data));
-                    alert(message);
-                } else if (result === 'error') {
-                    alert(message);
-                }
-            },
-            error: function (error) {
-                btn.attr('disabled', false);
-                self.showErrorMsg(form, 'danger', 'Error desconocido');
-            },
-        });
-    }
-};
+//
+// Documentos.prototype.editDocument = function(idx) {
+//     let self = this;
+//     // console.log('editDocument', id)
+//     const data = self.dataSet[idx];
+//     $('#documentoDetailsForm').find('.alert').remove();
+//     $('#documentoDetailsForm').data('method', 'put');
+//     $('#documentId').val(data.id);
+//     $('#name').val(data.name);
+//     $('#description').val(data.description);
+//     $('#url').val(data.url);
+// };
+//
+// Documentos.prototype.deleteDocument = function(idx) {
+//     let self = this;
+//     // const button = confirm('Really?');
+//     const button = confirm('¿Estás seguro?');
+//     if (button) {
+//         $.ajax({
+//             url: self.baseUrl + 'documentos/save',
+//             method: 'DELETE',
+//             dataType: 'json',
+//             data: {
+//                 documentId: self.dataSet[idx].id,
+//             },
+//             success: function (response, status, xhr, $form) {
+//                 const result = response.result;
+//                 const message = response.message;
+//                 const data = response.data;
+//                 if (result === 'success') {
+//                     $('#documentosList').html(self.generateList(data));
+//                     alert(message);
+//                 } else if (result === 'error') {
+//                     alert(message);
+//                 }
+//             },
+//             error: function (error) {
+//                 btn.attr('disabled', false);
+//                 self.showErrorMsg(form, 'danger', 'Error desconocido');
+//             },
+//         });
+//     }
+// };
 
 $(document).ready(function () {
     instance = new Documentos();

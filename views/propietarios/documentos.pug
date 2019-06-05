@@ -1,0 +1,42 @@
+extends ./layout
+
+block mainContent
+    .row
+        .col-12
+            .kt-portlet.kt-portlet--height-fluid.kt-portlet--height-fluid-transparent
+                .kt-portlet__head
+                    .kt-portlet__head-label
+                        span.kt-portlet__head-icon
+                            i.margin-auto.la.la-balance-scale
+                        h3.kt-portlet__head-title=title
+                    .kt-portlet__head-toolbar.add-button
+                        button#viewDocumento.btn.btn-light.btn-elevate.btn-pill
+                            //button#viewDocumento.btn.btn-light.btn-elevate.btn-pill(data-toggle='modal', data-target='#documentoDetailsModal')
+                            span.kt-portlet__head-icon
+                                i.margin-auto.la.la-eye
+                            | Ver
+                //.kt-portlet__body(style='font-size: 16px; padding: 10px 25px;')
+                //    | Mekao grado ok bis, muo priskriba supreniro antaŭhieraŭ li, vol liva prepoziciaĵo vo. Ec tra krome kelke centilitro, metr triangulo fratineto hu nun. Ia plus grupo igi. Anti domkonstrui hav jh, nk nevo afro konjunkcio nun. Mekao grado ok bis, muo priskriba supreniro antaŭhieraŭ li, vol liva prepoziciaĵo vo. Ec tra krome kelke centilitro, metr triangulo fratineto hu nun. Ia plus grupo igi. Anti domkonstrui hav jh, nk nevo afro konjunkcio nun.
+    #documentosList
+
+    #documentoDetailsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='documentoDetailsModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5.modal-title(style='margin-top: 0') Nuevo documento
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                form#documentoDetailsForm.modal-body(action='/documentos/save', data-method='', novalidate='novalidate')
+                    input#documentId.form-control(type='hidden', name='documentId')
+                    //.modal-body
+                    .form-group.document-details
+                        label Nombre
+                        input#name.form-control(type='text', name='name')
+                    .form-group.document-details
+                        label Descripción
+                        textarea#description.form-control(type='text', name='description', rows='10')
+                    .form-group.document-details
+                        label URL
+                        input#url.form-control(type='text', name='url')
+                .modal-footer
+                    button#closeModal.btn.btn-primary.btn-elevate.btn-pill(type='button', name='closeModal', data-dismiss='modal', style='background: #AEAAAA; padding: 8.45px 2.3rem; border-color: #AEAAAA;') Cancel
+                    button#saveDocument.btn.btn-primary.btn-elevate.btn-pill(type='button', name='saveDocument', style='background: #FF5722; padding: 8.45px 2.3rem;border-color: #FF5722;') Save

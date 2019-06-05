@@ -4,32 +4,15 @@
 }
 
 .btn-secondary.edit-button {
-    background-color: #0F9DE2;
-    border: 1px solid #0F9DE2;
-    color: #fff;
+    background-color: #FF5722 !important;
+    border: 1px solid #FF5722 !important;
+    color: #fff !important;
 }
 
 .show > .btn-secondary.dropdown-toggle, .btn-secondary.edit-button:focus, .btn-secondary.edit-button.active, .btn-secondary.edit-button:active, .btn-secondary.edit-button:hover {
     color: #fff !important;
-    border-color: #0490e2 !important;
-    background-color: #0490e2 !important;
-}
-
-.btn-danger {
-    color: #fff;
-    background-color: #EE0303;
-    border-color: #EE0303;
-}
-
-.btn-danger:hover {
-    color: #fff;
-    background-color: #ee0f00;
-    border-color: #ee0f00;
-}
-
-.btn-danger:focus, .btn-danger.focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(253, 87, 142, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(253, 87, 142, 0.5);
+    border-color: #ff6808 !important;
+    background-color: #ff6808 !important;
 }
 
 .margin-1-left {
@@ -44,7 +27,7 @@
 
 @media (min-width: 1025px) {
     .add-button {
-        margin-top: 8rem;
+        /*margin-top: 8rem;*/
         margin-bottom: 1rem;
     }
 
