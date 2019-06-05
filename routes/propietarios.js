@@ -1,8 +1,8 @@
 import express from 'express';
+import config from "../core/config";
 import registroRouter from './propietarios/registro';
 import loginRouter from './propietarios/login';
-import mainRouter from './propietarios/main';
-import config from "../core/config";
+import dashboardRouter from "./propietarios/dashboard";
 
 const router = express.Router();
 
@@ -29,7 +29,8 @@ function alreadyLogin(req, res, next) {
 
 router.use('/registro', alreadyLogin, registroRouter);
 router.use('/login', alreadyLogin, loginRouter);
-router.use('/', requiresLogin, mainRouter);
+router.use('/', requiresLogin, dashboardRouter);
+router.use('/dashboard', requiresLogin, dashboardRouter);
 
 router.use(function(req, res, next){
     res.status(404);

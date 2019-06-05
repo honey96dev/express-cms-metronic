@@ -1,0 +1,87 @@
+.kt-portlet--height-fluid-transparent {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary.edit-button {
+    background-color: #0F9DE2;
+    border: 1px solid #0F9DE2;
+    color: #fff;
+}
+
+.show > .btn-secondary.dropdown-toggle, .btn-secondary.edit-button:focus, .btn-secondary.edit-button.active, .btn-secondary.edit-button:active, .btn-secondary.edit-button:hover {
+    color: #fff !important;
+    border-color: #0490e2 !important;
+    background-color: #0490e2 !important;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #EE0303;
+    border-color: #EE0303;
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #ee0f00;
+    border-color: #ee0f00;
+}
+
+.btn-danger:focus, .btn-danger.focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(253, 87, 142, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(253, 87, 142, 0.5);
+}
+
+.margin-1-left {
+    margin-left: 10px;
+}
+
+.document-toolbar {
+    background-color: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 1025px) {
+    .add-button {
+        margin-top: 8rem;
+        margin-bottom: 1rem;
+    }
+
+    .edit-button {
+        /*background-color: #0F9DE2;*/
+        /*border-color: #0F9DE2;*/
+        width: 90px;
+    }
+
+    .delete-button {
+        /*background-color: #EE0303;*/
+        /*border-color: #EE0303;*/
+        width: 100px;
+    }
+
+    .document-title {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .add-button {
+        margin-top: 8rem;
+        margin-bottom: 1rem;
+    }
+
+    .edit-button, .delete-button {
+        width: 35px;
+        height: 35px;
+        padding: 8px 10px;
+    }
+
+    .button-text {
+        visibility: hidden;
+    }
+
+    .document-title {
+        width: 75% !important;
+    }
+}

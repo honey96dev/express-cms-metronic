@@ -46,7 +46,7 @@ html(lang='en')
         link(href!='vendors/general/materialicon/material-icon.css' rel='stylesheet' type='text/css')
         link(href='stylesheets/site/style.bundle.css', rel='stylesheet', type='text/css')
         //link(href='stylesheets/site/admin/style.bundle.css', rel='stylesheet', type='text/css')
-        link(href='stylesheets/site/admin/common.css', rel='stylesheet', type='text/css')
+        link(href='stylesheets/site/propietarios/common.css', rel='stylesheet', type='text/css')
         link(rel='shortcut icon', href='images/favicon.ico')
         for style in styles
             link(href!=style, rel='stylesheet')
@@ -211,33 +211,168 @@ html(lang='en')
                                                 a.kt-menu__link(href!=baseUrl + 'documentos')
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-balance-scale
                                                     span.kt-menu__link-text Documentos
-                                        if uri == 'addDocument'
+                                        if uri == 'consulta'
                                             li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'addDocuments')
+                                                a.kt-menu__link(href!=baseUrl + 'consulta')
                                                     //i.kt-menu__link-icon.flaticon-share
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                                    span.kt-menu__link-text Añadir documento
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-envelope
+                                                    span.kt-menu__link-text Consulta
                                         else
                                             li.kt-menu__item(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'addDocuments')
+                                                a.kt-menu__link(href!=baseUrl + 'consulta')
                                                     //i.kt-menu__link-icon.flaticon-share
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                                    span.kt-menu__link-text Añadir documento
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-envelope
+                                                    span.kt-menu__link-text Consulta
                                         li.kt-menu__section
-                                            h4.kt-menu__section-text USUARIOS
+                                            h4.kt-menu__section-text PROPIEDADES
                                             i.kt-menu__section-icon.flaticon-more-v2
-                                        if uri == 'users'
+                                        if uri == 'propiedades'
                                             li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'users')
+                                                a.kt-menu__link(href!=baseUrl + 'propiedades')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined person
-                                                    span.kt-menu__link-text Lista de Usuarios
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-home
+                                                    span.kt-menu__link-text Lista de propiedades
                                         else
                                             li.kt-menu__item(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'users')
+                                                a.kt-menu__link(href!=baseUrl + 'propiedades')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined person
-                                                    span.kt-menu__link-text Lista de Usuarios
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-home
+                                                    span.kt-menu__link-text Lista de propiedades
+                                        if uri == 'addPropiedades'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addPropiedades')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir propiedad
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addPropiedades')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir propiedad
+                                        li.kt-menu__section
+                                            h4.kt-menu__section-text ANUNCIOS
+                                            i.kt-menu__section-icon.flaticon-more-v2
+                                        if uri == 'anuncios'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'anuncios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-bullhorn
+                                                    span.kt-menu__link-text Lista de anuncios
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'anuncios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-bullhorn
+                                                    span.kt-menu__link-text Lista de anuncios
+                                        if uri == 'addAnuncios'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addAnuncios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir anuncios
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addAnuncios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir anuncios
+                                        li.kt-menu__section
+                                            h4.kt-menu__section-text INVENTARIOS
+                                            i.kt-menu__section-icon.flaticon-more-v2
+                                        if uri == 'inventarios'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'inventarios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-2.auto-margin.fa.fa-scroll
+                                                    span.kt-menu__link-text Lista de inventarios
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'inventarios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-2.auto-margin.fa.fa-scroll
+                                                    span.kt-menu__link-text Lista de inventarios
+                                        if uri == 'addInventarios'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addInventarios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir inventarios
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addInventarios')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir inventarios
+                                        li.kt-menu__section
+                                            h4.kt-menu__section-text INTERESADOS
+                                            i.kt-menu__section-icon.flaticon-more-v2
+                                        if uri == 'interesados'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'interesados')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-heart-o
+                                                    span.kt-menu__link-text Lista de interesados
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'interesados')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-heart-o
+                                                    span.kt-menu__link-text Lista de interesados
+                                        if uri == 'addInteresados'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addInteresados')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir interesados
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addInteresados')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir interesados
+                                        li.kt-menu__section
+                                            h4.kt-menu__section-text CONTRATOS
+                                            i.kt-menu__section-icon.flaticon-more-v2
+                                        if uri == 'contratos'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'contratos')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-2.auto-margin.far.fa-id-card
+                                                    span.kt-menu__link-text Lista de contratos
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'contratos')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-2.auto-margin.far.fa-id-card
+                                                    span.kt-menu__link-text Lista de contratos
+                                        if uri == 'addContratos'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addContratos')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir contratos
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'addContratos')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
+                                                    span.kt-menu__link-text Añadir contratos
+                                        li.kt-menu__section
+                                            h4.kt-menu__section-text HISTÓRICO
+                                            i.kt-menu__section-icon.flaticon-more-v2
+                                        if uri == 'historico'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'historico')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-home
+                                                    span.kt-menu__link-text Ver histórico
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'historico')
+                                                    //i.kt-menu__link-icon.auto-margin.flaticon-user
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-history
+                                                    span.kt-menu__link-text Ver histórico
                         .kt-holder.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor
                             #kt_content.kt-content.kt-grid__item.kt-grid__item--fluid
                                 block mainContent
