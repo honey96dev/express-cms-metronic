@@ -20,7 +20,7 @@ html
                         br
                         h3(style='color: #0e4595; font-size: 16px; line-height: 1.5; margin: 0 0 25px 0') Reset Password
                         p(style='color: #434343; font-size: 14px; line-height: 1.5; margin: 0 0 5px 0')=message
-                        input#baseUrl(type='hidden', name='baseUrl')
+                        input#baseUrl(type='hidden', name='baseUrl', value!=baseUrl)
                         input#email(type='hidden', name='email', value!=email)
                         input#token(type='hidden', name='token', value!=token)
                         input#password(type='password', name='password', style='width: 18rem; padding: 5px; border: solid 1px #0e4595; border-radius: 3px;')
