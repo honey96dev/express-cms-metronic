@@ -2,10 +2,10 @@ doctype html
 html
     head
         // begin::Base Path (base relative path for assets of this page)
-        base(href!=baseUrl)
+        base(href='https://admin.alquilerista.com/')
         // end::Base Path
         meta(charset='utf-8')
-        title Verifica tu email
+        title Reset Password
         link(rel='shortcut icon', href='images/favicon.ico')
     body.align-self-center
         table.container(cellpadding='0', cellspacing='0', border='0', bgcolor='#ffffff', style='margin: 50px auto; border-bottom: 1px solid #e0e0e0; border-spacing: 0; box-shadow: 0 0 3px #ddd; color: #434343; font-family: Helvetica, Verdana, sans-serif; max-width: 600px; overflow: hidden')
@@ -19,14 +19,14 @@ html
                 tr
                     td.container-padding(bgcolor='#ffffff', style='background: #ffffff; border-collapse: collapse; border-left: 1px solid #e0e0e0; padding-left: 30px; padding-right: 30px')
                         br
-                        h3(style='color: #0e4595; font-size: 16px; line-height: 1.5; margin: 0 0 25px 0')
-                            | Lo sentimos. Tu cuenta no ha podido ser activada
-                        p(style='color: #434343; font-size: 14px; line-height: 1.5; margin: 0 0 25px 0')
-                            | Hi, #{name}
-                        p(style='color: #434343; font-size: 14px; line-height: 1.5; margin: 0 0 25px 0')
-                            | #{message}
-                        p(style='color: #434343; font-size: 14px; line-height: 1.5; margin: 0 0 25px 0')
-                            button.btn.btn-primary(style='background-color: #337ab7; background-image: none; border: 1px solid transparent; border-color: #2e6da4; border-radius: 4px; color: #ffffff; cursor: pointer; display: inline-block; font-size: 14px; font-weight: normal; line-height: 1.42857143; margin-bottom: 0; overflow-wrap: break-word; padding: 6px 12px; text-align: center; text-decoration: none; vertical-align: middle; white-space: nowrap; word-break: break-word; word-wrap: break-word', target='_blank', rel='noreferrer', onclick="sendEmail('" + email + "')") Re-enviar email de verificación
+                        h3(style='color: #0e4595; font-size: 16px; line-height: 1.5; margin: 0 0 25px 0') Reset Password
+                        p(style='color: #434343; font-size: 14px; line-height: 1.5; margin: 0 0 5px 0')=message
+                        input#baseUrl(type='hidden', name='baseUrl')
+                        input#email(type='hidden', name='email', value!=email)
+                        input#token(type='hidden', name='token', value!=token)
+                        input#password(type='password', name='password', style='width: 18rem; padding: 5px; border: solid 1px #0e4595; border-radius: 3px;')
+                        p(style='color: #434343; font-size: 14px; line-height: 1.5; margin: 5px 0 25px 0')
+                            button.btn.btn-primary(style='background-color: #337ab7; background-image: none; border: 1px solid transparent; border-color: #2e6da4; border-radius: 4px; color: #ffffff; cursor: pointer; display: inline-block; font-size: 14px; font-weight: normal; line-height: 1.42857143; margin-bottom: 0; overflow-wrap: break-word; padding: 6px 12px; text-align: center; text-decoration: none; vertical-align: middle; white-space: nowrap; word-break: break-word; word-wrap: break-word', onclick='setPassword()') Set password
         script(type='text/javascript').
             function postAjax(url, data, success) {
                 var params = typeof data == 'string' ? data : Object.keys(data).map(
@@ -44,6 +44,13 @@ html
                 xhr.send(params);
                 return xhr;
             }
-            function sendEmail(email) {
-                postAjax('/users/sendVerificationEmail', {email: email})
+            function setPassword() {
+                const url = document.getElementById('baseUrl').value + 'password/resetPassword';
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const token = document.getElementById('token').value;
+                postAjax(url, {email: email, password: password, token: token}, function (res) {
+                    const params = JSON.parse(res);
+                    alert(params.message);
+                });
             }

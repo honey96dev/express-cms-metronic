@@ -17,7 +17,7 @@ const sendVerificationEmail = (email, name) => {
             mailer.sendVerificationMail(email, name, tokenUrl);
         }
     });
-}
+};
 
 const signupProc = (req, res, next) => {
     const method = req.method.toUpperCase();
