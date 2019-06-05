@@ -3,7 +3,7 @@ import config from "../core/config";
 import registroRouter from './propietarios/registro';
 import loginRouter from './propietarios/login';
 import dashboardRouter from "./propietarios/dashboard";
-import passwordRouter from "./admin/password";
+import passwordRouter from "./propietarios/password";
 
 const router = express.Router();
 
