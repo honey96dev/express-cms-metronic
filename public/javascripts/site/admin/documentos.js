@@ -65,6 +65,7 @@ Documentos.prototype.init = function () {
                     $('#documentId').val(insertId);
 
                     $('#documentosList').html(self.generateList(data));
+                    $('#documentoDetailsModal').modal('hide');
                 } else if (result === 'error') {
                     self.showErrorMsg(form, 'danger', message);
                 }

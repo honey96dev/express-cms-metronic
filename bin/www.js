@@ -28,8 +28,8 @@ if (cluster.isWorker) {
     server.on('error', onError);
     server.on('listening', onListening);
     var credentials = {
-        key:  fs.readFileSync('./sslcert/key.pem'),
-        cert: fs.readFileSync('./sslcert/cert.pem')
+        key:  fs.readFileSync(config.server.sslKey),
+        cert: fs.readFileSync(config.server.sslCert)
     };
     serverSsl = https.createServer(credentials, app);
     serverSsl.listen(portSsl);

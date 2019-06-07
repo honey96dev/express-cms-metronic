@@ -36,7 +36,7 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
-    if (req.secure) {
+    if (req.secure || config.server.isDev) {
         // request was via https, so do no special handling
         next();
     } else {

@@ -212,14 +212,14 @@ html(lang='en')
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-balance-scale
                                                     span.kt-menu__link-text Documentos
                                         if uri == 'addDocument'
-                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'addDocuments')
+                                            li.kt-menu__item.kt-menu__item--active(data-toggle='modal', data-target='#documentoDetailsModal')
+                                                a.kt-menu__link
                                                     //i.kt-menu__link-icon.flaticon-share
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
                                                     span.kt-menu__link-text Añadir documento
                                         else
-                                            li.kt-menu__item(aria-haspopup='true')
-                                                a.kt-menu__link(href!=baseUrl + 'addDocuments')
+                                            li.kt-menu__item(data-toggle='modal', data-target='#documentoDetailsModal')
+                                                a.kt-menu__link
                                                     //i.kt-menu__link-icon.flaticon-share
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
                                                     span.kt-menu__link-text Añadir documento

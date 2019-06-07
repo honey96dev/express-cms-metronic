@@ -123,7 +123,7 @@ head
                     // begin::Signin
                     .kt-login__form
                         .kt-login__title
-                            h3 Acceso usuarios
+                            h3 Acceso propietarios
                         // begin::Form
                         form.kt-form(action='' novalidate='novalidate')
                             .form-group
@@ -133,7 +133,7 @@ head
                                     span.kt-input-icon__icon.kt-input-icon__icon--left
                                         // <span><i class="la la-envelope" aria-hidden="true"></i></span>
                                         span
-                                            i.material-icons.material-icons-outlined.input-icon(aria-hidden='true') email
+                                            i.material-icons.material-icons-outlined.input-icon.input-icon-left1(aria-hidden='true') email
                             .form-group
                                 label.form-label Password
                                 .kt-input-icon.kt-input-icon--left
@@ -142,10 +142,10 @@ head
                                         input#password.form-control(type='password' name='password' placeholder='Your Password')
                                         span.kt-input-icon__icon.kt-input-icon__icon--right
                                             span.show-hide-password-button(toggle='#password')
-                                                i.fa.fa-eye.input-icon(aria-hidden='true')
+                                                i.fa.fa-eye.input-icon.input-icon-left0(aria-hidden='true')
                                     span.kt-input-icon__icon.kt-input-icon__icon--left
                                         span
-                                            i.material-icons.material-icons-round.input-icon(aria-hidden='true') vpn_key
+                                            i.material-icons.material-icons-round.input-icon.input-icon-left1(aria-hidden='true') vpn_key
                             // begin::Action
                             .kt-login__actions
                                 // <input id="kt_login_remember_me" type="checkbox" class="md-control">Recordarme</input>

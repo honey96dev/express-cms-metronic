@@ -50,8 +50,10 @@ const signupProc = (req, res, next) => {
                 });
                 return;
             }
-            sql = sprintfJs.sprintf("INSERT INTO `%s`(`email`, `password`, `name`, `emailVerified`, `allow`) VALUES('%s', '%s', '%s', '0', '0');", config.dbTblName.propietarios,
-                email, hash, name);
+            const today = new Date();
+            const date = sprintfJs.sprintf("%04d-%02d-%02d", today.getFullYear(), today.getMonth() + 1, today.getDate());
+            sql = sprintfJs.sprintf("INSERT INTO `%s`(`email`, `password`, `name`, `createdDate`, `emailVerified`, `allow`) VALUES('%s', '%s', '%s', '%s', '0', '0');", config.dbTblName.propietarios,
+                email, hash, name, date);
             dbConn.query(sql, null, (error, results, fields) => {
                 if (error) {
                     res.status(200).send({

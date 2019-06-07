@@ -82,7 +82,7 @@
 }
 
 .kt-menu__section {
-    margin-top: 0 !important;
+    margin-top: 10px !important;
 }
 
 @media (max-width: 1024px) {
@@ -94,7 +94,7 @@
 
 @media (min-width: 1025px) {
     .logo-img {
-        width: 323px;
-        height: 46px;
+        width: 255px;
+        height: 37px;
     }
 }

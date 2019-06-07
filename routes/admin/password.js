@@ -44,14 +44,14 @@ const requestResetPasswordPostProc = (req, res, next) => {
             sendResetPasswordEmail(email, results[0].name);
             res.status(200).send({
                 result: 'success',
-                message: 'Reset password email has successfully sent',
-                // message: 'Unknown error',
+                // message: 'Reset password email has successfully sent',
+                message: 'Email para recuperar contraseña enviado',
             });
         } else {
             res.status(200).send({
                 result: 'error',
-                message: 'Your email is not an admin email',
-                // message: 'Unknown error',
+                // message: 'Your email is not an admin email',
+                message: 'Tu email no pertenece a un administrador del sitio',
             });
         }
     });
@@ -84,8 +84,8 @@ const resetPasswordGetProc = (req, res, next) => {
             res.render(failView, {
                 baseUrl: config.server.adminBaseUrl,
                 result: 'error',
-                // message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token inválido.',
-                message: 'Sorry! You can not reset password. Your token is invalid.',
+                // message: 'Sorry! You can not reset password. Your token is invalid.',
+                message: 'Lo sentimos. No puedes resetear tu contraseña.',
                 email: email,
                 name: name,
                 token: token,
@@ -98,8 +98,8 @@ const resetPasswordGetProc = (req, res, next) => {
                 res.render(successView, {
                     baseUrl: config.server.adminBaseUrl,
                     result: 'success',
-                    // message: 'Tu cuenta ha sido activada con éxito, ahora puedes disfrutar de tu cuenta de ',
-                    message: 'Please input new password.',
+                    // message: 'Please input new password.',
+                    message: 'Por favor, introduce la nueva contraseña',
                     email: email,
                     name: name,
                     token: token,
@@ -108,8 +108,8 @@ const resetPasswordGetProc = (req, res, next) => {
                 res.render(failView, {
                     baseUrl: config.server.adminBaseUrl,
                     result: 'error',
-                    // message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token caducado.',
-                    message: 'Sorry! You can not reset password. Your token is expired.',
+                    // message: 'Sorry! You can not reset password. Your token is expired.',
+                    message: 'Lo sentimos. No puedes resetear tu contraseña.',
                     email: email,
                     name: name,
                     token: token,
@@ -130,8 +130,8 @@ const resetPasswordPostProc = (req, res, next) => {
         if (error) {
             res.status(200).send({
                 result: 'error',
-                message: 'Lo sentimos. Error desconocido.',
                 // message: 'Unknown error',
+                message: 'Lo sentimos. Error desconocido.',
             });
             return;
         }
@@ -140,8 +140,8 @@ const resetPasswordPostProc = (req, res, next) => {
         if (count === 0) {
             res.status(200).send({
                 result: 'error',
-                // message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token inválido.',
-                message: 'Sorry! You can not reset password. Your token is invalid.',
+                // message: 'Sorry! You can not reset password. Your token is invalid.',
+                message: 'Lo sentimos. No puedes resetear tu contraseña.',
             });
         } else {
             const timestamp = new Date().getTime();
@@ -159,16 +159,16 @@ const resetPasswordPostProc = (req, res, next) => {
                     } else {
                         res.status(200).send({
                             result: 'success',
-                            // message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token inválido.',
-                            message: 'Your password is changed.',
+                            // message: 'Your password is changed.',
+                            message: 'Tu contraseña se ha modificado con éxito',
                         });
                     }
                 });
             } else {
                 res.status(200).send({
                     result: 'error',
-                    // message: 'Lo sentimos. Tu cuenta no ha podido ser activada. Token inválido.',
-                    message: 'Sorry! You can not reset password. Your token is invalid.',
+                    // message: 'Sorry! You can not reset password. Your token is invalid.',
+                    message: 'Lo sentimos. No puedes resetear tu contraseña.',
                 });
             }
         }

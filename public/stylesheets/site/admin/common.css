@@ -70,6 +70,34 @@
     color: #FF5722 !important;
 }
 
+.btn-orange i {
+    color: #FF5722 !important;
+}
+
+.btn-clean.btn-orange:focus, .btn-clean.btn-orange.active, .btn-clean.btn-orange:active, .btn-clean.btn-orange:hover {
+    background-color: rgba(255, 87, 34, 0.3) !important;
+}
+
+.dataTables_wrapper .pagination .page-item.active > .page-link {
+    background: #FF5722;
+    color: #ffffff;
+}
+
+.dataTables_wrapper .pagination .page-item.previous > .page-link:hover, .dataTables_wrapper .pagination .page-item.next > .page-link:hover, .dataTables_wrapper .pagination .page-item.last > .page-link:hover, .dataTables_wrapper .pagination .page-item.first > .page-link:hover {
+    background: #FF5722;
+    color: #ffffff;
+}
+
+.dataTables_wrapper .pagination .page-item.active > .page-link {
+    background: #FF5722;
+    color: #ffffff;
+}
+
+.dataTables_wrapper .pagination .page-item:hover > .page-link {
+    background: #FF5722;
+    color: #ffffff;
+}
+
 @media (max-width: 1024px) {
     .logo-img {
         width: 42px;
@@ -79,7 +107,7 @@
 
 @media (min-width: 1025px) {
     .logo-img {
-        width: 323px;
-        height: 46px;
+        width: 255px;
+        height: 37px;
     }
 }

@@ -108,41 +108,41 @@ head
                             .form-group
                                 label.form-label Nombre
                                 .kt-input-icon.kt-input-icon--left
-                                    input#name.form-control(type='text' name='name' placeholder='Your Nombre' autocomplete='off')
+                                    input#name.form-control(type='text' name='name' autocomplete='off')
                                     span.kt-input-icon__icon.kt-input-icon__icon--left
                                         // <span><i class="la la-envelope" aria-hidden="true"></i></span>
                                         span
-                                            i.material-icons.material-icons-outlined.input-icon(aria-hidden='true') perm_identity
+                                            i.material-icons.material-icons-outlined.input-icon.input-icon-left2(aria-hidden='true') perm_identity
                             .form-group
                                 label.form-label E-Mail
                                 .kt-input-icon.kt-input-icon--left
-                                    input#email.form-control(type='text' name='email' placeholder='Your E-Mail' autocomplete='off')
+                                    input#email.form-control(type='text' name='email' autocomplete='off')
                                     span.kt-input-icon__icon.kt-input-icon__icon--left
                                         // <span><i class="la la-envelope" aria-hidden="true"></i></span>
                                         span
-                                            i.material-icons.material-icons-outlined.input-icon(aria-hidden='true') email
+                                            i.material-icons.material-icons-outlined.input-icon.input-icon-left1(aria-hidden='true') email
                             .form-group
                                 label.form-label Password
                                 .kt-input-icon.kt-input-icon--left
                                     // <input class="form-control" type="password" placeholder="Your Password" name="password">
                                     .kt-input-icon.kt-input-icon--right
-                                        input#password.form-control(type='password' name='password' placeholder='Your Password')
+                                        input#password.form-control(type='password' name='password')
                                         span.kt-input-icon__icon.kt-input-icon__icon--right
                                             span.show-hide-password-button(toggle='#password')
-                                                i.fa.fa-eye.input-icon(aria-hidden='true')
+                                                i.fa.fa-eye.input-icon.input-icon-left0(aria-hidden='true')
                                     span.kt-input-icon__icon.kt-input-icon__icon--left
                                         span
-                                            i.material-icons.material-icons-round.input-icon(aria-hidden='true') vpn_key
+                                            i.material-icons.material-icons-round.input-icon.input-icon-left1(aria-hidden='true') vpn_key
                             // begin::Action
                             .kt-login__actions(style='margin-bottom: 0 !important;')
                                 // <input id="kt_login_remember_me" type="checkbox" class="md-control">Recordarme</input>
                                 label.kt-checkbox.kt-checkbox--info
                                     input#accept1.accept-term(type='checkbox' name='accept1')
                                     | Acepto la&nbsp;
-                                    a.blue(href='#') Pol&iacute;tica de Privacidad
-                                    | &nbsp;y&nbsp;
-                                    a.blue(href='#') T&eacute;rminos Condiciones
-                                    | .
+                                    a.blue(href='https://alquilerista.com/terminos-y-condiciones/', target='_blank') Pol&iacute;tica de Privacidad y T&eacute;rminos Condiciones.
+                                    //| &nbsp;y&nbsp;
+                                    //a.blue(href='#') T&eacute;rminos Condiciones
+                                    //| .
                                     span
                                 // <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
                             //.kt-login__actions(style='margin-top: 0 !important;')
