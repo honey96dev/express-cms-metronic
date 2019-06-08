@@ -51,5 +51,6 @@ html
                 postAjax(url, {email: email, password: password, token: token}, function (res) {
                     const params = JSON.parse(res);
                     alert(params.message);
+                    document.location = document.getElementById('baseUrl').value;
                 });
             }
