@@ -110,4 +110,20 @@
         width: 255px;
         height: 37px;
     }
+
+    @media (max-height: 850px) {
+        .kt-aside--fixed .kt-aside {
+            position: unset;
+            margin-top: 24px;
+            top: 118px;
+            left: 48px;
+            height: 683px !important;
+            bottom: unset;
+            z-index: 94;
+        }
+
+        .kt-aside--enabled.kt-aside--fixed .kt-holder {
+            padding-left: 0px;
+        }
+    }
 }
