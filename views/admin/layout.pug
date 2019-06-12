@@ -191,12 +191,12 @@ html(lang='en')
                                         if uri == 'dashboard'
                                             li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'dashboard')
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined apps
+                                                    i.kt-menu__link-icon.navigation-icon-0.auto-margin.fas.fa-grip-horizontal
                                                     span.kt-menu__link-text Dashboard
                                         else
                                             li.kt-menu__item(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'dashboard')
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined apps
+                                                    i.kt-menu__link-icon.navigation-icon-0.auto-margin.fas.fa-grip-horizontal
                                                     span.kt-menu__link-text Dashboard
                                         li.kt-menu__section
                                             h4.kt-menu__section-text LEGAL
@@ -212,13 +212,13 @@ html(lang='en')
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-balance-scale
                                                     span.kt-menu__link-text Documentos
                                         if uri == 'addDocument'
-                                            li.kt-menu__item.kt-menu__item--active(data-toggle='modal', data-target='#documentoDetailsModal')
+                                            li#addDocumentoLi.kt-menu__item.kt-menu__item--active(data-toggle='modal', data-target='#documentoDetailsModal')
                                                 a.kt-menu__link
                                                     //i.kt-menu__link-icon.flaticon-share
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
                                                     span.kt-menu__link-text Añadir documento
                                         else
-                                            li.kt-menu__item(data-toggle='modal', data-target='#documentoDetailsModal')
+                                            li#addDocumentoLi.kt-menu__item(data-toggle='modal', data-target='#documentoDetailsModal')
                                                 a.kt-menu__link
                                                     //i.kt-menu__link-icon.flaticon-share
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
@@ -230,13 +230,13 @@ html(lang='en')
                                             li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'users')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined person
+                                                    i.kt-menu__link-icon.navigation-icon-0.auto-margin.far.fa-user
                                                     span.kt-menu__link-text Lista de Usuarios
                                         else
                                             li.kt-menu__item(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'users')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined person
+                                                    i.kt-menu__link-icon.navigation-icon-0.auto-margin.far.fa-user
                                                     span.kt-menu__link-text Lista de Usuarios
                         .kt-holder.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor
                             #kt_content.kt-content.kt-grid__item.kt-grid__item--fluid

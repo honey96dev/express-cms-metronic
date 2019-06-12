@@ -57,8 +57,6 @@ html(lang='en')
                 a(href!=baseUrl)
                     img.logo-img(alt='Logo', src='images/logo-def2.png')
             .kt-header-mobile__toolbar
-                //button#kt_header_mobile_topbar_toggler.kt-header-mobile__toolbar-topbar-toggler
-                //    i.flaticon-more-1
                 .kt-header__topbar-item.kt-header__topbar-item--user
                     .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
                         span.kt-header__topbar-icon.kt-bg-brand
@@ -191,12 +189,12 @@ html(lang='en')
                                         if uri == 'dashboard'
                                             li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'dashboard')
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined apps
+                                                    i.kt-menu__link-icon.navigation-icon-0.auto-margin.fas.fa-grip-horizontal
                                                     span.kt-menu__link-text Dashboard
                                         else
                                             li.kt-menu__item(aria-haspopup='true')
                                                 a.kt-menu__link(href!=baseUrl + 'dashboard')
-                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.material-icons.material-icons-outlined apps
+                                                    i.kt-menu__link-icon.navigation-icon-0.auto-margin.fas.fa-grip-horizontal
                                                     span.kt-menu__link-text Dashboard
                                         li.kt-menu__section
                                             h4.kt-menu__section-text LEGAL
@@ -238,18 +236,6 @@ html(lang='en')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-home
                                                     span.kt-menu__link-text Lista de propiedades
-                                        //if uri == 'addPropiedades'
-                                        //    li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addPropiedades')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir propiedad
-                                        //else
-                                        //    li.kt-menu__item(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addPropiedades')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir propiedad
                                         li.kt-menu__section
                                             h4.kt-menu__section-text ANUNCIOS
                                             i.kt-menu__section-icon.flaticon-more-v2
@@ -265,18 +251,6 @@ html(lang='en')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-bullhorn
                                                     span.kt-menu__link-text Lista de anuncios
-                                        //if uri == 'addAnuncios'
-                                        //    li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addAnuncios')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir anuncios
-                                        //else
-                                        //    li.kt-menu__item(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addAnuncios')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir anuncios
                                         li.kt-menu__section
                                             h4.kt-menu__section-text INVENTARIOS
                                             i.kt-menu__section-icon.flaticon-more-v2
@@ -292,18 +266,6 @@ html(lang='en')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
                                                     i.kt-menu__link-icon.navigation-icon-2.auto-margin.fa.fa-scroll
                                                     span.kt-menu__link-text Lista de inventarios
-                                        //if uri == 'addInventarios'
-                                        //    li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addInventarios')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir inventarios
-                                        //else
-                                        //    li.kt-menu__item(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addInventarios')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir inventarios
                                         li.kt-menu__section
                                             h4.kt-menu__section-text INTERESADOS
                                             i.kt-menu__section-icon.flaticon-more-v2
@@ -319,18 +281,6 @@ html(lang='en')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-heart-o
                                                     span.kt-menu__link-text Lista de interesados
-                                        //if uri == 'addInteresados'
-                                        //    li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addInteresados')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir interesados
-                                        //else
-                                        //    li.kt-menu__item(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addInteresados')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir interesados
                                         li.kt-menu__section
                                             h4.kt-menu__section-text CONTRATOS
                                             i.kt-menu__section-icon.flaticon-more-v2
@@ -346,18 +296,6 @@ html(lang='en')
                                                     //i.kt-menu__link-icon.auto-margin.flaticon-user
                                                     i.kt-menu__link-icon.navigation-icon-2.auto-margin.far.fa-id-card
                                                     span.kt-menu__link-text Lista de contratos
-                                        //if uri == 'addContratos'
-                                        //    li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addContratos')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir contratos
-                                        //else
-                                        //    li.kt-menu__item(aria-haspopup='true')
-                                        //        a.kt-menu__link(href!=baseUrl + 'addContratos')
-                                        //            //i.kt-menu__link-icon.auto-margin.flaticon-user
-                                        //            i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-plus-circle
-                                        //            span.kt-menu__link-text Añadir contratos
                                         li.kt-menu__section
                                             h4.kt-menu__section-text HISTÓRICO
                                             i.kt-menu__section-icon.flaticon-more-v2
@@ -377,16 +315,6 @@ html(lang='en')
                             #kt_content.kt-content.kt-grid__item.kt-grid__item--fluid
                                 block mainContent
 
-                    //#kt_footer.kt-footer.kt-grid__item
-                    //    .kt-container
-                    //        .kt-footer__wrapper
-                    //            .kt-footer__copyright
-                    //                | 2019 © 
-                    //                a.kt-link(href='http://keenthemes.com/metronic', target='_blank') Keenthemes
-                    //            .kt-footer__menu
-                    //                a.kt-link(href='http://keenthemes.com/metronic', target='_blank') About
-                    //                a.kt-link(href='http://keenthemes.com/metronic', target='_blank') Team
-                    //                a.kt-link(href='http://keenthemes.com/metronic', target='_blank') Contact
         #kt_scrolltop.kt-scrolltop
             i.fa.fa-arrow-up
         script.

@@ -104,7 +104,9 @@ Documentos.prototype.generateList = function (items) {
     this.dataSet = items;
     let list = '';
     let idx = 0;
-    for (let item of items) {
+    let item;
+    for (let i = 0; i < items.length; i++) {
+        item = items[i];
         if (idx %2 == 0) {
             list += '<div class="row">';
         }
