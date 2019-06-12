@@ -2,6 +2,7 @@ import express from 'express';
 // import expressJwt from 'express-jwt';
 import session from 'express-session';
 import expressMysqlSessionLib from 'express-mysql-session';
+import cookieSessionLib from 'cookie-session';
 import subdomain from 'express-subdomain';
 import cors from 'cors';
 import path from 'path';
@@ -27,12 +28,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(cors());
 app.use(cookieParser());
-app.use(session({
-    key: config.session.key,
-    secret: config.session.secret,
-    resave: false,
-    saveUninitialized: true,
-    store: new MySQLStore(config.mysql),
+// app.use(session({
+//     key: config.session.key,
+//     secret: config.session.secret,
+//     resave: false,
+//     saveUninitialized: true,
+//     store: new MySQLStore(config.mysql),
+//     // cookie: {
+//     //     maxAge: 300000, // <-- This line
+//     //     // httpOnly: true,
+//     // }
+// }));
+app.use(cookieSessionLib({
+    name: config.session.name,
+    keys: [config.session.key],
+    // Cookie Options
+    // maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 
 app.use(function (req, res, next) {

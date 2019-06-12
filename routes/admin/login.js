@@ -12,6 +12,7 @@ const loginProc = (req, res, next) => {
         const params = req.body;
         const email = params.email.trim();
         const password = params.password.trim();
+        const rememberMe = !!(params.remember_me) ? params.remember_me.trim() : undefined;
         const hash = myCrypto.hmacHex(password);
 
         let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s';", config.dbTblName.admins, email);
@@ -56,6 +57,11 @@ const loginProc = (req, res, next) => {
                         // message: 'Your password is invalid',
                     });
                 } else {
+                    if ( rememberMe == 'on' ) {
+                        req.sessionOptions.maxAge = 2592000000; // 30*24*60*60*1000 Rememeber 'me' for 30 days
+                    } else {
+                        req.sessionOptions.expires = false;
+                    }
                     req.session.admin = {
                         id: results[0].id,
                         email: results[0].email,
