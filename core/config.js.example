@@ -26,6 +26,7 @@ module.exports = {
         port: 3306
     },
     session: {
+        name: 'snevado',
         key: 'expresscms',
         secret: 'expresscmstoken@@',
     },
