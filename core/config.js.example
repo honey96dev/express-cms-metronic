@@ -12,8 +12,10 @@ module.exports = {
         secret: 'expresscmstoken@@',
         sslKey: './sslcert/localhost.key',
         sslCert: './sslcert/localhost.cert',
+        sslCA: './sslcert/alphasslrootcabundle.crt',
         // sslKey: './sslcert/key.pem',
         // sslCert: './sslcert/cert.pem',
+        // sslCA: './sslcert/alphasslrootcabundle.crt',
     },
     mysql: {
         connectionLimit: 10,
