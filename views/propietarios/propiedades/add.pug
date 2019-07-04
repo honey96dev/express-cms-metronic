@@ -15,41 +15,42 @@ block mainContent
         .col-7
             .kt-portlet.kt-portlet--height-fluid
                 .kt-portlet__body.my-card.add-card-body
-                    .form-control-sec
-                        input#property_name.form-control.my-input.property-name(placeholder='Property Name' name='property_name')
-                    .form-control-sec
-                        input#property_address.form-control.my-input.property-address(placeholder='Address' name='property_address')
-                    .row.property-select2-sec
-                        .col-3
-                            select#property_type.form-control.kt-select2.my-input(name='property_type')
-                                option
-                                option(value='10') 10
-                                option(value='20') 20
-                                option(value='30') 30
-                        .col-3
-                            select#property_rooms.form-control.kt-select2.my-input(name='property_rooms')
-                                option
-                                option(value='10') 10
-                                option(value='20') 20
-                                option(value='30') 30
-                        .col-3
-                            select#property_baths.form-control.kt-select2.my-input(name='property_baths')
-                                option
-                                option(value='10') 10
-                                option(value='20') 20
-                                option(value='30') 30
-                        .col-3
-                            input#property_surface.form-control.my-input.property-surface(placeholder='m2' name='property_surface' type='number')
-                    .row.property-bottom-input-sec
-                        .col-6
-                            input#property_price.form-control.my-input.property-surface(placeholder='Price' name='property_price' type='number')
-                        .col-6
-                            input#property_acc_price.form-control.my-input.property-surface(placeholder='Acquisition Price' name='property_acc_price' type='number')
-                    .form-control-sec.property-create-button-sec
-                        button.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
-                            | Create Property
+                    form(action='')
+                        .form-control-sec
+                            input#name.form-control.my-input.property-name(placeholder='Property Name' name='name')
+                        .form-control-sec
+                            input#address.form-control.my-input.property-address(placeholder='Address' name='address')
+                        .row.property-select2-sec
+                            .col-3
+                                select#type.form-control.kt-select2.my-input(name='type')
+                                    option
+                                    option(value='10') 10
+                                    option(value='20') 20
+                                    option(value='30') 30
+                            .col-3
+                                select#rooms.form-control.kt-select2.my-input(name='rooms')
+                                    option
+                                    option(value='10') 10
+                                    option(value='20') 20
+                                    option(value='30') 30
+                            .col-3
+                                select#baths.form-control.kt-select2.my-input(name='baths')
+                                    option
+                                    option(value='10') 10
+                                    option(value='20') 20
+                                    option(value='30') 30
+                            .col-3
+                                input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number')
+                        .row.property-bottom-input-sec
+                            .col-6
+                                input#price.form-control.my-input.property-surface(placeholder='Price' name='price' type='number')
+                            .col-6
+                                input#acc_price.form-control.my-input.property-surface(placeholder='Acquisition Price' name='acc_price' type='number')
+                        .form-control-sec.property-create-button-sec
+                            button#addButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
+                                | Create Property
         .col-5
             .kt-portlet.kt-portlet--height-fluid
-                #property_gmap.kt-portlet__body.property-map-card
-                    // <div id="property_gmap" style="height:287px;"></div>
+                #gmap.kt-portlet__body.property-map-card
+                    // <div id="gmap" style="height:287px;"></div>
 
