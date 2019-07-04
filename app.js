@@ -1,7 +1,7 @@
 import express from 'express';
 // import expressJwt from 'express-jwt';
-import session from 'express-session';
-import expressMysqlSessionLib from 'express-mysql-session';
+// import session from 'express-session';
+// import expressMysqlSessionLib from 'express-mysql-session';
 import cookieSessionLib from 'cookie-session';
 import subdomain from 'express-subdomain';
 import cors from 'cors';
@@ -16,7 +16,7 @@ import propietariosRouter from './routes/propietarios';
 import adminRouter from './routes/admin';
 
 const app = express();
-const MySQLStore = expressMysqlSessionLib(session);
+// const MySQLStore = expressMysqlSessionLib(session);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

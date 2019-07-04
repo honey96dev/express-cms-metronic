@@ -6,7 +6,7 @@ import sprintfJs from 'sprintf-js';
 const router = express.Router();
 
 const dashboardProc = (req, res, next) => {
-    console.log('alreadyLogin', req.session.propietarios);
+    // console.log('alreadyLogin', req.session.propietarios);
     res.render('propietarios/dashboard', {
         userName: req.session.propietarios.name,
         title: 'Dashboard',

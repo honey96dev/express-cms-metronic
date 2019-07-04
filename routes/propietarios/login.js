@@ -37,7 +37,7 @@ const loginProc = (req, res, next) => {
                 return;
             }
             sql = sprintfJs.sprintf("SELECT U.* FROM `%s` U WHERE BINARY U.email = '%s' AND BINARY U.password = '%s';", config.dbTblName.propietarios, email, hash);
-            console.log('login', sql);
+            // console.log('login', sql);
             dbConn.query(sql, null, (error, results, fields) => {
                 if (error) {
                     res.status(200).send({
