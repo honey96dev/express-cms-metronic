@@ -15,37 +15,35 @@ block mainContent
         .col-7
             .kt-portlet.kt-portlet--height-fluid
                 .kt-portlet__body.my-card.add-card-body
-                    form(action='')
+                    form#form(action='' data-method!=method)
+                        input#id.form-control.my-input.property-name(type='hidden' name='id' value!=data['id'])
                         .form-control-sec
-                            input#name.form-control.my-input.property-name(placeholder='Property Name' name='name')
+                            input#name.form-control.my-input.property-name(placeholder='Property Name' name='name' value!=data['name'])
                         .form-control-sec
-                            input#address.form-control.my-input.property-address(placeholder='Address' name='address')
+                            input#address.form-control.my-input.property-address(placeholder='Address' name='address' value!=data['address'])
                         .row.property-select2-sec
                             .col-3
                                 select#type.form-control.kt-select2.my-input(name='type')
                                     option
-                                    option(value='10') 10
-                                    option(value='20') 20
-                                    option(value='30') 30
+                                    for type in types
+                                        option(value!=type selected=(data['type'] == type))=type
                             .col-3
                                 select#rooms.form-control.kt-select2.my-input(name='rooms')
                                     option
-                                    option(value='10') 10
-                                    option(value='20') 20
-                                    option(value='30') 30
+                                    for room in rooms
+                                        option(value!=room selected=(data['rooms'] == room))=room
                             .col-3
                                 select#baths.form-control.kt-select2.my-input(name='baths')
                                     option
-                                    option(value='10') 10
-                                    option(value='20') 20
-                                    option(value='30') 30
+                                    for bath in baths
+                                        option(value!=bath selected=(data['baths'] == bath))=bath
                             .col-3
-                                input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number')
+                                input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
                         .row.property-bottom-input-sec
                             .col-6
-                                input#price.form-control.my-input.property-surface(placeholder='Price' name='price' type='number')
+                                input#price.form-control.my-input.property-surface(placeholder='Price' name='price' type='number' value!=data['price'])
                             .col-6
-                                input#acc_price.form-control.my-input.property-surface(placeholder='Acquisition Price' name='acc_price' type='number')
+                                input#accPrice.form-control.my-input.property-surface(placeholder='Acquisition Price' name='accPrice' type='number' value!=data['accPrice'])
                         .form-control-sec.property-create-button-sec
                             button#addButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
                                 | Create Property

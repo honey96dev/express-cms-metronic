@@ -33,7 +33,7 @@ const listProc = (req, res, next) => {
             if (error) {
                 res.status(200).send({
                     result: 'error',
-                    message: 'Unknown error',
+                    message: 'Error desconocido',
                     data: [],
                 });
                 return;

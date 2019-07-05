@@ -78,17 +78,31 @@
     background-color: #ff6808;
 }
 
-.list-card-waiting-verification-mark {
+.list-card-waiting-verification-mark1 {
     position: absolute;
     margin-top: 10px;
     margin-left: 15px;
     width: 109px;
     height: 20px;
     padding-top: 4px;
-    font: 8px "Roboto" !important;
+    font: 9px "Roboto" !important;
     color: #fff;
     text-align: center;
     background-color: #ff6808;
+    border-radius: 10px;
+}
+
+.list-card-waiting-verification-mark2 {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 109px;
+    height: 20px;
+    padding-top: 4px;
+    font: 9px "Roboto" !important;
+    color: #ff6808;
+    text-align: center;
+    background-color: #ffffff;
     border-radius: 10px;
 }
 
