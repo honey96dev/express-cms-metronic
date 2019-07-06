@@ -100,6 +100,7 @@ const addGetProc = (req, res, next) => {
             rooms,
             baths,
             method: 'post',
+            data: [],
             styles: [
                 '//fonts.googleapis.com/css?family=Roboto:400,500&display=swap',
                 'stylesheets/site/propietarios/propiedades/add.css',
