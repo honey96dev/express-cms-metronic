@@ -4,6 +4,7 @@ import registroRouter from './propietarios/registro';
 import loginRouter from './propietarios/login';
 import dashboardRouter from "./propietarios/dashboard";
 import propiedadesRouter from "./propietarios/propiedades";
+import listingRouter from "./propietarios/listing";
 import documentosRouter from "./propietarios/documentos";
 import passwordRouter from "./propietarios/password";
 
@@ -34,6 +35,7 @@ router.use('/login', alreadyLogin, loginRouter);
 router.use('/', requiresLogin, dashboardRouter);
 router.use('/dashboard', requiresLogin, dashboardRouter);
 router.use('/propiedades', requiresLogin, propiedadesRouter);
+router.use('/anuncios', requiresLogin, listingRouter);
 router.use('/documentos', requiresLogin, documentosRouter);
 
 router.use(function(req, res, next){

@@ -1,0 +1,250 @@
+.kt-portlet--height-fluid-transparent {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.my-card {
+    height: 218px !important;
+    border-radius: 5px !important;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover, .my-card:active {
+    height: 238px !important;
+    margin: -10px -10px -10px -10px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+/*.kt-portlet--height-fluid:hover, .kt-portlet--height-fluid:active {*/
+    /*margin: -10px -10px -10px -10px;*/
+    /*transition-duration: 0.2s;*/
+/*}*/
+
+.add-card-body {
+    /*padding: 11px !important;*/
+    text-align: center;
+}
+
+.btn-secondary.edit-button {
+    background-color: #FF5722 !important;
+    border: 1px solid #FF5722 !important;
+    color: #fff !important;
+}
+
+.show > .btn-secondary.dropdown-toggle, .btn-secondary.edit-button:focus, .btn-secondary.edit-button.active, .btn-secondary.edit-button:active, .btn-secondary.edit-button:hover {
+    color: #fff !important;
+    border-color: #ff6808 !important;
+    background-color: #ff6808 !important;
+}
+
+.add-card-button-wrapper {
+    /*margin-top: 15px;*/
+}
+
+.add-card-button {
+    width: 47px;
+    height: 47px;
+    padding-left: 8px;
+    padding-right: 8px;
+    transition-duration: 0.2s;
+}
+
+.add-card-button>i {
+    font-size: 30px !important;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .add-card-button, .my-card:active .add-card-button {
+    width: 52px;
+    height: 52px;
+    padding-left: 9px;
+    padding-right: 9px;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .add-card-button>i, .my-card:active .add-card-button>i {
+    font-size: 33px !important;
+    /*margin-top: -9px;*/
+    transition-duration: 0.2s;
+}
+
+.add-card-description1 {
+    margin-top: 20px;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 500;
+    color: #0E0F11;
+    transition-duration: 0.2s;
+}
+.my-card:hover .add-card-description1, .my-card:active .add-card-description1 {
+    margin-top: 22px;
+    font-family: "Roboto";
+    font-size: 15px;
+    font-weight: 500;
+    color: #0E0F11;
+    transition-duration: 0.2s;
+}
+
+.add-card-description2 {
+    margin-top: 25px;
+    font-family: "Roboto";
+    font-size: 12px;
+    color: #918F8F;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .add-card-description2, .my-card:active .add-card-description2 {
+    margin-top: 28px;
+    font-family: "Roboto";
+    font-size: 13px;
+    color: #918F8F;
+    transition-duration: 0.2s;
+}
+
+.list-card-body {
+    padding: 0 !important;
+    text-align: center;
+    transition-duration: 0.2s;
+}
+
+.list-card-img {
+    width: 100%;
+    height: 159px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .list-card-img, .my-card:active .list-card-img {
+    height: 165px !important;
+    transition-duration: 0.2s;
+}
+
+.list-card-solid {
+    width: 100%;
+    height: 159px;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #ff6808;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .list-card-solid, .my-card:active .list-card-solid {
+    height: 165px !important;
+    transition-duration: 0.2s;
+}
+
+/*.list-card-waiting-verification-mark1 {*/
+    /*position: absolute;*/
+    /*margin-top: 10px;*/
+    /*margin-left: 15px;*/
+    /*width: 109px;*/
+    /*height: 20px;*/
+    /*padding-top: 4px;*/
+    /*font: 9px "Roboto" !important;*/
+    /*color: #fff;*/
+    /*text-align: center;*/
+    /*background-color: #ff6808;*/
+    /*border-radius: 10px;*/
+/*}*/
+
+/*.list-card-waiting-verification-mark2 {*/
+    /*position: absolute;*/
+    /*margin-top: 10px;*/
+    /*margin-left: 15px;*/
+    /*width: 109px;*/
+    /*height: 20px;*/
+    /*padding-top: 4px;*/
+    /*font: 9px "Roboto" !important;*/
+    /*color: #ff6808;*/
+    /*text-align: center;*/
+    /*background-color: #ffffff;*/
+    /*border-radius: 10px;*/
+/*}*/
+
+.list-card-name-badge {
+    /*position: absolute;*/
+    margin-top: -24px;
+    width: 100%;
+    height: 24px;
+    padding-top: 5px;
+    padding-left: 18px;
+    font: 600 10px "Roboto" !important;
+    color: #000;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.39);
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .list-card-name-badge, .my-card:active .list-card-name-badge {
+    margin-top: -26px;
+    width: 100%;
+    height: 26px;
+    padding-top: 6px;
+    padding-left: 20px;
+    font-size: 11px !important;
+    transition-duration: 0.2s;
+}
+
+.list-card-name {
+    /*position: absolute;*/
+    margin-top: 50px;
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    font: 600 24px "Roboto" !important;
+    color: #fff;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .list-card-name, .my-card:active .list-card-name {
+    margin-top: 54px;
+    padding-left: 44px;
+    padding-right: 44px;
+    font-size: 25px !important;
+    transition-duration: 0.2s;
+}
+
+.list-card-address {
+    margin-top: 11px;
+    font: 500 11px "Roboto" !important;
+    color: #000;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .list-card-address, .my-card:active .list-card-address {
+    margin-top: 13px;
+    font-size: 13px !important;
+    transition-duration: 0.2s;
+}
+
+.list-card-property-sec {
+    margin-top: 12px;
+    margin-left: 0;
+    /*padding-left: 10px;*/
+    /*padding-right: 10px;*/
+    width: 100%;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .list-card-property-sec, .my-card:active .list-card-property-sec {
+    margin-top: 16px;
+    transition-duration: 0.2s;
+}
+
+.list-card-property {
+    font: 500 9px "Roboto" !important;
+    color: #797A7C;
+    text-align: center;
+    transition-duration: 0.2s;
+}
+
+.my-card:hover .list-card-property, .my-card:active .list-card-property {
+    /*margin-top: 2px;*/
+    font-size: 10px !important;
+    transition-duration: 0.2s;
+}

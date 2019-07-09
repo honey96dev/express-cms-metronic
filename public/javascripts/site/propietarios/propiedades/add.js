@@ -33,6 +33,7 @@ AddProperty.prototype.init = function() {
                 if (status == 'OK') {
                     var latlng = results[0].geometry.location;
                     self.mapView.fitBounds(results[0].geometry.viewport);
+                    self.mapView.removeMarkers();
                     self.mapView.addMarker({
                         lat: latlng.lat(),
                         lng: latlng.lng()

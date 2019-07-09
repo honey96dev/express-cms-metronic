@@ -1,0 +1,215 @@
+extends ../layout
+
+block mainContent
+    .row
+        .col-12
+            .kt-portlet.kt-portlet--height-fluid.kt-portlet--height-fluid-transparent
+                .kt-portlet__head
+                    .kt-portlet__head-label
+                        span.kt-portlet__head-icon
+                            i.margin-auto.la.la-balance-scale
+                        h3.kt-portlet__head-title Anuncios
+    #documentosList
+        .row
+            .col-12
+                form#form.kt-portlet.kt-portlet--height-fluid(action='' data-method!=method)
+                    input#id.form-control.my-input.property-name(type='hidden' name='id' value!=data['id'])
+                    .document-property-container
+                        .row
+                            .col-md-8
+                                .kt-portlet__body.my-card.add-card-body
+                                    .form-control-sec
+                                        input.form-control.my-input.property-name(placeholder='Property Name' value!=data['name'])
+                                    .form-control-sec
+                                        input.form-control.my-input.property-address(placeholder='Address' value!=data['address'])
+                                    .row.property-select2-sec
+                                        .col-md-3
+                                            select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
+                                                option
+                                                    for type in types
+                                                        option(value!=type selected=(data['type'] == type))=type
+                                        .col-md-3
+                                            select#rooms.form-control.kt-select2.my-input.select2-transparent(name='rooms')
+                                                option
+                                                    for room in rooms
+                                                        option(value!=room selected=(data['rooms'] == room))=room
+                                        .col-md-3
+                                            select#baths.form-control.kt-select2.my-input.select2-transparent(name='baths')
+                                                option
+                                                    for bath in baths
+                                                        option(value!=bath selected=(data['baths'] == bath))=bath
+                                        .col-md-3
+                                            input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
+                            .col-md-4
+                                .kt-portlet__body.add-card-body
+                                    .price-container
+                                        .price-group.col-md-10
+                                            ul
+                                                li.price-bottom
+                                                    .price-label Monthly Price*
+                                                    .price-value $ 200
+                                                li
+                                                    .price-label Security Deposit*
+                                                    .price-value $ 200
+                                    div
+                                        .kt-portlet.kt-portlet--height-fluid
+                                            #property_gmap.kt-portlet__body.property-map-card
+                    .document-detail-container
+                        .row
+                            .col-md-8
+                                .row.row-spacing-10
+                                    .col-md-4
+                                        #photo1.image-100.dropzone
+                                        // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
+                                    .col-md-4
+                                        #photo2.image-100.dropzone
+                                        // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
+                                    .col-md-4
+                                        #photo3.image-100.dropzone
+                                        // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
+                            .col-md-4
+                                .detail-container(style='margin-top: 70px;')
+                                    div
+                                        p
+                                            | A Tenants like to see photos of listed property. The
+                                            | first photo will be used as a listing cover.
+                                    .text-right
+                                        a.goot-it-font(href='') Goot it
+                        .description-container.row
+                            .content-container.col-md-8
+                                div
+                                    textarea#description.form-control.content-font.description-rectangle(maxlength='140' placeholder='Description' rows='5')= description
+                                    span.form-text.text-muted.text-right Minimum 140 characters
+                            .col-md-4
+                                .detail-container
+                                    div
+                                        p
+                                            | Describe what differentiates your property from
+                                            | others.
+                                    .text-right
+                                        a.goot-it-font(href='') Goot it
+                        .row
+                            .content-container.col-md-8
+                                .amenities-container
+                                    .title-content.text-padding-1
+                                        | Amenities
+                                    .row.amenities-list
+                                        .col-md-6
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/Washer.svg"/>
+                                                i.fas.fa-tshirt
+                                                span Washer/Dryer In Unit
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/weightlifting.svg"/>
+                                                i.fas.fa-dumbbell
+                                                span Gym
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/outdoor-parking.svg"/>
+                                                i.fas.fa-parking
+                                                span Parking Spot
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/air-conditioner.svg"/>
+                                                i.fas.fa-fan
+                                                span Air Conditioning
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/washing.svg"/>
+                                                i.fas.fa-bacon
+                                                span Dishwasher
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/archive.svg"/>
+                                                i.fas.fa-archive
+                                                span Storage
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/wet-floor (1).svg"/>
+                                                i.fas.fa-campground
+                                                span Hardwood Floors
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/balcony-and-door.svg"/>
+                                                i.fas.fa-chair
+                                                span Balcony
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/eye.svg"/>
+                                                i.far.fa-eye
+                                                span View
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/graduation-hat.svg"/>
+                                                i.fas.fa-graduation-cap
+                                                span Student Friendly
+                                        .col-md-6
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/swimming-pool.svg"/>
+                                                i.fas.fa-swimming-pool
+                                                span Pool
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/elevator.svg"/>
+                                                i.fas.fa-suitcase
+                                                span Elevator
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/fireplace.svg"/>
+                                                i.fas.fa-fire-alt
+                                                span Fireplace
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/doorman.svg"/>
+                                                i.fas.fa-user-alt
+                                                span Doorman
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/deck-chair.svg"/>
+                                                i.fas.fa-umbrella-beach
+                                                span Deck
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/wheelchair-side-view.svg"/>
+                                                i.fas.fa-wheelchair
+                                                span Wheelchair Accessible
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/leaf.svg"/>
+                                                i.fas.fa-leaf
+                                                span Garden
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/office-chair.svg"/>
+                                                i.fas.fa-couch
+                                                span Furnished
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/high-rise-buildings.svg"/>
+                                                i.fas.fa-gopuram
+                                                span High Rise
+                                            .amenities-item
+                                                // <img class="image-15" src="./images/amenities/drop.svg"/>
+                                                i.fas.fa-tint
+                                                span Utilities Included
+                            .col-md-4
+                                .detail-container.text-padding-1
+                                    div
+                                        p
+                                            | Check all amenities that your property has. Tenants like
+                                            | to know what your place offers.
+                                    .text-right.goot-it-font
+                                        a.goot-it-font(href='') Goot it
+                        .avaliable-container.row
+                            .content-container.col-md-8
+                                div
+                                    .avaliable-form-type
+                                        select#availableForm.form-control.kt-select2.my-input.select2-transparent(name='availableForm')
+                                            option
+                                                for availableForm in availableForms
+                                                    option(value!=availableForm selected=(data['availableForm'] == availableForm))=availableForm
+                                    .col
+                                        .available-free Free Listing
+                                        .row
+                                            .available-trovit
+                                                label Trovit
+                                                span.kt-switch.kt-switch--danger
+                                                    label
+                                                        input#freeListingTrovit(type='checkbox' checked='checked' name='freeListingTrovit' value=freeListingTrovit)
+                                                        span
+                                    .savebutton
+                                        .form-control-sec.property-create-button-sec.text-center
+                                            button.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
+                                                | Save &amp; Post
+                            .col-md-4
+                                .detail-container
+                                    div
+                                        p
+                                            | Specify when your property will be available so tenants
+                                            | can choose proper move-in dates.
+                                    .text-right
+                                        a.goot-it-font(href='') Goot it
