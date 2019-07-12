@@ -46,7 +46,13 @@ block mainContent
                                 input#accPrice.form-control.my-input.property-surface(placeholder='Acquisition Price' name='accPrice' type='number' value!=data['accPrice'])
                         .form-control-sec.property-create-button-sec
                             button#addButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
-                                | Create Property
+                                if (data['id'])
+                                    | Save Property
+                                else
+                                    | Create Property
+                            if (data['id'])
+                                button#backButton.btn.btn-secondary.back-button.btn-elevate.btn-pill.property-create-button(type='button')
+                                    | Back
         .col-5
             .kt-portlet.kt-portlet--height-fluid
                 #gmap.kt-portlet__body.property-map-card

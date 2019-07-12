@@ -19,9 +19,9 @@ block mainContent
                             .col-md-8
                                 .kt-portlet__body.my-card.add-card-body
                                     .form-control-sec
-                                        input.form-control.my-input.property-name(placeholder='Property Name' value!=data['name'])
+                                        input#name.form-control.my-input.property-name(placeholder='Property Name' value!=data['name'])
                                     .form-control-sec
-                                        input.form-control.my-input.property-address(placeholder='Address' value!=data['address'])
+                                        input#address.form-control.my-input.property-address(placeholder='Address' value!=data['address'])
                                     .row.property-select2-sec
                                         .col-md-3
                                             select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
@@ -42,18 +42,9 @@ block mainContent
                                             input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
                             .col-md-4
                                 .kt-portlet__body.add-card-body
-                                    .price-container
-                                        .price-group.col-md-10
-                                            ul
-                                                li.price-bottom
-                                                    .price-label Monthly Price*
-                                                    .price-value $ 200
-                                                li
-                                                    .price-label Security Deposit*
-                                                    .price-value $ 200
-                                    div
-                                        .kt-portlet.kt-portlet--height-fluid
-                                            #property_gmap.kt-portlet__body.property-map-card
+                                    //div
+                                    .kt-portlet.kt-portlet--height-fluid
+                                            #gmap.kt-portlet__body.property-map-card
                     .document-detail-container
                         .row
                             .col-md-8
@@ -75,6 +66,17 @@ block mainContent
                                             | first photo will be used as a listing cover.
                                     .text-right
                                         a.goot-it-font(href='') Goot it
+                        .row
+                            .col-4
+                                .form-control-sec.input-group
+                                    input#monthlyPrice.form-control.price-input(placeholder='Monthly Price' type='number' value!=data['monthlyPrice'])
+                                    .input-group-append
+                                        span.input-group-text €
+                            .col-4
+                                .form-control-sec.input-group
+                                    input#securityDeposit.form-control.price-input(placeholder='Security Deposit' type='number' value!=data['securityDeposit'])
+                                    .input-group-append
+                                        span.input-group-text €
                         .description-container.row
                             .content-container.col-md-8
                                 div
@@ -199,11 +201,11 @@ block mainContent
                                                 label Trovit
                                                 span.kt-switch.kt-switch--danger
                                                     label
-                                                        input#freeListingTrovit(type='checkbox' checked='checked' name='freeListingTrovit' value=freeListingTrovit)
+                                                        input#freeListingTrovit(type='checkbox' name='freeListingTrovit' value=data['freeListingTrovit'])
                                                         span
                                     .savebutton
                                         .form-control-sec.property-create-button-sec.text-center
-                                            button.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
+                                            button#saveButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
                                                 | Save &amp; Post
                             .col-md-4
                                 .detail-container

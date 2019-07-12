@@ -14,6 +14,10 @@
     color: #fff !important;
 }
 
+.btn-secondary.back-button {
+    margin-left: 10px;
+}
+
 .show > .btn-secondary.dropdown-toggle, .btn-secondary.edit-button:focus, .btn-secondary.edit-button.active, .btn-secondary.edit-button:active, .btn-secondary.edit-button:hover {
     color: #fff !important;
     border-color: #ff6808 !important;

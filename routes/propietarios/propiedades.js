@@ -45,9 +45,9 @@ const listProc = (req, res, next) => {
 const addGetProc = (req, res, next) => {
     const params = req.query;
     const id = params.id;
-    const types = ['10', '20', '30'];
-    const rooms = ['10', '20', '30'];
-    const baths = ['10', '20', '30'];
+    const types = ['Piso', 'Casa', 'Oficina', 'Local'];
+    const rooms = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const baths = [1, 2, 3, 4, 5];
     if (!!id) {
         let sql = sprintfJs.sprintf("SELECT P.* FROM `properties` P WHERE `id` = '%d';", id);
         dbConn.query(sql, null, (error, result, fields) => {

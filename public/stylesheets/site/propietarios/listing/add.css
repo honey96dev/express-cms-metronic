@@ -107,8 +107,8 @@
 }
 
 
-#property_gmap {
-    height: 150px;
+#gmap {
+    height: 310px;
 }
 
 .document-detail-container {
@@ -143,7 +143,14 @@
     line-height: 17px;
 }
 
+.price-input {
+    border-radius: 5px;
+    border: solid 1px #dfe2e6;
+    background: #ffffff;
+}
+
 .description-rectangle {
+    margin-top: 20px;
     height: 95px;
     border-radius: 5px;
     border: solid 1px #dfe2e6;
@@ -165,7 +172,7 @@
 }
 
 .detail-container {
-    margin-top: 12px;
+    margin-top: 32px;
     margin-right: 15px;
     height: 111px;
     border-radius: 5px;

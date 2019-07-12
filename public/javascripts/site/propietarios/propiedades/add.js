@@ -24,6 +24,10 @@ AddProperty.prototype.init = function() {
         lng: -77.028333
     });
 
+    self.autocomplete = new google.maps.places.Autocomplete($('#address')[0]);
+    self.autocomplete.bindTo('bounds', self.mapView);
+    self.autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
+
     $('#address').on('change', function (e) {
         const value = $('#address').val();
 
@@ -110,6 +114,10 @@ AddProperty.prototype.init = function() {
                 self.showErrorMsg(form, 'danger', 'Error desconocido');
             }
         });
+    });
+
+    $('#backButton').click(function (e) {
+        document.location = '/propiedades';
     });
 
     const value = $('#address').val();
