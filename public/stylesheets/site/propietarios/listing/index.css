@@ -211,14 +211,14 @@
 
 .list-card-address {
     margin-top: 11px;
-    font: 500 11px "Roboto" !important;
+    font: 500 14px "Roboto" !important;
     color: #000;
     transition-duration: 0.2s;
 }
 
 .my-card:hover .list-card-address, .my-card:active .list-card-address {
     margin-top: 13px;
-    font-size: 13px !important;
+    font-size: 15px !important;
     transition-duration: 0.2s;
 }
 
@@ -237,7 +237,9 @@
 }
 
 .list-card-property {
-    font: 500 9px "Roboto" !important;
+    padding-left: 5px;
+    padding-right: 5px;
+    font: 500 13px "Roboto" !important;
     color: #797A7C;
     text-align: center;
     transition-duration: 0.2s;
@@ -245,6 +247,6 @@
 
 .my-card:hover .list-card-property, .my-card:active .list-card-property {
     /*margin-top: 2px;*/
-    font-size: 10px !important;
+    font-size: 14px !important;
     transition-duration: 0.2s;
 }

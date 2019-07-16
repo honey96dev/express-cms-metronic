@@ -78,3 +78,4 @@ typings/
 yarn.lock
 config/config.js
 core/config.js
+public/uploads

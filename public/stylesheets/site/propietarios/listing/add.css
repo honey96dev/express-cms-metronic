@@ -117,10 +117,9 @@
 }
 
 .image-100 {
+    margin-bottom: 20px;
     max-width: 210px;
     height: 184px;
-    background: url(/images/add_photo.svg) no-repeat center;
-    background-size: cover;
 }
 
 .image-15 {
@@ -272,7 +271,8 @@
 }
 
 .savebutton .property-create-button-sec {
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 
 .savebutton .btn-secondary.edit-button {

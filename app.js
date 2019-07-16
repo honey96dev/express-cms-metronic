@@ -9,6 +9,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import config from './core/config';
+import fileUpload from 'express-fileupload';
 // import indexRouter from './routes/index';
 // import usersRouter from './routes/users';
 // import adminRouter from './routes/admin';
@@ -55,6 +56,10 @@ app.use(function (req, res, next) {
         res.redirect('https://' + req.headers.host + req.url);
     }
 });
+
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+}));
 
 app.use(subdomain('propietarios', propietariosRouter));
 app.use(subdomain('admin', adminRouter));

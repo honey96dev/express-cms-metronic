@@ -12,206 +12,251 @@ block mainContent
     #documentosList
         .row
             .col-12
-                form#form.kt-portlet.kt-portlet--height-fluid(action='' data-method!=method)
-                    input#id.form-control.my-input.property-name(type='hidden' name='id' value!=data['id'])
-                    .document-property-container
-                        .row
-                            .col-md-8
-                                .kt-portlet__body.my-card.add-card-body
-                                    .form-control-sec
-                                        input#name.form-control.my-input.property-name(placeholder='Property Name' value!=data['name'])
-                                    .form-control-sec
-                                        input#address.form-control.my-input.property-address(placeholder='Address' value!=data['address'])
-                                    .row.property-select2-sec
-                                        .col-md-3
-                                            select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
-                                                option
-                                                    for type in types
-                                                        option(value!=type selected=(data['type'] == type))=type
-                                        .col-md-3
-                                            select#rooms.form-control.kt-select2.my-input.select2-transparent(name='rooms')
-                                                option
-                                                    for room in rooms
-                                                        option(value!=room selected=(data['rooms'] == room))=room
-                                        .col-md-3
-                                            select#baths.form-control.kt-select2.my-input.select2-transparent(name='baths')
-                                                option
-                                                    for bath in baths
-                                                        option(value!=bath selected=(data['baths'] == bath))=bath
-                                        .col-md-3
-                                            input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
-                            .col-md-4
-                                .kt-portlet__body.add-card-body
-                                    //div
-                                    .kt-portlet.kt-portlet--height-fluid
-                                            #gmap.kt-portlet__body.property-map-card
-                    .document-detail-container
-                        .row
-                            .col-md-8
-                                .row.row-spacing-10
-                                    .col-md-4
-                                        #photo1.image-100.dropzone
-                                        // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
-                                    .col-md-4
-                                        #photo2.image-100.dropzone
-                                        // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
-                                    .col-md-4
-                                        #photo3.image-100.dropzone
-                                        // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
-                            .col-md-4
-                                .detail-container(style='margin-top: 70px;')
+                .kt-portlet.kt-portlet--height-fluid
+                    form#form(action='' data-method!=method)
+                        input#id.form-control.my-input.property-name(type='hidden' name='id' value!=data['id'])
+                        .document-property-container
+                            .row
+                                .col-md-8
+                                    .kt-portlet__body.my-card.add-card-body
+                                        .form-control-sec
+                                            input#name.form-control.my-input.property-name(name='name' placeholder='Property Name' value!=data['name'])
+                                        .form-control-sec
+                                            input#address.form-control.my-input.property-address(name='address' placeholder='Address' value!=data['address'])
+                                        .row.property-select2-sec
+                                            .col-md-3
+                                                select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
+                                                    option
+                                                        for type in types
+                                                            option(value!=type selected=(data['type'] == type))=type
+                                            .col-md-3
+                                                select#rooms.form-control.kt-select2.my-input.select2-transparent(name='rooms')
+                                                    option
+                                                        for room in rooms
+                                                            option(value!=room selected=(data['rooms'] == room))=room
+                                            .col-md-3
+                                                select#baths.form-control.kt-select2.my-input.select2-transparent(name='baths')
+                                                    option
+                                                        for bath in baths
+                                                            option(value!=bath selected=(data['baths'] == bath))=bath
+                                            .col-md-3
+                                                input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
+                                .col-md-4
+                                    .kt-portlet__body.add-card-body
+                                        //div
+                                        .kt-portlet.kt-portlet--height-fluid
+                                                #gmap.kt-portlet__body.property-map-card
+                        .document-detail-container
+                            .row
+                                .col-md-8
+                                    #photos.row.row-spacing-10
+                                        //.col-md-4
+                                        //    #photo1.image-100.dropzone
+                                        //    // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
+                                        //.col-md-4
+                                        //    #photo2.image-100.dropzone
+                                        //    // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
+                                        //.col-md-4
+                                        //    #photo3.image-100.dropzone
+                                        //    // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
+                                .col-md-4
+                                    .detail-container(style='margin-top: 70px;')
+                                        div
+                                            p
+                                                | A Tenants like to see photos of listed property. The
+                                                | first photo will be used as a listing cover.
+                                        .text-right.goot-it-font
+                                            a.goot-it-font Goot it
+                            .row
+                                .col-4
+                                    .form-control-sec.input-group
+                                        .input-group-prepend
+                                            span.input-group-text €
+                                        input#monthlyPrice.form-control.price-input(name='monthlyPrice' placeholder='Monthly Price' type='number' value!=data['monthlyPrice'])
+                                .col-4
+                                    .form-control-sec.input-group
+                                        .input-group-prepend
+                                            span.input-group-text €
+                                        input#securityDeposit.form-control.price-input(name='securityDeposit' placeholder='Security Deposit' type='number' value!=data['securityDeposit'])
+                            .description-container.row
+                                .content-container.col-md-8
                                     div
-                                        p
-                                            | A Tenants like to see photos of listed property. The
-                                            | first photo will be used as a listing cover.
-                                    .text-right
-                                        a.goot-it-font(href='') Goot it
-                        .row
-                            .col-4
-                                .form-control-sec.input-group
-                                    input#monthlyPrice.form-control.price-input(placeholder='Monthly Price' type='number' value!=data['monthlyPrice'])
-                                    .input-group-append
-                                        span.input-group-text €
-                            .col-4
-                                .form-control-sec.input-group
-                                    input#securityDeposit.form-control.price-input(placeholder='Security Deposit' type='number' value!=data['securityDeposit'])
-                                    .input-group-append
-                                        span.input-group-text €
-                        .description-container.row
-                            .content-container.col-md-8
-                                div
-                                    textarea#description.form-control.content-font.description-rectangle(maxlength='140' placeholder='Description' rows='5')= description
-                                    span.form-text.text-muted.text-right Minimum 140 characters
-                            .col-md-4
-                                .detail-container
-                                    div
-                                        p
-                                            | Describe what differentiates your property from
-                                            | others.
-                                    .text-right
-                                        a.goot-it-font(href='') Goot it
-                        .row
-                            .content-container.col-md-8
-                                .amenities-container
-                                    .title-content.text-padding-1
-                                        | Amenities
-                                    .row.amenities-list
-                                        .col-md-6
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/Washer.svg"/>
-                                                i.fas.fa-tshirt
-                                                span Washer/Dryer In Unit
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/weightlifting.svg"/>
-                                                i.fas.fa-dumbbell
-                                                span Gym
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/outdoor-parking.svg"/>
-                                                i.fas.fa-parking
-                                                span Parking Spot
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/air-conditioner.svg"/>
-                                                i.fas.fa-fan
-                                                span Air Conditioning
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/washing.svg"/>
-                                                i.fas.fa-bacon
-                                                span Dishwasher
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/archive.svg"/>
-                                                i.fas.fa-archive
-                                                span Storage
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/wet-floor (1).svg"/>
-                                                i.fas.fa-campground
-                                                span Hardwood Floors
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/balcony-and-door.svg"/>
-                                                i.fas.fa-chair
-                                                span Balcony
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/eye.svg"/>
-                                                i.far.fa-eye
-                                                span View
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/graduation-hat.svg"/>
-                                                i.fas.fa-graduation-cap
-                                                span Student Friendly
-                                        .col-md-6
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/swimming-pool.svg"/>
-                                                i.fas.fa-swimming-pool
-                                                span Pool
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/elevator.svg"/>
-                                                i.fas.fa-suitcase
-                                                span Elevator
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/fireplace.svg"/>
-                                                i.fas.fa-fire-alt
-                                                span Fireplace
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/doorman.svg"/>
-                                                i.fas.fa-user-alt
-                                                span Doorman
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/deck-chair.svg"/>
-                                                i.fas.fa-umbrella-beach
-                                                span Deck
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/wheelchair-side-view.svg"/>
-                                                i.fas.fa-wheelchair
-                                                span Wheelchair Accessible
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/leaf.svg"/>
-                                                i.fas.fa-leaf
-                                                span Garden
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/office-chair.svg"/>
-                                                i.fas.fa-couch
-                                                span Furnished
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/high-rise-buildings.svg"/>
-                                                i.fas.fa-gopuram
-                                                span High Rise
-                                            .amenities-item
-                                                // <img class="image-15" src="./images/amenities/drop.svg"/>
-                                                i.fas.fa-tint
-                                                span Utilities Included
-                            .col-md-4
-                                .detail-container.text-padding-1
-                                    div
-                                        p
-                                            | Check all amenities that your property has. Tenants like
-                                            | to know what your place offers.
-                                    .text-right.goot-it-font
-                                        a.goot-it-font(href='') Goot it
-                        .avaliable-container.row
-                            .content-container.col-md-8
-                                div
-                                    .avaliable-form-type
-                                        select#availableForm.form-control.kt-select2.my-input.select2-transparent(name='availableForm')
-                                            option
-                                                for availableForm in availableForms
-                                                    option(value!=availableForm selected=(data['availableForm'] == availableForm))=availableForm
-                                    .col
-                                        .available-free Free Listing
-                                        .row
-                                            .available-trovit
-                                                label Trovit
-                                                span.kt-switch.kt-switch--danger
-                                                    label
-                                                        input#freeListingTrovit(type='checkbox' name='freeListingTrovit' value=data['freeListingTrovit'])
+                                        textarea#description.form-control.content-font.description-rectangle(name='description' maxlength='140' placeholder='Description' rows='5')=data['description']
+                                        span.form-text.text-muted.text-right Minimum 140 characters
+                                .col-md-4
+                                    .detail-container
+                                        div
+                                            p
+                                                | Describe what differentiates your property from
+                                                | others.
+                                        .text-right.goot-it-font
+                                            a.goot-it-font Goot it
+                            .row
+                                .content-container.col-md-8
+                                    .amenities-container
+                                        .title-content.text-padding-1
+                                            | Amenities
+                                        .row.amenities-list
+                                            .col-md-6
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#washer(type="checkbox" name="washer" checked=data['washer'] == 1)
                                                         span
-                                    .savebutton
-                                        .form-control-sec.property-create-button-sec.text-center
-                                            button#saveButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
-                                                | Save &amp; Post
-                            .col-md-4
-                                .detail-container
+                                                        i.fas.fa-tshirt
+                                                        | Washer/Dryer In Unit
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#gym(type="checkbox" name="gym" checked=data['gym'] == 1)
+                                                        span
+                                                        i.fas.fa-dumbbell
+                                                        | Gym
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#parkingSpot(type="checkbox" name="parkingSpot" checked=data['parkingSpot'] == 1)
+                                                        span
+                                                        i.fas.fa-parking
+                                                        | Parking Spot
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#airConditioning(type="checkbox" name="airConditioning" checked=data['airConditioning'] == 1)
+                                                        span
+                                                        i.fas.fa-fan
+                                                        | Air Conditioning
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#dishwasher(type="checkbox" name="dishwasher" checked=data['dishwasher'] == 1)
+                                                        span
+                                                        i.fas.fa-bacon
+                                                        | Dishwasher
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#storage(type="checkbox" name="storage" checked=data['storage'] == 1)
+                                                        span
+                                                        i.fas.fa-archive
+                                                        | Storage
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#hardwoodFloors(type="checkbox" name="hardwoodFloors" checked=data['hardwoodFloors'] == 1)
+                                                        span
+                                                        i.fas.fa-campground
+                                                        | Hardwood Floors
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#balcony(type="checkbox" name="balcony" checked=data['balcony'] == 1)
+                                                        span
+                                                        i.fas.fa-chair
+                                                        | Balcony
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#view(type="checkbox" name="view" checked=data['view'] == 1)
+                                                        span
+                                                        i.fas.fa-eye
+                                                        | View
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#studentFriendly(type="checkbox" name="studentFriendly" checked=data['studentFriendly'] == 1)
+                                                        span
+                                                        i.fas.fa-graduation-cap
+                                                        | Student Friendly
+                                            .col-md-6
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#pool(type="checkbox" name="pool" checked=data['pool'] == 1)
+                                                        span
+                                                        i.fas.fa-swimming-pool
+                                                        | Pool
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#elevator(type="checkbox" name="elevator" checked=data['elevator'] == 1)
+                                                        span
+                                                        i.fas.fa-suitcase
+                                                        | Elevator
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#fireplace(type="checkbox" name="fireplace" checked=data['fireplace'] == 1)
+                                                        span
+                                                        i.fas.fa-fire-alt
+                                                        | Fireplace
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#doorman(type="checkbox" name="doorman" checked=data['doorman'] == 1)
+                                                        span
+                                                        i.fas.fa-user-alt
+                                                        | Doorman
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#deck(type="checkbox" name="deck" checked=data['deck'] == 1)
+                                                        span
+                                                        i.fas.fa-umbrella-beach
+                                                        | Deck
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#wheelchairAccessible(type="checkbox" name="wheelchairAccessible" checked=data['wheelchairAccessible'] == 1)
+                                                        span
+                                                        i.fas.fa-wheelchair
+                                                        | Wheelchair Accessible
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#garden(type="checkbox" name="garden" checked=data['garden'] == 1)
+                                                        span
+                                                        i.fas.fa-leaf
+                                                        | Garden
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#furnished(type="checkbox" name="furnished" checked=data['furnished'] == 1)
+                                                        span
+                                                        i.fas.fa-couch
+                                                        | Furnished
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#highRise(type="checkbox" name="highRise" checked=data['highRise'] == 1)
+                                                        span
+                                                        i.fas.fa-gopuram
+                                                        | High Rise
+                                                .amenities-item
+                                                    label.kt-checkbox.kt-checkbox--brand
+                                                        input#utilitiesIncluded(type="checkbox" name="utilitiesIncluded" checked=data['utilitiesIncluded'] == 1)
+                                                        span
+                                                        i.fas.fa-tint
+                                                        | Utilities Included
+                                .col-md-4
+                                    .detail-container.text-padding-1
+                                        div
+                                            p
+                                                | Check all amenities that your property has. Tenants like
+                                                | to know what your place offers.
+                                        .text-right.goot-it-font
+                                            a.goot-it-font Goot it
+                            .avaliable-container.row
+                                .content-container.col-md-8
                                     div
-                                        p
-                                            | Specify when your property will be available so tenants
-                                            | can choose proper move-in dates.
-                                    .text-right
-                                        a.goot-it-font(href='') Goot it
+
+                                        select#availableForm.form-control.kt-select2.my-input.avaliable-form-type(name='availableForm')
+                                            option
+                                            for availableForm in availableForms
+                                                option(value!=availableForm selected=(data['availableForm'] == availableForm))=availableForm
+                                        .col
+                                            .available-free Free Listing
+                                            .row
+                                                .available-trovit
+                                                    label Trovit
+                                                    span.kt-switch.kt-switch--danger
+                                                        label
+                                                            input#freeListingTrovit(type='checkbox' name='freeListingTrovit' value=data['freeListingTrovit'] checked=data['freeListingTrovit'] == 1)
+                                                            span
+                                .col-md-4
+                                    .detail-container
+                                        div
+                                            p
+                                                | Specify when your property will be available so tenants
+                                                | can choose proper move-in dates.
+                                        .text-right.goot-it-font
+                                            a.goot-it-font Goot it
+                    .avaliable-container.row
+                        .col-md-8
+                            div
+                                .savebutton
+                                    .form-control-sec.property-create-button-sec.text-center
+                                        button#saveButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
+                                            | Save &amp; Post
+

@@ -22,6 +22,7 @@
     "debug": "~2.6.9",
     "email-templates": "^5.0.5",
     "express": "~4.16.1",
+    "express-fileupload": "^1.1.5",
     "express-jwt": "^5.3.1",
     "express-mysql-session": "^2.1.0",
     "express-session": "^1.16.1",
@@ -31,8 +32,10 @@
     "multer": "^1.4.1",
     "mysql2": "^1.6.5",
     "nodemailer": "^6.1.1",
+    "path": "^0.12.7",
     "pug": "2.0.0-beta11",
-    "sprintf-js": "^1.1.2"
+    "sprintf-js": "^1.1.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
