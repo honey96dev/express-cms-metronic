@@ -157,7 +157,7 @@ AddListing.prototype.initPhotoDropzone = function () {
             const result = response.result;
             const data = response.data;
             const cnt = data.length;
-            if (result == 'error') {
+            if (result == 'error' || cnt === 0) {
                 return self.addPhotoDropzone();
             }
 
