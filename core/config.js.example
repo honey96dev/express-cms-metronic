@@ -50,6 +50,9 @@ module.exports = {
         admins: 'admins',
         propietarios: 'users',
         documentos: 'documentos',
+        properties: 'properties',
+        property_photos: 'property_photos',
+        amenities: 'amenities',
         tokens: 'tokens',
     },
 };
