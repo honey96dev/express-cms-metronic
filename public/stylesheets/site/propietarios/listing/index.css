@@ -211,6 +211,7 @@
 
 .list-card-address {
     margin-top: 11px;
+    height: 17px;
     font: 500 14px "Roboto" !important;
     color: #000;
     transition-duration: 0.2s;
