@@ -16,6 +16,34 @@ Propiedades.prototype.init = function () {
             $('#itemList').html(self.generateList(data));
         },
     });
+
+    $('#deleteButton').click(function (e) {
+        // const id = $('#itemId').val();
+        const form = $('#deleteForm');
+        form.ajaxSubmit({
+            method: 'DELETE',
+            success: function (res, status, xhr) {
+                if (res.result == 'success') {
+                    $('#deleteModal').modal('hide');
+                } else {
+                    self.showErrorMsg($('#deleteForm'), 'danger', res.message);
+                }
+                $.ajax({
+                    url: self.baseUrl + 'propiedades/list',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (res, status, xhr) {
+                        const data = res.data;
+                        $('#itemList').html(self.generateList(data));
+                        $('#deleteModal').modal('hide');
+                    },
+                });
+            },
+            error: function (error) {
+                self.showErrorMsg($('#deleteForm'), 'danger', 'Error desconocido');
+            }
+        })
+    });
 };
 
 Propiedades.prototype.generateList = function(items) {
@@ -25,11 +53,11 @@ Propiedades.prototype.generateList = function(items) {
     let card;
     for (let item of items) {
         card = '';
-        if (!!item.picture) {
-
+        if (item.photo.length > 0) {
+            card = '<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xm-12 card-wrap" data-id="' + item.id + '"><div class="kt-portlet kt-portlet--height-fluid my-card"><div class="kt-portlet__body list-card-body"><div class="list-card-img" style="background-image: url(/uploads/photo/' + item.photo + ')"><div class="list-card-trash"><button class="list-card-trash-button btn btn-warning btn-elevate btn-circle btn-icon list-card-trash-icon"><i class="flaticon-delete list-card-trash-icon"></i></button></div></div><div class="list-card-name-badge">photo' + item.name + '</div><div class="list-card-address">' + item.address + '</div><div class="list-card-property-sec row"><div class="col-4 list-card-property"><li class="fa fa-expand-arrows-alt"></li>' + item.surface + 'm2</div><div class="col-4 list-card-property"><li class="fa fa-bed"></li>' + item.rooms + 'rooms</div><div class="col-4 list-card-property"><li class="fa fa-bath"></li>' + item.baths + 'baths</div></div></div></div></div>';
         } else {
             // card = '<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xm-12" onclick="instance.editItem(' + item.id + ')"><div class="kt-portlet kt-portlet--height-fluid my-card"><div class="kt-portlet__body list-card-body"><div class="list-card-solid"><div class="list-card-name">' + item.name + '</div></div><div class="list-card-address">' + item.address + '</div><div class="list-card-property-sec row"><div class="col-4 list-card-property"><li class="fa fa-expand-arrows-alt"></li>' + item.surface + 'm2</div><div class="col-4 list-card-property"><li class="fa fa-bed"></li>' + item.rooms + 'rooms</div><div class="col-4 list-card-property"><li class="fa fa-bath"></li>' + item.baths + 'baths</div></div></div></div></div>';
-            card = '<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xm-12" onclick="instance.editItem(' + item.id + ')"><div class="kt-portlet kt-portlet--height-fluid my-card "><div class="kt-portlet__body list-card-body"><div class="list-card-solid"><div class="list-card-trash"></div><div class="list-card-name">' + item.name + '</div></div><div class="list-card-address">' + item.address + '</div><div class="list-card-property-sec row"><div class="col-4 list-card-property"><li class="fa fa-expand-arrows-alt"></li>' + item.surface + 'm2</div><div class="col-4 list-card-property"><li class="fa fa-bed"></li>' + item.rooms + 'rooms</div><div class="col-4 list-card-property"><li class="fa fa-bath"></li>' + item.baths + 'baths</div></div></div></div></div>';
+            card = '<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xm-12 card-wrap" data-id="' + item.id + '"><div class="kt-portlet kt-portlet--height-fluid my-card "><div class="kt-portlet__body list-card-body"><div class="list-card-solid"><div class="list-card-trash"><button class="list-card-trash-button btn btn-warning btn-elevate btn-circle btn-icon list-card-trash-icon"><i class="flaticon-delete list-card-trash-icon"></i></button></div><div class="list-card-name">' + item.name + '</div></div><div class="list-card-address">' + item.address + '</div><div class="list-card-property-sec row"><div class="col-4 list-card-property"><li class="fa fa-expand-arrows-alt"></li>' + item.surface + 'm2</div><div class="col-4 list-card-property"><li class="fa fa-bed"></li>' + item.rooms + 'rooms</div><div class="col-4 list-card-property"><li class="fa fa-bath"></li>' + item.baths + 'baths</div></div></div></div></div>';
         }
         html += card;
     }
@@ -41,15 +69,39 @@ Propiedades.prototype.generateList = function(items) {
 
 Propiedades.prototype.addItem = function() {
     const self = this;
-    document.location = self.baseUrl + 'propiedades/add';
+    document.location = self.baseUrl + 'propiedades/nueva';
 };
 
-Propiedades.prototype.editItem = function(id) {
-    const self = this;
-    document.location = self.baseUrl + 'propiedades/add?id=' + id;
+Propiedades.prototype.showErrorMsg = function (container, type, msg) {
+    var alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\
+			<span></span>\
+		</div>');
+
+    container.find('.alert').remove();
+    alert.prependTo(container);
+    //alert.animateClass('fadeIn animated');
+    KTUtil.animateClass(alert[0], 'fadeIn animated');
+    alert.find('span').html(msg);
 };
 
 $(document).ready(function () {
     instance = new Propiedades();
     instance.init();
+
+});
+$(document).on("click", ".card-wrap", function (e) {
+    e.preventDefault();
+    const target = $(e.target);
+    const card = target.closest('.card-wrap');
+    const id = card.data('id');
+    // console.log(target);
+    if(target.hasClass("list-card-trash-button") || target.hasClass("list-card-trash-icon")) {
+        $('#itemId').val(id);
+        const container = $('#deleteModal');
+        container.find('.alert').remove();
+        container.modal('show');
+    } else {
+        document.location = instance.baseUrl + 'propiedades/nueva?id=' + id;
+    }
 });

@@ -17,31 +17,31 @@ block mainContent
                         input#id.form-control.my-input.property-name(type='hidden' name='id' value!=data['id'])
                         .document-property-container
                             .row
-                                .col-md-8
+                                .col-lg-8.col-md-12
                                     .kt-portlet__body.my-card.add-card-body
                                         .form-control-sec
                                             input#name.form-control.my-input.property-name(name='name' placeholder='Property Name' value!=data['name'])
                                         .form-control-sec
                                             input#address.form-control.my-input.property-address(name='address' placeholder='Address' value!=data['address'])
                                         .row.property-select2-sec
-                                            .col-md-3
+                                            .col-md-3.my-input-sec
                                                 select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
                                                     option
                                                         for type in types
                                                             option(value!=type selected=(data['type'] == type))=type
-                                            .col-md-3
+                                            .col-md-3.my-input-sec
                                                 select#rooms.form-control.kt-select2.my-input.select2-transparent(name='rooms')
                                                     option
                                                         for room in rooms
                                                             option(value!=room selected=(data['rooms'] == room))=room
-                                            .col-md-3
+                                            .col-md-3.my-input-sec
                                                 select#baths.form-control.kt-select2.my-input.select2-transparent(name='baths')
                                                     option
                                                         for bath in baths
                                                             option(value!=bath selected=(data['baths'] == bath))=bath
-                                            .col-md-3
+                                            .col-md-3.my-input-sec
                                                 input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
-                                .col-md-4
+                                .col-lg-4.col-md12
                                     .kt-portlet__body.add-card-body
                                         //div
                                         .kt-portlet.kt-portlet--height-fluid
@@ -59,8 +59,8 @@ block mainContent
                                         //.col-md-4
                                         //    #photo3.image-100.dropzone
                                         //    // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
-                                .col-md-4
-                                    .detail-container(style='margin-top: 70px;')
+                                .col-md-4.hidden-sm-down
+                                    .detail-container.first-detail-container
                                         div
                                             p
                                                 | A Tenants like to see photos of listed property. The
@@ -68,13 +68,13 @@ block mainContent
                                         .text-right.goot-it-font
                                             a.goot-it-font Goot it
                             .row
-                                .col-4
-                                    .form-control-sec.input-group
+                                .col-lg-4.col-md-3
+                                    .input-group.price-input-sec
                                         .input-group-prepend
                                             span.input-group-text €
                                         input#monthlyPrice.form-control.price-input(name='monthlyPrice' placeholder='Monthly Price' type='number' value!=data['monthlyPrice'])
-                                .col-4
-                                    .form-control-sec.input-group
+                                .col-lg-4.col-md-3
+                                    .input-group.price-input-sec
                                         .input-group-prepend
                                             span.input-group-text €
                                         input#securityDeposit.form-control.price-input(name='securityDeposit' placeholder='Security Deposit' type='number' value!=data['securityDeposit'])
@@ -83,7 +83,7 @@ block mainContent
                                     div
                                         textarea#description.form-control.content-font.description-rectangle(name='description' maxlength='140' placeholder='Description' rows='5')=data['description']
                                         span.form-text.text-muted.text-right Minimum 140 characters
-                                .col-md-4
+                                .col-md-4.hidden-sm-down
                                     .detail-container
                                         div
                                             p
@@ -228,13 +228,14 @@ block mainContent
                                         .text-right.goot-it-font
                                             a.goot-it-font Goot it
                             .avaliable-container.row
-                                .content-container.col-md-8
+                                .content-container.col-lg-8.col-md-12
                                     div
+                                        .input-group.date
+                                            .input-group-prepend
+                                                span.input-group-text
+                                                    i.la.la-calendar
+                                            input#availableForm.form-control.price-input(type="text" name='availableForm' placeholder="Available from" readonly value=data['availableForm'])
 
-                                        select#availableForm.form-control.kt-select2.my-input.avaliable-form-type(name='availableForm')
-                                            option
-                                            for availableForm in availableForms
-                                                option(value!=availableForm selected=(data['availableForm'] == availableForm))=availableForm
                                         .col
                                             .available-free Free Listing
                                             .row
@@ -244,7 +245,8 @@ block mainContent
                                                         label
                                                             input#freeListingTrovit(type='checkbox' name='freeListingTrovit' value=data['freeListingTrovit'] checked=data['freeListingTrovit'] == 1)
                                                             span
-                                .col-md-4
+
+                                .col-lg-4.col-md-12
                                     .detail-container
                                         div
                                             p

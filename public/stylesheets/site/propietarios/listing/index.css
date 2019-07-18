@@ -4,13 +4,13 @@
 }
 
 .my-card {
-    height: 218px !important;
+    height: 238px !important;
     border-radius: 5px !important;
     transition-duration: 0.2s;
 }
 
 .my-card:hover, .my-card:active {
-    height: 238px !important;
+    height: 262px !important;
     margin: -10px -10px -10px -10px;
     transition-duration: 0.2s;
     cursor: pointer;
@@ -72,7 +72,7 @@
 .add-card-description1 {
     margin-top: 20px;
     font-family: "Roboto";
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     color: #0E0F11;
     transition-duration: 0.2s;
@@ -80,7 +80,7 @@
 .my-card:hover .add-card-description1, .my-card:active .add-card-description1 {
     margin-top: 22px;
     font-family: "Roboto";
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     color: #0E0F11;
     transition-duration: 0.2s;
@@ -89,7 +89,7 @@
 .add-card-description2 {
     margin-top: 25px;
     font-family: "Roboto";
-    font-size: 12px;
+    font-size: 13px;
     color: #918F8F;
     transition-duration: 0.2s;
 }
@@ -97,7 +97,7 @@
 .my-card:hover .add-card-description2, .my-card:active .add-card-description2 {
     margin-top: 28px;
     font-family: "Roboto";
-    font-size: 13px;
+    font-size: 14px;
     color: #918F8F;
     transition-duration: 0.2s;
 }
@@ -120,7 +120,7 @@
 }
 
 .my-card:hover .list-card-img, .my-card:active .list-card-img {
-    height: 165px !important;
+    height: 173px !important;
     transition-duration: 0.2s;
 }
 
@@ -134,10 +134,31 @@
 }
 
 .my-card:hover .list-card-solid, .my-card:active .list-card-solid {
-    height: 165px !important;
+    height: 173px !important;
     transition-duration: 0.2s;
 }
 
+.list-card-trash {
+    /*position: absolute;*/
+    margin-top: 10px;
+    right: 15px;
+    /*width: 109px;*/
+    border-radius: 10px;
+    text-align: right;
+}
+
+.list-card-trash-icon {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    transition-duration: 0.2s;
+}
+
+
+.my-card:hover .list-card-trash-icon, .my-card:active .list-card-trash-icon {
+    margin-right: 11px;
+    transition-duration: 0.2s;
+}
 /*.list-card-waiting-verification-mark1 {*/
     /*position: absolute;*/
     /*margin-top: 10px;*/
@@ -168,31 +189,31 @@
 
 .list-card-name-badge {
     /*position: absolute;*/
-    margin-top: -24px;
+    margin-top: -35px;
     width: 100%;
-    height: 24px;
-    padding-top: 5px;
+    height: 35px;
+    padding-top: 8px;
     padding-left: 18px;
-    font: 600 10px "Roboto" !important;
+    font: 600 15px "Roboto" !important;
     color: #000;
     text-align: left;
-    background-color: rgba(255, 255, 255, 0.39);
+    background-color: rgba(255, 255, 255, 0.6);
     transition-duration: 0.2s;
 }
 
 .my-card:hover .list-card-name-badge, .my-card:active .list-card-name-badge {
-    margin-top: -26px;
+    margin-top: -38px;
     width: 100%;
-    height: 26px;
-    padding-top: 6px;
+    height: 38px;
+    padding-top: 9px;
     padding-left: 20px;
-    font-size: 11px !important;
+    font-size: 16px !important;
     transition-duration: 0.2s;
 }
 
 .list-card-name {
     /*position: absolute;*/
-    margin-top: 50px;
+    margin-top: 60px;
     width: 100%;
     padding-left: 40px;
     padding-right: 40px;
@@ -202,7 +223,7 @@
 }
 
 .my-card:hover .list-card-name, .my-card:active .list-card-name {
-    margin-top: 54px;
+    margin-top: 65px;
     padding-left: 44px;
     padding-right: 44px;
     font-size: 25px !important;
@@ -218,13 +239,13 @@
 }
 
 .my-card:hover .list-card-address, .my-card:active .list-card-address {
-    margin-top: 13px;
+    margin-top: 14px;
     font-size: 15px !important;
     transition-duration: 0.2s;
 }
 
 .list-card-property-sec {
-    margin-top: 12px;
+    margin-top: 14px;
     margin-left: 0;
     /*padding-left: 10px;*/
     /*padding-right: 10px;*/
@@ -233,14 +254,14 @@
 }
 
 .my-card:hover .list-card-property-sec, .my-card:active .list-card-property-sec {
-    margin-top: 16px;
+    margin-top: 18px;
     transition-duration: 0.2s;
 }
 
 .list-card-property {
     padding-left: 5px;
     padding-right: 5px;
-    font: 500 13px "Roboto" !important;
+    font: 500 14px "Roboto" !important;
     color: #797A7C;
     text-align: center;
     transition-duration: 0.2s;
@@ -248,6 +269,6 @@
 
 .my-card:hover .list-card-property, .my-card:active .list-card-property {
     /*margin-top: 2px;*/
-    font-size: 14px !important;
+    font-size: 15px !important;
     transition-duration: 0.2s;
 }

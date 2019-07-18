@@ -23,9 +23,9 @@ AddListing.prototype.init = function() {
         lng: -77.028333
     });
 
-    // self.autocomplete = new google.maps.places.Autocomplete($('#address')[0]);
-    // self.autocomplete.bindTo('bounds', self.mapView);
-    // self.autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
+    self.autocomplete = new google.maps.places.Autocomplete($('#address')[0]);
+    self.autocomplete.bindTo('bounds', self.mapView);
+    self.autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
 
     $('#address').on('change', function (e) {
         const value = $('#address').val();
@@ -46,8 +46,28 @@ AddListing.prototype.init = function() {
         });
     });
 
-    self.availableView = $('#availableForm').select2({
-        placeholder: "Available Form",
+    // self.availableView = $('#availableForm').select2({
+    //     placeholder: "Available Form",
+    // });
+
+    let arrows;
+    if (KTUtil.isRTL()) {
+        arrows = {
+            leftArrow: '<i class="la la-angle-right"></i>',
+            rightArrow: '<i class="la la-angle-left"></i>'
+        }
+    } else {
+        arrows = {
+            leftArrow: '<i class="la la-angle-left"></i>',
+            rightArrow: '<i class="la la-angle-right"></i>'
+        }
+    }
+    $('#availableForm').datepicker({
+        rtl: KTUtil.isRTL(),
+        todayBtn: "linked",
+        clearBtn: true,
+        todayHighlight: true,
+        templates: arrows
     });
 
     $('#saveButton').click(function (e) {
@@ -122,21 +142,21 @@ AddListing.prototype.init = function() {
         });
     });
 
-    // const address = $('#address').val();
-    //
-    // GMaps.geocode({
-    //     address: address,
-    //     callback: function(results, status) {
-    //         if (status == 'OK') {
-    //             var latlng = results[0].geometry.location;
-    //             self.mapView.fitBounds(results[0].geometry.viewport);
-    //             self.mapView.addMarker({
-    //                 lat: latlng.lat(),
-    //                 lng: latlng.lng()
-    //             });
-    //         }
-    //     }
-    // });
+    const address = $('#address').val();
+
+    GMaps.geocode({
+        address: address,
+        callback: function(results, status) {
+            if (status == 'OK') {
+                var latlng = results[0].geometry.location;
+                self.mapView.fitBounds(results[0].geometry.viewport);
+                self.mapView.addMarker({
+                    lat: latlng.lat(),
+                    lng: latlng.lng()
+                });
+            }
+        }
+    });
 
     self.photoZone = [];
     self.prevPhoto = [];

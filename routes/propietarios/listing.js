@@ -11,7 +11,7 @@ const indexProc = (req, res, next) => {
     // console.log('alreadyLogin', req.session.propietarios);
     res.render('propietarios/listing/index', {
         userName: req.session.propietarios.name,
-        title: 'Listing',
+        title: 'Anuncios',
         baseUrl: config.server.propietariosBaseUrl,
         uri: 'anuncios',
         styles: [
@@ -25,7 +25,8 @@ const indexProc = (req, res, next) => {
 };
 
 const listProc = (req, res, next) => {
-    let sql = sprintfJs.sprintf("SELECT P.* FROM `%s` P;", dbTblName.properties);
+    const userId = req.session.propietarios.id;
+    let sql = sprintfJs.sprintf("SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `%s` P LEFT JOIN `%s` R ON R.property_id = P.id WHERE `userId` = '%d';", config.dbTblName.properties, config.dbTblName.property_photos, userId);
     dbConn.query(sql, null, (error, result, fields) => {
         if (error) {
             console.log(error);
@@ -35,6 +36,12 @@ const listProc = (req, res, next) => {
                 data: [],
             });
             return;
+        }
+
+        let photos;
+        for (let row of result) {
+            photos = row['photos'].split('*')
+            row['photo'] = photos[0];
         }
 
         res.status(200).send({
@@ -72,9 +79,9 @@ const addGetProc = (req, res, next) => {
             
             res.render('propietarios/listing/add', {
                 userName: req.session.propietarios.name,
-                title: 'Listing',
+                title: 'Nueva Anuncios',
                 baseUrl: config.server.propietariosBaseUrl,
-                uri: 'listing/add',
+                uri: 'anuncios',
                 types,
                 rooms,
                 baths,
@@ -89,9 +96,9 @@ const addGetProc = (req, res, next) => {
         // console.log('alreadyLogin', req.session.propietarios);
         res.render('propietarios/listing/add', {
             userName: req.session.propietarios.name,
-            title: 'Listing',
+            title: 'Nueva Anuncios',
             baseUrl: config.server.propietariosBaseUrl,
-            uri: 'listing/add',
+            uri: 'anuncios',
             types,
             rooms,
             baths,
@@ -110,6 +117,7 @@ const addSaveProc = (req, res, next) => {
     const params = req.body;
     const id = params.id;
     const name = params.name;
+    const userId = req.session.propietarios.id;
     const address = params.address;
     const type = params.type;
     const rooms = params.rooms;
@@ -171,7 +179,7 @@ const addSaveProc = (req, res, next) => {
     // if (method == 'POST') {
     //     sql = sprintfJs.sprintf("INSERT INTO `properties`(`name`, `address`, `type`, `rooms`, `baths`, `surface`, `price`, `accPrice`) VALUES('%s', '%s', '%s', %d, %d, %f, %f, %f);", name, address, type, rooms, baths, surface, price, accPrice);
     // } else if (method == 'PUT') {
-        sql = sprintfJs.sprintf("UPDATE `%s` SET `name` = '%s', `address` = '%s', `type` = '%s', `rooms` = '%d', `baths` = '%d', `surface` = '%f', `monthlyPrice` = '%f', `securityDeposit` = '%f', `description` = '%s', `availableForm` = '%f', `freeListingTrovit` = '%d' WHERE `id` = '%d';", dbTblName.properties, name, address, type, rooms, baths, surface, monthlyPrice, securityDeposit, description, availableForm, freeListingTrovit, id);
+        sql = sprintfJs.sprintf("UPDATE `%s` SET `userId` = '%d', `name` = '%s', `address` = '%s', `type` = '%s', `rooms` = '%d', `baths` = '%d', `surface` = '%f', `monthlyPrice` = '%f', `securityDeposit` = '%f', `description` = '%s', `availableForm` = '%s', `freeListingTrovit` = '%d' WHERE `id` = '%d';", dbTblName.properties, userId, name, address, type, rooms, baths, surface, monthlyPrice, securityDeposit, description, availableForm, freeListingTrovit, id);
     // }
     dbConn.query(sql, null, (error, results, fields) => {
         if (error) {
@@ -274,9 +282,9 @@ const uploadPhotoProc = (req, res, next) => {
 
 router.get('/', indexProc);
 router.get('/list', listProc);
-router.get('/add', addGetProc);
+router.get('/nueva', addGetProc);
 // router.post('/add', addSaveProc);
-router.put('/add', addSaveProc);
+router.put('/nueva', addSaveProc);
 router.get('/photo', getPhotosProc);
 router.post('/photo', uploadPhotoProc);
 

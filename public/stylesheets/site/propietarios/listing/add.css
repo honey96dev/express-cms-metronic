@@ -20,6 +20,10 @@
     background-color: #ff6808 !important;
 }
 
+.my-input-sec {
+    margin-bottom: 10px;
+}
+
 .my-input:active, .my-input:focus .my-input::placeholder{
     color: rgba(255,255,255,0.84);
     border-color: #ff6808;
@@ -96,7 +100,6 @@
 }
 
 @media (min-width: 1025px) {
-
     .document-property-container {
         padding: 40px 36px 10px 26px;
     }
@@ -148,6 +151,14 @@
     background: #ffffff;
 }
 
+.price-input-sec {
+    margin-bottom: 10px;
+}
+
+.price-input:active, .price-input:focus{
+    border-color: #ff6808;
+}
+
 .description-rectangle {
     margin-top: 20px;
     height: 95px;
@@ -167,18 +178,28 @@
 }
 
 .content-container{
-    padding: 15px 15px 15px 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /*padding: 15px 0px 15px 15px;*/
 }
 
-.detail-container {
-    margin-top: 32px;
-    margin-right: 15px;
-    height: 111px;
-    border-radius: 5px;
-    background: rgba(255,87,34,0.05);
-    font-size: 12px;
-    color: black;
-    padding: 10px 10px 10px 20px;
+@media (min-width: 769px) {
+    .detail-container {
+        margin-top: 32px;
+        margin-right: 15px;
+        height: 111px;
+        border-radius: 5px;
+        background: rgba(255, 87, 34, 0.05);
+        font-size: 12px;
+        color: black;
+        padding: 10px 10px 10px 20px;
+    }
+}
+@media (max-width: 768px) {
+    .detail-container {
+        height: 0;
+        visibility: hidden;
+    }
 }
 
 .text-padding-1 {
@@ -285,4 +306,10 @@
 .savebutton .btn-secondary.edit-button {
     background-color: #8f8f8e !important;
     border: 0px solid #FF5722 !important;
+}
+
+@media (min-width: 769px) {
+    .first-detail-container {
+        margin-top: 80px;
+    }
 }

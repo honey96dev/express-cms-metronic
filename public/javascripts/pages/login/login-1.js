@@ -20,7 +20,7 @@ var KTLoginV1 = function () {
 		//alert.animateClass('fadeIn animated');
 		KTUtil.animateClass(alert[0], 'fadeIn animated');
 		alert.find('span').html(msg);
-	}
+	};
 
 	// Private Functions
 

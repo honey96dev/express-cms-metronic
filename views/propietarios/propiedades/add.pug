@@ -12,7 +12,7 @@ block mainContent
 
 
     .row
-        .col-7
+        .col-lg-7.col-md-6
             .kt-portlet.kt-portlet--height-fluid
                 .kt-portlet__body.my-card.add-card-body
                     form#form(action='' data-method!=method)
@@ -22,22 +22,22 @@ block mainContent
                         .form-control-sec
                             input#address.form-control.my-input.property-address(placeholder='Address' name='address' value!=data['address'])
                         .row.property-select2-sec
-                            .col-3
+                            .col-lg-3.col-md-3.my-input-sec
                                 select#type.form-control.kt-select2.my-input(name='type')
                                     option
                                     for type in types
                                         option(value!=type selected=(data['type'] == type))=type
-                            .col-3
+                            .col-lg-3.col-md-3.my-input-sec
                                 select#rooms.form-control.kt-select2.my-input(name='rooms')
                                     option
                                     for room in rooms
                                         option(value!=room selected=(data['rooms'] == room))=room
-                            .col-3
+                            .col-lg-3.col-md-3.my-input-sec
                                 select#baths.form-control.kt-select2.my-input(name='baths')
                                     option
                                     for bath in baths
                                         option(value!=bath selected=(data['baths'] == bath))=bath
-                            .col-3
+                            .col-lg-3.col-md-3
                                 input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
                         .row.property-bottom-input-sec
                             .col-6
@@ -53,7 +53,7 @@ block mainContent
                             if (data['id'])
                                 button#backButton.btn.btn-secondary.back-button.btn-elevate.btn-pill.property-create-button(type='button')
                                     | Back
-        .col-5
+        .col-lg-5.col-md-6
             .kt-portlet.kt-portlet--height-fluid
                 #gmap.kt-portlet__body.property-map-card
                     // <div id="gmap" style="height:287px;"></div>

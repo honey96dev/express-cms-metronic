@@ -23,7 +23,8 @@ const indexProc = (req, res, next) => {
 };
 
 const listProc = (req, res, next) => {
-    let sql = sprintfJs.sprintf("SELECT P.* FROM `properties` P;");
+    const userId = req.session.propietarios.id;
+    let sql = sprintfJs.sprintf("SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `%s` P LEFT JOIN `%s` R ON R.property_id = P.id WHERE `userId` = '%d';", config.dbTblName.properties, config.dbTblName.property_photos, userId);
     dbConn.query(sql, null, (error, result, fields) => {
         if (error) {
             console.log(error);
@@ -33,6 +34,12 @@ const listProc = (req, res, next) => {
                 data: [],
             });
             return;
+        }
+
+        let photos;
+        for (let row of result) {
+            photos = row['photos'].split('*')
+            row['photo'] = photos[0];
         }
 
         res.status(200).send({
@@ -72,9 +79,9 @@ const addGetProc = (req, res, next) => {
             }
             res.render('propietarios/propiedades/add', {
                 userName: req.session.propietarios.name,
-                title: 'Propiedades',
+                title: 'Nueva Propiedades',
                 baseUrl: config.server.propietariosBaseUrl,
-                uri: 'propiedades/add',
+                uri: 'propiedades',
                 types,
                 rooms,
                 baths,
@@ -93,9 +100,9 @@ const addGetProc = (req, res, next) => {
         // console.log('alreadyLogin', req.session.propietarios);
         res.render('propietarios/propiedades/add', {
             userName: req.session.propietarios.name,
-            title: 'Propiedades',
+            title: 'Nueva Propiedades',
             baseUrl: config.server.propietariosBaseUrl,
-            uri: 'propiedades/add',
+            uri: 'propiedades',
             types,
             rooms,
             baths,
@@ -117,6 +124,7 @@ const addSaveProc = (req, res, next) => {
     console.log('method', method);
     const params = req.body;
     const id = params.id;
+    const userId = req.session.propietarios.id;
     const name = params.name;
     const address = params.address;
     const type = params.type;
@@ -128,7 +136,7 @@ const addSaveProc = (req, res, next) => {
 
     let sql;
     if (method == 'POST') {
-        sql = sprintfJs.sprintf("INSERT INTO `properties`(`name`, `address`, `type`, `rooms`, `baths`, `surface`, `price`, `accPrice`) VALUES('%s', '%s', '%s', %d, %d, %f, %f, %f);", name, address, type, rooms, baths, surface, price, accPrice);
+        sql = sprintfJs.sprintf("INSERT INTO `properties`(`userId`, `name`, `address`, `type`, `rooms`, `baths`, `surface`, `price`, `accPrice`) VALUES('%d', '%s', '%s', '%s', %d, %d, %f, %f, %f);", userId, name, address, type, rooms, baths, surface, price, accPrice);
     } else if (method == 'PUT') {
         sql = sprintfJs.sprintf("UPDATE `properties` SET `name` = '%s', `address` = '%s', `type` = '%s', `rooms` = '%d', `baths` = '%d', `surface` = '%f', `price` = '%f', `accPrice` = '%f' WHERE `id` = '%d';", name, address, type, rooms, baths, surface, price, accPrice, id);
     }
@@ -149,10 +157,31 @@ const addSaveProc = (req, res, next) => {
     });
 };
 
+const deleteProc = (req, res, next) => {
+    const params = req.body;
+    const documentId = params.documentId;
+    let sql = sprintfJs.sprintf("DELETE FROM `%s` WHERE `id` = '%d';", config.dbTblName.properties, documentId);
+    dbConn.query(sql, null, (error, result, fields) => {
+        if (error) {
+            res.status(200).send({
+                result: 'error',
+                message: 'Error desconocido',
+                error: error,
+            });
+        }  else {
+            res.status(200).send({
+                result: 'success',
+                message: 'Eliminado correctamente',
+            });
+        }
+    });
+};
+
 router.get('/', indexProc);
 router.get('/list', listProc);
-router.get('/add', addGetProc);
-router.post('/add', addSaveProc);
-router.put('/add', addSaveProc);
+router.get('/nueva', addGetProc);
+router.post('/nueva', addSaveProc);
+router.put('/nueva', addSaveProc);
+router.delete('/delete', deleteProc);
 
 module.exports = router;
