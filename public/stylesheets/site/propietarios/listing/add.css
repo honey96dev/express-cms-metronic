@@ -216,6 +216,10 @@
         height: 0;
         visibility: hidden;
     }
+
+    #photos {
+        padding-top: 50px;
+    }
 }
 
 .text-padding-1 {
