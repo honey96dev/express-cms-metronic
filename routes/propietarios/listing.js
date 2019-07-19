@@ -72,8 +72,42 @@ const addGetProc = (req, res, next) => {
     if (!!id) {
         let sql = sprintfJs.sprintf("SELECT P.*, A.* FROM `%s` P LEFT JOIN `%s` A ON A.property_id = P.id  WHERE `id` = '%d';", dbTblName.properties, dbTblName.amenities, id);
         dbConn.query(sql, null, (error, result, fields) => {
-            if (error || result.length === 0) {
-                error500(req, res, error);
+            if (error) {
+                res.status(500);
+
+                // respond with html page
+                if (req.accepts('html')) {
+                    res.render('error/500', { baseUrl: config.server.adminBaseUrl });
+                    return;
+                }
+
+                // respond with json
+                if (req.accepts('json')) {
+                    res.send({ error: 'Error desconocido' });
+                    return;
+                }
+
+                // default to plain-text. send()
+                res.type('txt').send('Error desconocido');
+                return;
+            }
+            if (result.length === 0) {
+                res.status(404);
+
+                // respond with html page
+                if (req.accepts('html')) {
+                    res.render('error/404', { baseUrl: config.server.adminBaseUrl });
+                    return;
+                }
+
+                // respond with json
+                if (req.accepts('json')) {
+                    res.send({ error: 'Not found' });
+                    return;
+                }
+
+                // default to plain-text. send()
+                res.type('txt').send('Not found');
                 return;
             }
             
