@@ -144,8 +144,8 @@ block mainContent
                 .modal-header
                     h5.modal-title(style='margin-top: 0') Delete
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
-                form#deleteForm.modal-body(action='/propiedades/delete', data-method='', novalidate='novalidate')
-                    input#itemId.form-control(type='hidden', name='documentId')
+                form#deleteForm.modal-body(action=baseUrl + '/propiedades/delete', data-method='', novalidate='novalidate')
+                    input#itemId.form-control(type='hidden', name='itemId')
                     p Do you want to delete?
                 .modal-footer
                     button#closeModal.btn.btn-primary.btn-elevate.btn-pill(type='button', name='closeModal', data-dismiss='modal', style='background: #AEAAAA; padding: 8.45px 2.3rem; border-color: #AEAAAA;') Cancel

@@ -1,0 +1,47 @@
+extends ../layout
+
+block mainContent
+    .row
+        .col-12
+            .kt-portlet.kt-portlet--height-fluid
+                .kt-portlet__head
+                    .kt-portlet__head-label
+                        span.kt-portlet__head-icon
+                            i.margin-auto.la.la-home
+                        h3.kt-portlet__head-title=title
+                    .kt-portlet__head-toolbar
+                        button#addButton.btn.btn-brand.btn-elevate.btn-pill.add-button
+                            span.kt-portlet__head-icon
+                                i.margin-auto.la.la-plus-circle
+                            | Create Property
+                .kt-portlet__body
+                    .input#baseUrl(type='hidden' value!=baseUrl)
+                    .kt-content.kt-grid__item.kt-grid__item--fluid
+                        table#table.table
+                            thead
+                                tr
+                                    td No
+                                    td Name
+                                    td User
+                                    td City
+                                    td SQM
+                                    td Rooms
+                                    td Baths
+                                    td Status
+                                    td Creation Date
+                                    td
+                                    td
+                            tbody
+    #deleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deleteModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5.modal-title(style='margin-top: 0') Delete
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                form#deleteForm.modal-body(action=baseUrl + 'propiedades/delete', data-method='', novalidate='novalidate')
+                    input#itemId.form-control(type='hidden', name='itemId')
+                    p Do you want to delete?
+                .modal-footer
+                    button#closeModal.btn.btn-primary.btn-elevate.btn-pill(type='button', name='closeModal', data-dismiss='modal', style='background: #AEAAAA; padding: 8.45px 2.3rem; border-color: #AEAAAA;') Cancel
+                    button#deleteButton.btn.btn-primary.btn-elevate.btn-pill(type='button', name='deleteButton', style='background: #FF5722; padding: 8.45px 2.3rem;border-color: #FF5722;') Delete
+

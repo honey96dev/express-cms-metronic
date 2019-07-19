@@ -43,44 +43,48 @@
 }
 
 .add-card-button {
-    width: 47px;
-    height: 47px;
-    padding-left: 8px;
-    padding-right: 8px;
+    margin-top: 20px;
+    width: 60px;
+    height: 60px;
+    padding-left: 11px;
+    padding-right: 11px;
     transition-duration: 0.2s;
+    border-radius: 30px !important;
 }
 
 .add-card-button>i {
-    font-size: 30px !important;
+    font-size: 37px !important;
     transition-duration: 0.2s;
 }
 
 .my-card:hover .add-card-button, .my-card:active .add-card-button {
-    width: 52px;
-    height: 52px;
-    padding-left: 9px;
-    padding-right: 9px;
+    margin-top: 22px;
+    width: 66px;
+    height: 66px;
+    padding-left: 12px;
+    padding-right: 12px;
     transition-duration: 0.2s;
+    border-radius: 33px !important;
 }
 
 .my-card:hover .add-card-button>i, .my-card:active .add-card-button>i {
-    font-size: 33px !important;
+    font-size: 41px !important;
     /*margin-top: -9px;*/
     transition-duration: 0.2s;
 }
 
 .add-card-description1 {
-    margin-top: 20px;
+    margin-top: 30px;
     font-family: "Roboto";
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 500;
     color: #0E0F11;
     transition-duration: 0.2s;
 }
 .my-card:hover .add-card-description1, .my-card:active .add-card-description1 {
-    margin-top: 22px;
+    margin-top: 33px;
     font-family: "Roboto";
-    font-size: 18px;
+    font-size: 27px;
     font-weight: 500;
     color: #0E0F11;
     transition-duration: 0.2s;
@@ -151,6 +155,7 @@
     margin-right: 10px;
     /*width: 30px;*/
     /*height: 30px;*/
+    background-color: #ffffff;
     transition-duration: 0.2s;
 }
 
@@ -214,7 +219,7 @@
 
 .list-card-name {
     /*position: absolute;*/
-    margin-top: 60px;
+    margin-top: 10px;
     width: 100%;
     padding-left: 40px;
     padding-right: 40px;
@@ -224,7 +229,7 @@
 }
 
 .my-card:hover .list-card-name, .my-card:active .list-card-name {
-    margin-top: 65px;
+    margin-top: 11px;
     padding-left: 44px;
     padding-right: 44px;
     font-size: 25px !important;
@@ -260,8 +265,8 @@
 }
 
 .list-card-property {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 0;
+    padding-right: 0;
     font: 500 14px "Roboto" !important;
     color: #797A7C;
     text-align: center;
@@ -272,4 +277,8 @@
     /*margin-top: 2px;*/
     font-size: 15px !important;
     transition-duration: 0.2s;
+}
+
+.list-card-property li {
+    margin-right: 5px;
 }

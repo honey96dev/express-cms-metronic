@@ -140,22 +140,24 @@
 
 .list-card-trash {
     /*position: absolute;*/
-    margin-top: 10px;
     right: 15px;
     /*width: 109px;*/
     border-radius: 10px;
     text-align: right;
 }
 
-.list-card-trash-icon {
+.list-card-trash-button {
+    margin-top: 10px;
     margin-right: 10px;
-    width: 30px;
-    height: 30px;
+    /*width: 30px;*/
+    /*height: 30px;*/
+    background-color: #ffffff;
     transition-duration: 0.2s;
 }
 
 
-.my-card:hover .list-card-trash-icon, .my-card:active .list-card-trash-icon {
+.my-card:hover .list-card-trash-button, .my-card:active .list-card-trash-button {
+    margin-top: 11px;
     margin-right: 11px;
     transition-duration: 0.2s;
 }
@@ -213,7 +215,7 @@
 
 .list-card-name {
     /*position: absolute;*/
-    margin-top: 60px;
+    margin-top: 10px;
     width: 100%;
     padding-left: 40px;
     padding-right: 40px;
@@ -223,7 +225,7 @@
 }
 
 .my-card:hover .list-card-name, .my-card:active .list-card-name {
-    margin-top: 65px;
+    margin-top: 11px;
     padding-left: 44px;
     padding-right: 44px;
     font-size: 25px !important;
@@ -259,8 +261,8 @@
 }
 
 .list-card-property {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 0;
+    padding-right: 0;
     font: 500 14px "Roboto" !important;
     color: #797A7C;
     text-align: center;
@@ -271,4 +273,8 @@
     /*margin-top: 2px;*/
     font-size: 15px !important;
     transition-duration: 0.2s;
+}
+
+.list-card-property li {
+    margin-right: 5px;
 }

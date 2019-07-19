@@ -10,7 +10,6 @@ block mainContent
                             i.margin-auto.la.la-home
                         h3.kt-portlet__head-title=title
 
-
     .row
         .col-lg-7.col-md-6
             .kt-portlet.kt-portlet--height-fluid
@@ -57,6 +56,13 @@ block mainContent
                                     .input-group-prepend
                                         span.input-group-text €
                                     input#accPrice.form-control.my-input.property-surface.price-input(placeholder='Acquisition Price' name='accPrice' type='number' value!=data['accPrice'])
+                        .row.property-bottom-input-sec
+                            .col-6
+                                select#userId.form-control.kt-select2.my-input(name='userId')
+                                    option
+                                    for user in users
+                                        option(value!=user['id'] selected=(data['userId'] == user['id']))=user['name']
+                                input#userId1.form-control.my-input.property-address(type='hidden' name='userId1')
                         .form-control-sec.property-create-button-sec
                             button#addButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
                                 if (data['id'])

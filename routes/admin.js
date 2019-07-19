@@ -2,6 +2,8 @@ import express from 'express';
 import loginRouter from './admin/login';
 import dashboardRouter from './admin/dashboard';
 import documentosRouter from './admin/documentos';
+import propiedadesRouter from './admin/propiedades';
+import listingRouter from './admin/listing';
 import usersRouter from './admin/users';
 import passwordRouter from './admin/password';
 import config from "../core/config";
@@ -34,6 +36,8 @@ router.use('/', requiresLogin, dashboardRouter);
 router.use('/dashboard', requiresLogin, dashboardRouter);
 router.use('/users', requiresLogin, usersRouter);
 router.use('/documentos', requiresLogin, documentosRouter);
+router.use('/propiedades', requiresLogin, propiedadesRouter);
+router.use('/anuncios', requiresLogin, listingRouter);
 
 router.use(function(req, res, next){
     res.status(404);

@@ -20,6 +20,11 @@ AddListing.prototype.init = function() {
         placeholder: "Baths",
         minimumResultsForSearch: Infinity
     });
+    self.userIdView = $('#userId').select2({
+        placeholder: "User",
+        minimumResultsForSearch: Infinity,
+    });
+
     self.mapView = new GMaps({
         div: '#gmap',
         lat: -12.043333,
@@ -83,6 +88,7 @@ AddListing.prototype.init = function() {
         $('#type1').val($('#type').val());
         $('#rooms1').val($('#rooms').val());
         $('#baths1').val($('#baths').val());
+        $('#userId1').val($('#userId').val());
 
         form.validate({
             rules: {
@@ -102,6 +108,9 @@ AddListing.prototype.init = function() {
                     required: true,
                 },
                 surface: {
+                    required: true,
+                },
+                userId1: {
                     required: true,
                 },
                 monthlyPrice: {

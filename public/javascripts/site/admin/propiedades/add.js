@@ -18,6 +18,11 @@ AddProperty.prototype.init = function() {
         placeholder: "Baths",
         minimumResultsForSearch: Infinity
     });
+    self.userIdView = $('#userId').select2({
+        placeholder: "User",
+        minimumResultsForSearch: Infinity,
+    });
+
     self.mapView = new GMaps({
         div: '#gmap',
         lat: -12.043333,
@@ -27,7 +32,7 @@ AddProperty.prototype.init = function() {
     self.autocomplete = new google.maps.places.Autocomplete($('#address')[0]);
     self.autocomplete.bindTo('bounds', self.mapView);
     self.autocomplete.setFields(['address_components', 'geometry', 'icon', 'name']);
-
+    
     $('#address').on('change', function (e) {
         const value = $('#address').val();
 
@@ -55,6 +60,7 @@ AddProperty.prototype.init = function() {
         $('#type1').val($('#type').val());
         $('#rooms1').val($('#rooms').val());
         $('#baths1').val($('#baths').val());
+        $('#userId1').val($('#userId').val());
 
         form.validate({
             rules: {
@@ -80,6 +86,9 @@ AddProperty.prototype.init = function() {
                     required: true,
                 },
                 accPrice: {
+                    required: true,
+                },
+                userId1: {
                     required: true,
                 },
             },
@@ -140,6 +149,8 @@ AddProperty.prototype.init = function() {
         }
     });
 };
+
+AddProperty.prototype.format = function (item) { return item.name; };
 
 AddProperty.prototype.showErrorMsg = function (form, type, msg) {
     const alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\

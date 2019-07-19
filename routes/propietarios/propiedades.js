@@ -24,7 +24,7 @@ const indexProc = (req, res, next) => {
 
 const listProc = (req, res, next) => {
     const userId = req.session.propietarios.id;
-    let sql = sprintfJs.sprintf("SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `%s` P LEFT JOIN `%s` R ON R.property_id = P.id WHERE `userId` = '%d';", config.dbTblName.properties, config.dbTblName.property_photos, userId);
+    let sql = sprintfJs.sprintf("SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `%s` P LEFT JOIN `%s` R ON R.property_id = P.id WHERE `userId` = '%d' ORDER BY `creationDate`;", config.dbTblName.properties, config.dbTblName.property_photos, userId);
     dbConn.query(sql, null, (error, result, fields) => {
         if (error) {
             console.log(error);
@@ -136,7 +136,9 @@ const addSaveProc = (req, res, next) => {
 
     let sql;
     if (method == 'POST') {
-        sql = sprintfJs.sprintf("INSERT INTO `properties`(`userId`, `name`, `address`, `type`, `rooms`, `baths`, `surface`, `price`, `accPrice`) VALUES('%d', '%s', '%s', '%s', %d, %d, %f, %f, %f);", userId, name, address, type, rooms, baths, surface, price, accPrice);
+        let today = new Date();
+        today = sprintfJs.sprintf("%02d/%02d/%04d", today.getDate(), today.getMonth() + 1, today.getFullYear());
+        sql = sprintfJs.sprintf("INSERT INTO `properties`(`userId`, `name`, `address`, `type`, `rooms`, `baths`, `surface`, `price`, `accPrice`, `creationDate`) VALUES('%d', '%s', '%s', '%s', %d, %d, %f, %f, %f, '%s');", userId, name, address, type, rooms, baths, surface, price, accPrice, today);
     } else if (method == 'PUT') {
         sql = sprintfJs.sprintf("UPDATE `properties` SET `name` = '%s', `address` = '%s', `type` = '%s', `rooms` = '%d', `baths` = '%d', `surface` = '%f', `price` = '%f', `accPrice` = '%f' WHERE `id` = '%d';", name, address, type, rooms, baths, surface, price, accPrice, id);
     }

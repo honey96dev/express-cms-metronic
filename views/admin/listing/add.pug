@@ -261,6 +261,13 @@ block mainContent
                                                 | can choose proper move-in dates.
                                         .text-right.goot-it-font
                                             a.goot-it-font Goot it
+                    .row
+                        .col-md-4(style='margin-left: 30px;')
+                            select#userId.form-control-sec.form-control.kt-select2(name='userId')
+                                option
+                                for user in users
+                                    option(value!=user['id'] selected=(data['userId'] == user['id']))=user['name']
+                            input#userId1.form-control.my-input.property-address(type='hidden' name='userId1')
                     .avaliable-container.row
                         .col-md-8
                             .form-control-sec.property-create-button-sec
