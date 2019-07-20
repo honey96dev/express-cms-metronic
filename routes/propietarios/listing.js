@@ -130,7 +130,7 @@ const addGetProc = (req, res, next) => {
         // console.log('alreadyLogin', req.session.propietarios);
         res.render('propietarios/listing/add', {
             userName: req.session.propietarios.name,
-            title: 'Nueva Anuncios',
+            title: 'Nueva Anuncio',
             baseUrl: config.server.propietariosBaseUrl,
             uri: 'anuncios',
             types,

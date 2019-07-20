@@ -88,7 +88,7 @@ const addGetProc = (req, res, next) => {
                 }
                 res.render('admin/propiedades/add', {
                     userName: req.session.admin.name,
-                    title: 'Nueva Propiedades',
+                    title: 'Nueva Propiedad',
                     baseUrl: config.server.adminBaseUrl,
                     uri: 'propiedades',
                     types,
@@ -110,7 +110,7 @@ const addGetProc = (req, res, next) => {
             // console.log('alreadyLogin', req.session.propietarios);
             res.render('admin/propiedades/add', {
                 userName: req.session.admin.name,
-                title: 'Nueva Propiedades',
+                title: 'Nueva Propiedad',
                 baseUrl: config.server.adminBaseUrl,
                 uri: 'propiedades',
                 types,
