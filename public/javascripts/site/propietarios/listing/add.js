@@ -9,15 +9,15 @@ AddListing.prototype.init = function() {
     self.id = $('#id').val();
 
     self.typeView = $('#type').select2({
-        placeholder: "Type",
+        placeholder: "Tipo",
         minimumResultsForSearch: Infinity
     });
     self.roomsView = $('#rooms').select2({
-        placeholder: "Rooms",
+        placeholder: "Habitaciones",
         minimumResultsForSearch: Infinity
     });
     self.bathView = $('#baths').select2({
-        placeholder: "Baths",
+        placeholder: "Baños",
         minimumResultsForSearch: Infinity
     });
     self.mapView = new GMaps({

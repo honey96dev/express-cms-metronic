@@ -16,14 +16,14 @@ block mainContent
                             thead
                                 tr
                                     td No
-                                    td Name
-                                    td User
-                                    td City
-                                    td SQM
-                                    td Rooms
-                                    td Baths
-                                    td Status
-                                    td Creation Date
+                                    td Nombre
+                                    td Usuario
+                                    td Ciudad
+                                    td Metros
+                                    td Habitaciones
+                                    td Baños
+                                    td Estado
+                                    td Fecha Creación
                                     td
                                     td
                             tbody
@@ -31,12 +31,12 @@ block mainContent
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5.modal-title(style='margin-top: 0') Delete
+                    h5.modal-title(style='margin-top: 0') Eliminar
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                 form#deleteForm.modal-body(action=baseUrl + 'propiedades/delete', data-method='', novalidate='novalidate')
                     input#itemId.form-control(type='hidden', name='itemId')
-                    p Do you want to delete?
+                    p ¿Seguro que quieres eliminar?
                 .modal-footer
-                    button#closeModal.btn.btn-primary.btn-elevate.btn-pill(type='button', name='closeModal', data-dismiss='modal', style='background: #AEAAAA; padding: 8.45px 2.3rem; border-color: #AEAAAA;') Cancel
-                    button#deleteButton.btn.btn-primary.btn-elevate.btn-pill(type='button', name='deleteButton', style='background: #FF5722; padding: 8.45px 2.3rem;border-color: #FF5722;') Delete
+                    button#closeModal.btn.btn-primary.btn-elevate.btn-pill(type='button', name='closeModal', data-dismiss='modal', style='background: #AEAAAA; padding: 8.45px 2.3rem; border-color: #AEAAAA;') Cancelar
+                    button#deleteButton.btn.btn-primary.btn-elevate.btn-pill(type='button', name='deleteButton', style='background: #FF5722; padding: 8.45px 2.3rem;border-color: #FF5722;') Eliminar
 

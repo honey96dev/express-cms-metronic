@@ -20,34 +20,34 @@ block mainContent
                                 .col-lg-8.col-md-12
                                     .kt-portlet__body.my-card.add-card-body
                                         .form-control-sec
-                                            input#name.form-control.my-input.property-name(name='name' placeholder='Property Name' value!=data['name'])
+                                            input#name.form-control.my-input.property-name(name='name' placeholder='Nombre de la Propiedad' value!=data['name'])
                                         .form-control-sec
-                                            input#address.form-control.my-input.property-address(name='address' placeholder='Address' value!=data['address'])
+                                            input#address.form-control.my-input.property-address(name='address' placeholder='Dirección' value!=data['address'])
                                         .row.property-select2-sec
                                             .col-md-3.my-input-sec
-                                                p.white-p Type
+                                                p.white-p Tipo
                                                 select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
                                                     option
                                                         for type in types
                                                             option(value!=type selected=(data['type'] == type))=type
                                                 input#type1.form-control.my-input.property-address(type='hidden' name='type1')
                                             .col-md-3.my-input-sec
-                                                p.white-p Rooms
+                                                p.white-p Habitaciones
                                                 select#rooms.form-control.kt-select2.my-input.select2-transparent(name='rooms')
                                                     option
                                                         for room in rooms
                                                             option(value!=room selected=(data['rooms'] == room))=room
                                                 input#rooms1.form-control.my-input.property-address(type='hidden' name='rooms1')
                                             .col-md-3.my-input-sec
-                                                p.white-p Baths
+                                                p.white-p Baños
                                                 select#baths.form-control.kt-select2.my-input.select2-transparent(name='baths')
                                                     option
                                                         for bath in baths
                                                             option(value!=bath selected=(data['baths'] == bath))=bath
                                                 input#baths1.form-control.my-input.property-address(type='hidden' name='baths1')
                                             .col-md-3.my-input-sec
-                                                p.white-p m2
-                                                input#surface.form-control.my-input.property-surface(placeholder='m2' name='surface' type='number' value!=data['surface'])
+                                                p.white-p Metros
+                                                input#surface.form-control.my-input.property-surface(placeholder='Metros' name='surface' type='number' value!=data['surface'])
                                 .col-lg-4.col-md12
                                     .kt-portlet__body.add-card-body
                                         //div
@@ -70,41 +70,39 @@ block mainContent
                                     .detail-container.first-detail-container
                                         div
                                             p
-                                                | A Tenants like to see photos of listed property. The
-                                                | first photo will be used as a listing cover.
+                                                | A los inquilinos les gusta ver fotos de la propiedad. Recomendamos que la primera foto sea de la fachada.
                                         .text-right.goot-it-font
-                                            a.goot-it-font Goot it
+                                            //a.goot-it-font Goot it
                             .row
                                 .col-lg-4.col-md-3
-                                    p Monthly Price
+                                    p Precio del Alquiler mensual
                                     .input-group.price-input-sec
                                         .input-group-prepend
                                             span.input-group-text €
-                                        input#monthlyPrice.form-control.price-input.price-input-real(name='monthlyPrice' placeholder='Monthly Price' type='number' value!=data['monthlyPrice'])
+                                        input#monthlyPrice.form-control.price-input.price-input-real(name='monthlyPrice' placeholder='Precio del Alquiler mensual' type='number' value!=data['monthlyPrice'])
                                 .col-lg-4.col-md-3
-                                    p Monthly Price
+                                    p Fianza
                                     .input-group.price-input-sec
                                         .input-group-prepend
                                             span.input-group-text €
-                                        input#securityDeposit.form-control.price-input.price-input-real(name='securityDeposit' placeholder='Security Deposit' type='number' value!=data['securityDeposit'])
+                                        input#securityDeposit.form-control.price-input.price-input-real(name='securityDeposit' placeholder='Fianza' type='number' value!=data['securityDeposit'])
                             .description-container.row
                                 .content-container.col-md-8
                                     div
                                         textarea#description.form-control.content-font.description-rectangle.price-input(name='description' placeholder='Description' rows='5')=data['description']
-                                        span.form-text.text-muted.text-right Minimum 140 characters
+                                        span.form-text.text-muted.text-right Mínimo 140 carácteres
                                 .col-md-4.hidden-sm-down
                                     .detail-container
                                         div
                                             p
-                                                | Describe what differentiates your property from
-                                                | others.
+                                                | Describe lo que diferencia tu propiedad de las demás.
                                         .text-right.goot-it-font
-                                            a.goot-it-font Goot it
+                                            //a.goot-it-font Goot it
                             .row
                                 .content-container.col-md-8
                                     .amenities-container
                                         .title-content.text-padding-1
-                                            | Amenities
+                                            | Características
                                         .row.amenities-list
                                             .col-md-6
                                                 .amenities-item
@@ -112,130 +110,129 @@ block mainContent
                                                         input#washer(type="checkbox" name="washer" checked=data['washer'] == 1)
                                                         span
                                                         i.fas.fa-tshirt
-                                                        | Washer/Dryer In Unit
+                                                        | Lavadora / Secadora
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#gym(type="checkbox" name="gym" checked=data['gym'] == 1)
                                                         span
                                                         i.fas.fa-dumbbell
-                                                        | Gym
+                                                        | Trastero
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#parkingSpot(type="checkbox" name="parkingSpot" checked=data['parkingSpot'] == 1)
                                                         span
                                                         i.fas.fa-parking
-                                                        | Parking Spot
+                                                        | Parking
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#airConditioning(type="checkbox" name="airConditioning" checked=data['airConditioning'] == 1)
                                                         span
                                                         i.fas.fa-fan
-                                                        | Air Conditioning
+                                                        | Aire acondicionado
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#dishwasher(type="checkbox" name="dishwasher" checked=data['dishwasher'] == 1)
                                                         span
                                                         i.fas.fa-bacon
-                                                        | Dishwasher
+                                                        | Lavaplatos
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#storage(type="checkbox" name="storage" checked=data['storage'] == 1)
                                                         span
                                                         i.fas.fa-archive
-                                                        | Storage
+                                                        | Armarios
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#hardwoodFloors(type="checkbox" name="hardwoodFloors" checked=data['hardwoodFloors'] == 1)
                                                         span
                                                         i.fas.fa-campground
-                                                        | Hardwood Floors
+                                                        | Parquet
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#balcony(type="checkbox" name="balcony" checked=data['balcony'] == 1)
                                                         span
                                                         i.fas.fa-chair
-                                                        | Balcony
+                                                        | Terraza
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#view(type="checkbox" name="view" checked=data['view'] == 1)
                                                         span
                                                         i.fas.fa-eye
-                                                        | View
+                                                        | Calefacción
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#studentFriendly(type="checkbox" name="studentFriendly" checked=data['studentFriendly'] == 1)
                                                         span
                                                         i.fas.fa-graduation-cap
-                                                        | Student Friendly
+                                                        | Acepta estudiantes
                                             .col-md-6
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#pool(type="checkbox" name="pool" checked=data['pool'] == 1)
                                                         span
                                                         i.fas.fa-swimming-pool
-                                                        | Pool
+                                                        | Piscina
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#elevator(type="checkbox" name="elevator" checked=data['elevator'] == 1)
                                                         span
                                                         i.fas.fa-suitcase
-                                                        | Elevator
+                                                        | Ascensor
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#fireplace(type="checkbox" name="fireplace" checked=data['fireplace'] == 1)
                                                         span
                                                         i.fas.fa-fire-alt
-                                                        | Fireplace
+                                                        | Horno
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#doorman(type="checkbox" name="doorman" checked=data['doorman'] == 1)
                                                         span
                                                         i.fas.fa-user-alt
-                                                        | Doorman
+                                                        | Portero
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#deck(type="checkbox" name="deck" checked=data['deck'] == 1)
                                                         span
                                                         i.fas.fa-umbrella-beach
-                                                        | Deck
+                                                        | Microondas
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#wheelchairAccessible(type="checkbox" name="wheelchairAccessible" checked=data['wheelchairAccessible'] == 1)
                                                         span
                                                         i.fas.fa-wheelchair
-                                                        | Wheelchair Accessible
+                                                        | Acceso adaptado
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#garden(type="checkbox" name="garden" checked=data['garden'] == 1)
                                                         span
                                                         i.fas.fa-leaf
-                                                        | Garden
+                                                        | Jardín
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#furnished(type="checkbox" name="furnished" checked=data['furnished'] == 1)
                                                         span
                                                         i.fas.fa-couch
-                                                        | Furnished
+                                                        | Amueblado
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#highRise(type="checkbox" name="highRise" checked=data['highRise'] == 1)
                                                         span
                                                         i.fas.fa-gopuram
-                                                        | High Rise
+                                                        | Nevera
                                                 .amenities-item
                                                     label.kt-checkbox.kt-checkbox--warning
                                                         input#utilitiesIncluded(type="checkbox" name="utilitiesIncluded" checked=data['utilitiesIncluded'] == 1)
                                                         span
                                                         i.fas.fa-tint
-                                                        | Utilities Included
+                                                        | Suministros incluidos
                                 .col-md-4
                                     .detail-container.text-padding-1
                                         div
                                             p
-                                                | Check all amenities that your property has. Tenants like
-                                                | to know what your place offers.
+                                                | Marca las características que posee tu inmueble. A los inquilinos les gusta conocer lo que tu propiedad ofrece.
                                         .text-right.goot-it-font
-                                            a.goot-it-font Goot it
+                                            //a.goot-it-font Goot it
                             .avaliable-container.row
                                 .content-container.col-lg-8.col-md-12
                                     div
@@ -246,10 +243,10 @@ block mainContent
                                             input#availableForm.form-control.price-input(type="text" name='availableForm' placeholder="Available from" readonly value=data['availableForm'])
 
                                         .col
-                                            .available-free Free Listing
+                                            .available-free Publica tu anuncio
                                             .row
                                                 .available-trovit
-                                                    label Trovit
+                                                    label gratis
                                                     span.kt-switch.kt-switch--danger
                                                         label
                                                             input#freeListingTrovit(type='checkbox' name='freeListingTrovit' value=data['freeListingTrovit'] checked=data['freeListingTrovit'] == 1)
@@ -259,19 +256,18 @@ block mainContent
                                     .detail-container
                                         div
                                             p
-                                                | Specify when your property will be available so tenants
-                                                | can choose proper move-in dates.
+                                                | Especifica cuando tu propiedad estará disponible para ser alquilada.
                                         .text-right.goot-it-font
-                                            a.goot-it-font Goot it
+                                            //a.goot-it-font Goot it
                     .avaliable-container.row
                         .col-md-8
                             .form-control-sec.property-create-button-sec
                                 button#saveButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
                                     if (data['id'])
-                                        | Save Property
+                                        | Guardar
                                     else
-                                        | Create Property
+                                        | Crear Propiedad
                                 if (data['id'])
                                     button#backButton.btn.btn-secondary.back-button.btn-elevate.btn-pill.property-create-button(type='button')
-                                        | Back
+                                        | Atrás
 

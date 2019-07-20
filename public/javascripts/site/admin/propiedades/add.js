@@ -7,19 +7,19 @@ function AddProperty() {
 AddProperty.prototype.init = function() {
     let self = this;
     self.typeView = $('#type').select2({
-        placeholder: "Type",
+        placeholder: "Tipo",
         minimumResultsForSearch: Infinity
     });
     self.roomsView = $('#rooms').select2({
-        placeholder: "Rooms",
+        placeholder: "Habitaciones",
         minimumResultsForSearch: Infinity
     });
     self.bathView = $('#baths').select2({
-        placeholder: "Baths",
+        placeholder: "Baños",
         minimumResultsForSearch: Infinity
     });
     self.userIdView = $('#userId').select2({
-        placeholder: "User",
+        placeholder: "Usuario",
         minimumResultsForSearch: Infinity,
     });
 
