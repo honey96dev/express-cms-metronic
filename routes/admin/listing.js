@@ -1,6 +1,7 @@
 import express from 'express';
 import config, {dbTblName} from '../../core/config';
 import dbConn from '../../core/dbConn';
+import trovitXml from '../../core/trovitXml';
 import sprintfJs from 'sprintf-js';
 import uuid from 'uuid';
 import path from 'path';
@@ -260,6 +261,9 @@ const addSaveProc = (req, res, next) => {
                     });
                     return;
                 }
+
+                trovitXml.generateTrovitXml();
+
                 res.status(200).send({
                     result: 'success',
                     message: 'Guardado correctamente',
