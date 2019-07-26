@@ -1,0 +1,222 @@
+doctype html
+html(lang='en')
+    head
+        base(href!=baseUrl)
+        meta(charset='utf-8')
+        title!=title
+        meta(name='description', content='Latest updates and statistic charts')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        script(src='https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js')
+        script.
+            WebFont.load({
+                google: {
+                    "families": ["Poppins:300,400,500,600,700", "Asap+Condensed:500", "Montserrat"]
+                },
+                active: function() {
+                    sessionStorage.fonts = true;
+                }
+            });
+        link(href!='vendors/custom/fullcalendar/fullcalendar.bundle.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/perfect-scrollbar/css/perfect-scrollbar.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/tether/dist/css/tether.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-daterangepicker/daterangepicker.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-select/dist/css/bootstrap-select.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/select2/dist/css/select2.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/ion-rangeslider/css/ion.rangeSlider.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/nouislider/distribute/nouislider.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/owl.carousel/dist/assets/owl.carousel.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/owl.carousel/dist/assets/owl.theme.default.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/dropzone/dist/dropzone.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/summernote/dist/summernote.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/animate.css/animate.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/toastr/build/toastr.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/morris.js/morris.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/sweetalert2/dist/sweetalert2.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/socicon/css/socicon.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/custom/vendors/line-awesome/css/line-awesome.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/custom/vendors/flaticon/flaticon.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/custom/vendors/flaticon2/flaticon.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/@fortawesome/fontawesome-free/css/all.min.css', rel='stylesheet', type='text/css')
+        link(href!='vendors/general/materialicon/material-icon.css' rel='stylesheet' type='text/css')
+        link(href='stylesheets/site/inquilinos/style.bundle.css', rel='stylesheet', type='text/css')
+        link(href='stylesheets/site/inquilinos/common.css', rel='stylesheet', type='text/css')
+        link(rel='shortcut icon', href='images/favicon.ico')
+        for style in styles
+            link(href!=style, rel='stylesheet')
+    body.kt-page--fluid.kt-page-content-white.kt-quick-panel--right.kt-demo-panel--right.kt-offcanvas-panel--right.kt-header--fixed.kt-header-mobile--fixed.kt-subheader--enabled.kt-subheader--transparent.kt-aside--enabled.kt-aside--fixed.kt-page--loading
+        input#baseUrl(type='hidden', value!=baseUrl)
+        #kt_header_mobile.kt-header-mobile.kt-header-mobile--fixed
+            .kt-header-mobile__logo
+                a(href!=baseUrl)
+                    img.logo-img(alt='Logo', src='images/logo-def2.png')
+        .kt-grid.kt-grid--hor.kt-grid--root
+            .kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--ver.kt-page
+                #kt_wrapper.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor.kt-wrapper
+                    #kt_header.kt-header.kt-grid__item.kt-header--fixed(data-ktheader-minimize='on')
+                        .kt-container.kt-container--fluid
+                            #kt_header_brand.kt-header__brand
+                                .kt-header__brand-logo
+                                    a(href!=baseUrl)
+                                        img.logo-img(alt='Logo', src='images/logo-def1.png')
+                            .kt-header__topbar
+                                .kt-header__topbar-item
+                                    .kt-header__topbar-wrapper
+                                        a.kt-login__signup-link(href="/login")
+                                            | Login
+                                        a.kt-register__signup-link(href="/registro")
+                                            | Register
+                        //-
+                            .kt-header__topbar
+                                .kt-header__topbar-item.kt-header__topbar-item--user
+                                    .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
+                                        span.kt-header__topbar-icon.kt-bg-brand
+                                            b=userName.substr(0, 1).toUpperCase()
+                                    .dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-xl
+                                        .kt-user-card.kt-user-card--skin-light.kt-notification-item-padding-x
+                                            .kt-user-card__avatar
+                                                span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold=userName.substr(0, 1).toUpperCase()
+                                            .kt-user-card__name=userName
+                                            .kt-user-card__badge
+                                                span.btn.btn-label-primary.btn-sm.btn-bold.btn-font-md 23 messages
+                                        .kt-notification
+                                            a.kt-notification__item(href='#')
+                                                .kt-notification__item-icon
+                                                    i.flaticon2-calendar-3.kt-font-success
+                                                .kt-notification__item-details
+                                                    .kt-notification__item-title.kt-font-bold
+                                                        | My Profile
+                                                    .kt-notification__item-time
+                                                        | Account settings and more
+                                            a.kt-notification__item(href='#')
+                                                .kt-notification__item-icon
+                                                    i.flaticon2-mail.kt-font-warning
+                                                .kt-notification__item-details
+                                                    .kt-notification__item-title.kt-font-bold
+                                                        | My Messages
+                                                    .kt-notification__item-time
+                                                        | Inbox and tasks
+                                            a.kt-notification__item(href='#')
+                                                .kt-notification__item-icon
+                                                    i.flaticon2-rocket-1.kt-font-danger
+                                                .kt-notification__item-details
+                                                    .kt-notification__item-title.kt-font-bold
+                                                        | My Activities
+                                                    .kt-notification__item-time
+                                                        | Logs and notifications
+                                            a.kt-notification__item(href='#')
+                                                .kt-notification__item-icon
+                                                    i.flaticon2-hourglass.kt-font-brand
+                                                .kt-notification__item-details
+                                                    .kt-notification__item-title.kt-font-bold
+                                                        | My Tasks
+                                                    .kt-notification__item-time
+                                                        | latest tasks and projects
+                                            a.kt-notification__item(href='#')
+                                                .kt-notification__item-icon
+                                                    i.flaticon2-cardiogram.kt-font-warning
+                                                .kt-notification__item-details
+                                                    .kt-notification__item-title.kt-font-bold
+                                                        | Billing
+                                                    .kt-notification__item-time
+                                                        | billing & statements
+                                                        span.kt-badge.kt-badge--danger.kt-badge--inline.kt-badge--pill.kt-badge--rounded 2 pending
+                                            .kt-notification__custom.kt-space-between
+                                                a.btn.btn-secondary.btn-pill.btn-bold(href!=baseUrl + 'login/logout', ) Sign Out
+                    #kt_body.kt-body.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor.kt-grid--stretch
+                        .kt-container.kt-container--fluid.kt-grid.kt-grid--ver.pl-0
+                            #kt_content.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor
+                                block mainContent
+
+        #kt_scrolltop.kt-scrolltop
+            i.fa.fa-arrow-up
+        script.
+            var KTAppOptions = {
+                "colors": {
+                    "state": {
+                        "brand": "#5d78ff",
+                        "light": "#ffffff",
+                        "dark": "#282a3c",
+                        "primary": "#5867dd",
+                        "success": "#34bfa3",
+                        "info": "#36a3f7",
+                        "warning": "#ffb822",
+                        "danger": "#fd3995"
+                    },
+                    "base": {
+                        "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                        "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                    }
+                }
+            };
+        script(src!='vendors/general/jquery/dist/jquery.js', type='text/javascript')
+        script(src!='vendors/general/popper.js/dist/umd/popper.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap/dist/js/bootstrap.min.js', type='text/javascript')
+        script(src!='vendors/general/js-cookie/src/js.cookie.js', type='text/javascript')
+        script(src!='vendors/general/moment/min/moment.min.js', type='text/javascript')
+        script(src!='vendors/general/tooltip.js/dist/umd/tooltip.min.js', type='text/javascript')
+        script(src!='vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js', type='text/javascript')
+        script(src!='vendors/general/sticky-js/dist/sticky.min.js', type='text/javascript')
+        script(src!='vendors/general/wnumb/wNumb.js', type='text/javascript')
+        script(src!='vendors/general/jquery-form/dist/jquery.form.min.js', type='text/javascript')
+        script(src!='vendors/general/block-ui/jquery.blockUI.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js', type='text/javascript')
+        script(src!='vendors/custom/js/vendors/bootstrap-datepicker.init.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js', type='text/javascript')
+        script(src!='vendors/custom/js/vendors/bootstrap-timepicker.init.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-daterangepicker/daterangepicker.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-maxlength/src/bootstrap-maxlength.js', type='text/javascript')
+        script(src!='vendors/custom/vendors/bootstrap-multiselectsplitter/bootstrap-multiselectsplitter.min.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-select/dist/js/bootstrap-select.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-switch/dist/js/bootstrap-switch.js', type='text/javascript')
+        script(src!='vendors/custom/js/vendors/bootstrap-switch.init.js', type='text/javascript')
+        script(src!='vendors/general/select2/dist/js/select2.full.js', type='text/javascript')
+        script(src!='vendors/general/ion-rangeslider/js/ion.rangeSlider.js', type='text/javascript')
+        script(src!='vendors/general/typeahead.js/dist/typeahead.bundle.js', type='text/javascript')
+        script(src!='vendors/general/handlebars/dist/handlebars.js', type='text/javascript')
+        script(src!='vendors/general/inputmask/dist/jquery.inputmask.bundle.js', type='text/javascript')
+        script(src!='vendors/general/inputmask/dist/inputmask/inputmask.date.extensions.js', type='text/javascript')
+        script(src!='vendors/general/inputmask/dist/inputmask/inputmask.numeric.extensions.js', type='text/javascript')
+        script(src!='vendors/general/nouislider/distribute/nouislider.js', type='text/javascript')
+        script(src!='vendors/general/owl.carousel/dist/owl.carousel.js', type='text/javascript')
+        script(src!='vendors/general/autosize/dist/autosize.js', type='text/javascript')
+        script(src!='vendors/general/clipboard/dist/clipboard.min.js', type='text/javascript')
+        script(src!='vendors/general/dropzone/dist/dropzone.js', type='text/javascript')
+        script(src!='vendors/general/summernote/dist/summernote.js', type='text/javascript')
+        script(src!='vendors/general/markdown/lib/markdown.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-markdown/js/bootstrap-markdown.js', type='text/javascript')
+        script(src!='vendors/custom/js/vendors/bootstrap-markdown.init.js', type='text/javascript')
+        script(src!='vendors/general/bootstrap-notify/bootstrap-notify.min.js', type='text/javascript')
+        script(src!='vendors/custom/js/vendors/bootstrap-notify.init.js', type='text/javascript')
+        script(src!='vendors/general/jquery-validation/dist/jquery.validate.js', type='text/javascript')
+        script(src!='vendors/general/jquery-validation/dist/additional-methods.js', type='text/javascript')
+        script(src!='vendors/custom/js/vendors/jquery-validation.init.js', type='text/javascript')
+        script(src!='vendors/general/toastr/build/toastr.min.js', type='text/javascript')
+        script(src!='vendors/general/raphael/raphael.js', type='text/javascript')
+        script(src!='vendors/general/morris.js/morris.js', type='text/javascript')
+        script(src!='vendors/general/chart.js/dist/Chart.bundle.js', type='text/javascript')
+        script(src!='vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js', type='text/javascript')
+        script(src!='vendors/custom/vendors/jquery-idletimer/idle-timer.min.js', type='text/javascript')
+        script(src!='vendors/general/waypoints/lib/jquery.waypoints.js', type='text/javascript')
+        script(src!='vendors/general/counterup/jquery.counterup.js', type='text/javascript')
+        script(src!='vendors/general/es6-promise-polyfill/promise.min.js', type='text/javascript')
+        script(src!='vendors/general/sweetalert2/dist/sweetalert2.min.js', type='text/javascript')
+        script(src!='vendors/custom/js/vendors/sweetalert2.init.js', type='text/javascript')
+        script(src!='vendors/general/jquery.repeater/src/lib.js', type='text/javascript')
+        script(src!='vendors/general/jquery.repeater/src/jquery.input.js', type='text/javascript')
+        script(src!='vendors/general/jquery.repeater/src/repeater.js', type='text/javascript')
+        script(src!='vendors/general/dompurify/dist/purify.js', type='text/javascript')
+        script(src='javascripts/site/scripts.bundle.js', type='text/javascript')
+        script(src!='vendors/custom/fullcalendar/fullcalendar.bundle.js', type='text/javascript')
+        script(src!='//maps.google.com/maps/api/js?key=AIzaSyC1MiHZZOjAZ3wS1HwaPLopASIwP1s_HMQ&libraries=places', type='text/javascript' defer)
+        //script(src!="//maps.googleapis.com/maps/api/js?key=AIzaSyC1MiHZZOjAZ3wS1HwaPLopASIwP1s_HMQ&libraries=places")
+        script(src!='vendors/custom/gmaps/gmaps.js', type='text/javascript')
+        for script in scripts
+            script(src!=script, type='text/javascript')

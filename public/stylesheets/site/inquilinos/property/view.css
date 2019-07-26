@@ -44,6 +44,14 @@
     color: rgba(255,255,255,0.84);
 }
 
+.my-input[readonly] {
+    border-radius: 5px;
+    border: solid 1px rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0);
+    color: rgba(255,255,255,0.84);
+}
+
+
 .white-p {
     color: #ffffff;
 }

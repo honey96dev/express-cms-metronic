@@ -15,6 +15,7 @@ import fileUpload from 'express-fileupload';
 // import adminRouter from './routes/admin';
 import propietariosRouter from './routes/propietarios';
 import adminRouter from './routes/admin';
+import inquilinosRouter from './routes/inquilinos';
 
 const app = express();
 // const MySQLStore = expressMysqlSessionLib(session);
@@ -47,15 +48,15 @@ app.use(cookieSessionLib({
     // maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 
-app.use(function (req, res, next) {
-    if (req.secure || config.server.isDev) {
-        // request was via https, so do no special handling
-        next();
-    } else {
-        // request was via http, so redirect to https
-        res.redirect('https://' + req.headers.host + req.url);
-    }
-});
+// app.use(function (req, res, next) {
+//     if (req.secure || config.server.isDev) {
+//         // request was via https, so do no special handling
+//         next();
+//     } else {
+//         // request was via http, so redirect to https
+//         res.redirect('https://' + req.headers.host + req.url);
+//     }
+// });
 
 app.use(fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 },
@@ -63,6 +64,7 @@ app.use(fileUpload({
 
 app.use(subdomain('propietarios', propietariosRouter));
 app.use(subdomain('admin', adminRouter));
+app.use(subdomain('inquilinos', inquilinosRouter));
 
 // error handler
 app.use(function (err, req, res, next) {

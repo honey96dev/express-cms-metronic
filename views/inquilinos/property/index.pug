@@ -1,0 +1,75 @@
+extends ../layout
+
+block mainContent
+    .kt-container.kt-container--fluid.kt-grid__item.kt-grid__item--fluid.p-0.content-begin-body
+        .row.m-0
+            .col-lg-6.p-0.property-list-without-login.col-md-6
+                .kt-portlet.kt-portlet--height-fluid
+                    .kt-portlet__head
+                        .kt-portlet__head-label
+                            form#demo-2
+                                input(type="search" placeholder="Search")                            
+                        .kt-portlet__head-toolbar
+                            a.btn.btn-label-orange.btn-bold.btn-sm.dropdown-toggle(href="#" data-toggle="dropdown" aria-expanded="false")
+                                | Newest First
+                            .dropdown-menu.dropdown-menu-fit.dropdown-menu-right(x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(579px, 46px, 0px);")
+                                ul.kt-nav
+                                    li.kt-nav__item
+                                        a.kt-nav__link(href="#")
+                                            span.kt-nav__link-text
+                                                | Newest First
+                                    li.kt-nav__item
+                                        a.kt-nav__link(href="#")
+                                            span.kt-nav__link-text
+                                                | Best Match
+                                    li.kt-nav__item
+                                        a.kt-nav__link(href="#")
+                                            span.kt-nav__link-text
+                                                | By Price: Low to High
+                                    li.kt-nav__item
+                                        a.kt-nav__link(href="#")
+                                            span.kt-nav__link-text
+                                                | By Price: High to  Low
+                    .kt-portlet__body.property-list-body-box-scroll
+                        .kt-widget4
+                            .row
+                                .col-md-12.mb-3
+                                    h6.kt-portlet__head-title
+                                        b
+                                            | 1990 
+                                        | New York apartments for rent
+                            #itemList.row
+                                .col-lg-6.col-md-12
+                                    .kt-portlet.kt-portlet--height-fluid.kt-widget19.property-list-box
+                                        .kt-portlet__body.kt-portlet__body--fit.kt-portlet__body--unfill
+                                            .kt-widget19__pic.kt-portlet-fit--top.kt-portlet-fit--sides(style="min-height: 178px; background-image: url(./assets/media//products/product4.jpg)")
+                                                .kt-widget19__labels
+                                                    a.btn.btn-label-light-o2.btn-bold(href="#")
+                                                        | $1,850
+                                        .kt-portlet__body
+                                            .kt-widget19__wrapper
+                                                .kt-widget19__content
+                                                    .kt-widget19__info.pl-0
+                                                        a.kt-widget19__username(href="#")
+                                                            | 3500 Snyder Avenue
+                                                        p.kt-widget19__time
+                                                            | 3500 Snyder Ave, Brooklyn, NY 11203, USA  Brooklyn, NY 11203, USA
+                                                .kt-widget19__text
+                                                    .row.m-0.form-row
+                                                        .col-4
+                                                            | 2 Bed
+                                                        .col-4
+                                                            | 2 Bath
+                                                        .col-4
+                                                            | 850 Sq Ft
+                            .row.m-0
+                                .col-6
+                                    .btn.btn-orange.btn-md.btn-tall.btn-wide.kt-font-bold.kt-font-transform-u(data-ktwizard-type="action-next")
+                                        | < Previous 
+                                .col-6.text-right
+                                    .btn.btn-orange.btn-md.btn-tall.btn-wide.kt-font-bold.kt-font-transform-u(data-ktwizard-type="action-next")
+                                        | Next >
+            .col-lg-6.p-0.col-md-6.d-none.d-md-block
+                iframe.w-100.map-window-height(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12381.476660633078!2d-108.61690557384141!3d39.12083006989756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87471d57c2c7e685%3A0x5bc954728aa0cea8!2sAppleton%2C+CO+81505%2C+USA!5e0!3m2!1sen!2sin!4v1563691761801!5m2!1sen!2sin" frameborder="0" style="border:0" allowfullscreen)
+
+

@@ -1,0 +1,95 @@
+.kt-portlet--height-fluid-transparent {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.my-card {
+    /*height: 380px !important;*/
+    border-radius: 5px !important;
+}
+
+.btn-secondary.edit-button {
+    background-color: #FF5722 !important;
+    border: 1px solid #FF5722 !important;
+    color: #fff !important;
+}
+
+.btn-secondary.back-button {
+    margin-left: 10px;
+}
+
+.show > .btn-secondary.dropdown-toggle, .btn-secondary.edit-button:focus, .btn-secondary.edit-button.active, .btn-secondary.edit-button:active, .btn-secondary.edit-button:hover {
+    color: #fff !important;
+    border-color: #ff6808 !important;
+    background-color: #ff6808 !important;
+}
+
+.my-input-sec {
+    margin-bottom: 10px;
+}
+
+/*.my-input-sec .select2-selection.select2-selection--single:active, .my-input-sec .select2-selection.select2-selection--single:focus {*/
+    /*border-color: #ff6808;*/
+/*}*/
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default.select2-container--focus .select2-selection--single, .select2-container--default.select2-container--open .select2-selection--multiple,
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: #ff6808;
+}
+
+.my-input:active, .my-input:focus {
+    border-color: #ff6808;
+}
+
+.form-control-sec {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.property-name {
+    margin-top: 5px;
+    font: 29px "Roboto";
+    color: #ACADAE;
+}
+
+.property-address {
+    margin-top: 28px;
+    font: 14px "Roboto";
+    color: #ACADAE;
+}
+
+.property-select2-sec {
+    margin-top: 28px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.property-bottom-input-sec {
+    margin-top: 28px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.price-input {
+    font-size: 16px;
+    color: #ACADAE;
+}
+
+.property-create-button-sec {
+    margin-top: 24px;
+    text-align: right;
+}
+
+.property-create-button {
+    width: 119px;
+    height: 34px;
+    font: 12px "Roboto";
+}
+
+.property-map-card {
+    padding: 0 !important;
+}
+
+#gmap {
+    height: 376px;
+}

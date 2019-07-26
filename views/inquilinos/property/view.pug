@@ -20,39 +20,30 @@ block mainContent
                                 .col-lg-8.col-md-12
                                     .kt-portlet__body.my-card.add-card-body
                                         .form-control-sec
-                                            input#name.form-control.my-input.property-name(name='name' placeholder='Nombre de la Propiedad' value!=data['name'])
+                                            input#name.form-control.my-input.property-name(name='name' placeholder='Nombre de la Propiedad' value!=data['name'] readonly)
                                         .form-control-sec
-                                            input#address.form-control.my-input.property-address(name='address' placeholder='Dirección' value!=data['address'])
+                                            input#address.form-control.my-input.property-address(name='address' placeholder='Dirección' value!=data['address'] readonly)
                                         .row.property-select2-sec
                                             .col-md-3.my-input-sec
                                                 p.white-p Tipo
-                                                select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
-                                                    option
-                                                        for type in types
-                                                            option(value!=type selected=(data['type'] == type))=type
+                                                input#type.form-control.my-input(name='type' placeholder='type' value!=data['type'] readonly)
                                                 input#type1.form-control.my-input.property-address(type='hidden' name='type1')
                                             .col-md-3.my-input-sec
                                                 p.white-p Habitaciones
-                                                select#rooms.form-control.kt-select2.my-input.select2-transparent(name='rooms')
-                                                    option
-                                                        for room in rooms
-                                                            option(value!=room selected=(data['rooms'] == room))=room
+                                                input#type.form-control.my-input(name='rooms' placeholder='type' value!=data['rooms'] readonly)
                                                 input#rooms1.form-control.my-input.property-address(type='hidden' name='rooms1')
                                             .col-md-3.my-input-sec
                                                 p.white-p Baños
-                                                select#baths.form-control.kt-select2.my-input.select2-transparent(name='baths')
-                                                    option
-                                                        for bath in baths
-                                                            option(value!=bath selected=(data['baths'] == bath))=bath
+                                                input#type.form-control.my-input(name='baths' placeholder='type' value!=data['baths'] readonly)
                                                 input#baths1.form-control.my-input.property-address(type='hidden' name='baths1')
                                             .col-md-3.my-input-sec
                                                 p.white-p Metros
-                                                input#surface.form-control.my-input.property-surface(placeholder='Metros' name='surface' type='number' value!=data['surface'])
+                                                input#surface.form-control.my-input.property-surface(placeholder='Metros' name='surface' type='number' value!=data['surface'] readonly)
                                 .col-lg-4.col-md12
                                     .kt-portlet__body.add-card-body
                                         //div
                                         .kt-portlet.kt-portlet--height-fluid
-                                                #gmap.kt-portlet__body.property-map-card
+                                            #price
                         .document-detail-container
                             .row
                                 .col-md-8
@@ -73,23 +64,23 @@ block mainContent
                                                 | A los inquilinos les gusta ver fotos de la propiedad. Recomendamos que la primera foto sea de la fachada.
                                         .text-right.goot-it-font
                                             //a.goot-it-font Goot it
-                            .row
-                                .col-lg-4.col-md-3
-                                    p Precio del Alquiler mensual
-                                    .input-group.price-input-sec
-                                        .input-group-prepend
-                                            span.input-group-text €
-                                        input#monthlyPrice.form-control.price-input.price-input-real(name='monthlyPrice' placeholder='Precio del Alquiler mensual' type='number' value!=data['monthlyPrice'])
-                                .col-lg-4.col-md-3
-                                    p Fianza
-                                    .input-group.price-input-sec
-                                        .input-group-prepend
-                                            span.input-group-text €
-                                        input#securityDeposit.form-control.price-input.price-input-real(name='securityDeposit' placeholder='Fianza' type='number' value!=data['securityDeposit'])
+                            //- .row
+                            //-     .col-lg-4.col-md-3
+                            //-         p Precio del Alquiler mensual
+                            //-         .input-group.price-input-sec
+                            //-             .input-group-prepend
+                            //-                 span.input-group-text €
+                            //-             input#monthlyPrice.form-control.price-input.price-input-real(name='monthlyPrice' placeholder='Precio del Alquiler mensual' type='number' value!=data['monthlyPrice'] readonly)
+                            //-     .col-lg-4.col-md-3
+                            //-         p Fianza
+                            //-         .input-group.price-input-sec
+                            //-             .input-group-prepend
+                            //-                 span.input-group-text €
+                            //-             input#securityDeposit.form-control.price-input.price-input-real(name='securityDeposit' placeholder='Fianza' type='number' value!=data['securityDeposit'] readonly)
                             .description-container.row
                                 .content-container.col-md-8
                                     div
-                                        textarea#description.form-control.content-font.description-rectangle.price-input(name='description' placeholder='Description' rows='5')=data['description']
+                                        textarea#description.form-control.content-font.description-rectangle.price-input(name='description' placeholder='Description' rows='5' readonly)=data['description']
                                         span.form-text.text-muted.text-right Mínimo 140 carácteres
                                 .col-md-4.hidden-sm-down
                                     .detail-container
@@ -106,7 +97,7 @@ block mainContent
                                         .row.amenities-list
                                             .col-md-6
                                                 .amenities-item
-                                                    label.kt-checkbox.kt-checkbox--warning
+                                                    label.kt-checkbox.kt-checkbox--warning.kt-disabled
                                                         input#washer(type="checkbox" name="washer" checked=data['washer'] == 1)
                                                         span
                                                         i.fas.fa-tshirt
@@ -233,15 +224,17 @@ block mainContent
                                                 | Marca las características que posee tu inmueble. A los inquilinos les gusta conocer lo que tu propiedad ofrece.
                                         .text-right.goot-it-font
                                             //a.goot-it-font Goot it
+                            
+                            .avaliable-container.row
+                                .col-md-8
+                                    #gmap.kt-portlet__body.property-map-card
                             .avaliable-container.row
                                 .content-container.col-lg-8.col-md-12
-                                    div
-                                        .input-group.date.col-lg-6.col-md-6
-                                            .input-group-prepend
-                                                span.input-group-text
-                                                    i.la.la-calendar
-                                            input#availableForm.form-control.price-input(type="text" name='availableForm' placeholder="Available from" readonly value=data['availableForm'])
-
+                                    .row
+                                        p
+                                            label
+                                                | Disponible desde
+                                            label=data['availableForm']
                                         .col
                                             .available-free Publica tu anuncio
                                             .row
