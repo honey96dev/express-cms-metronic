@@ -8,6 +8,38 @@
     border-radius: 5px !important;
 }
 
+.price-button-container {
+    background: white;
+    border-radius: 8px;
+    width: 250px;
+    height: 250px;
+    margin:auto;
+}
+
+.price-button-container .price-button {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    top: 200px;
+    border-radius: 8px;
+}
+
+.price-button-container .price-description {
+    width: 250px;
+    height: 210px;
+    position: absolute;
+    z-index: 1;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.transparent {
+    background: rgba(255,255,255,0) !important;
+    box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.0) !important;
+}
+
 .btn-secondary.edit-button {
     background-color: #FF5722 !important;
     border: 1px solid #FF5722 !important;

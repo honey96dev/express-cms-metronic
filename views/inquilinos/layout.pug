@@ -64,70 +64,71 @@ html(lang='en')
                                 .kt-header__brand-logo
                                     a(href!=baseUrl)
                                         img.logo-img(alt='Logo', src='images/logo-def1.png')
-                            .kt-header__topbar
-                                .kt-header__topbar-item
-                                    .kt-header__topbar-wrapper
-                                        a.kt-login__signup-link(href="/login")
-                                            | Login
-                                        a.kt-register__signup-link(href="/registro")
-                                            | Register
-                        //-
-                            .kt-header__topbar
-                                .kt-header__topbar-item.kt-header__topbar-item--user
-                                    .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
-                                        span.kt-header__topbar-icon.kt-bg-brand
-                                            b=userName.substr(0, 1).toUpperCase()
-                                    .dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-xl
-                                        .kt-user-card.kt-user-card--skin-light.kt-notification-item-padding-x
-                                            .kt-user-card__avatar
-                                                span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold=userName.substr(0, 1).toUpperCase()
-                                            .kt-user-card__name=userName
-                                            .kt-user-card__badge
-                                                span.btn.btn-label-primary.btn-sm.btn-bold.btn-font-md 23 messages
-                                        .kt-notification
-                                            a.kt-notification__item(href='#')
-                                                .kt-notification__item-icon
-                                                    i.flaticon2-calendar-3.kt-font-success
-                                                .kt-notification__item-details
-                                                    .kt-notification__item-title.kt-font-bold
-                                                        | My Profile
-                                                    .kt-notification__item-time
-                                                        | Account settings and more
-                                            a.kt-notification__item(href='#')
-                                                .kt-notification__item-icon
-                                                    i.flaticon2-mail.kt-font-warning
-                                                .kt-notification__item-details
-                                                    .kt-notification__item-title.kt-font-bold
-                                                        | My Messages
-                                                    .kt-notification__item-time
-                                                        | Inbox and tasks
-                                            a.kt-notification__item(href='#')
-                                                .kt-notification__item-icon
-                                                    i.flaticon2-rocket-1.kt-font-danger
-                                                .kt-notification__item-details
-                                                    .kt-notification__item-title.kt-font-bold
-                                                        | My Activities
-                                                    .kt-notification__item-time
-                                                        | Logs and notifications
-                                            a.kt-notification__item(href='#')
-                                                .kt-notification__item-icon
-                                                    i.flaticon2-hourglass.kt-font-brand
-                                                .kt-notification__item-details
-                                                    .kt-notification__item-title.kt-font-bold
-                                                        | My Tasks
-                                                    .kt-notification__item-time
-                                                        | latest tasks and projects
-                                            a.kt-notification__item(href='#')
-                                                .kt-notification__item-icon
-                                                    i.flaticon2-cardiogram.kt-font-warning
-                                                .kt-notification__item-details
-                                                    .kt-notification__item-title.kt-font-bold
-                                                        | Billing
-                                                    .kt-notification__item-time
-                                                        | billing & statements
-                                                        span.kt-badge.kt-badge--danger.kt-badge--inline.kt-badge--pill.kt-badge--rounded 2 pending
-                                            .kt-notification__custom.kt-space-between
-                                                a.btn.btn-secondary.btn-pill.btn-bold(href!=baseUrl + 'login/logout', ) Sign Out
+                            if userName == ""
+                                .kt-header__topbar
+                                    .kt-header__topbar-item
+                                        .kt-header__topbar-wrapper
+                                            a.kt-login__signup-link(href="/login")
+                                                | Login
+                                            a.kt-register__signup-link(href="/registro")
+                                                | Register
+                            else
+                                .kt-header__topbar
+                                    .kt-header__topbar-item.kt-header__topbar-item--user
+                                        .kt-header__topbar-wrapper(data-toggle='dropdown', data-offset='10px,0px')
+                                            span.kt-header__topbar-icon.kt-bg-brand
+                                                b=userName.substr(0, 1).toUpperCase()
+                                        .dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-xl
+                                            .kt-user-card.kt-user-card--skin-light.kt-notification-item-padding-x
+                                                .kt-user-card__avatar
+                                                    span.kt-badge.kt-badge--username.kt-badge--unified-success.kt-badge--lg.kt-badge--rounded.kt-badge--bold=userName.substr(0, 1).toUpperCase()
+                                                .kt-user-card__name=userName
+                                                .kt-user-card__badge
+                                                    span.btn.btn-label-primary.btn-sm.btn-bold.btn-font-md 23 messages
+                                            .kt-notification
+                                                a.kt-notification__item(href='#')
+                                                    .kt-notification__item-icon
+                                                        i.flaticon2-calendar-3.kt-font-success
+                                                    .kt-notification__item-details
+                                                        .kt-notification__item-title.kt-font-bold
+                                                            | My Profile
+                                                        .kt-notification__item-time
+                                                            | Account settings and more
+                                                a.kt-notification__item(href='#')
+                                                    .kt-notification__item-icon
+                                                        i.flaticon2-mail.kt-font-warning
+                                                    .kt-notification__item-details
+                                                        .kt-notification__item-title.kt-font-bold
+                                                            | My Messages
+                                                        .kt-notification__item-time
+                                                            | Inbox and tasks
+                                                a.kt-notification__item(href='#')
+                                                    .kt-notification__item-icon
+                                                        i.flaticon2-rocket-1.kt-font-danger
+                                                    .kt-notification__item-details
+                                                        .kt-notification__item-title.kt-font-bold
+                                                            | My Activities
+                                                        .kt-notification__item-time
+                                                            | Logs and notifications
+                                                a.kt-notification__item(href='#')
+                                                    .kt-notification__item-icon
+                                                        i.flaticon2-hourglass.kt-font-brand
+                                                    .kt-notification__item-details
+                                                        .kt-notification__item-title.kt-font-bold
+                                                            | My Tasks
+                                                        .kt-notification__item-time
+                                                            | latest tasks and projects
+                                                a.kt-notification__item(href='#')
+                                                    .kt-notification__item-icon
+                                                        i.flaticon2-cardiogram.kt-font-warning
+                                                    .kt-notification__item-details
+                                                        .kt-notification__item-title.kt-font-bold
+                                                            | Billing
+                                                        .kt-notification__item-time
+                                                            | billing & statements
+                                                            span.kt-badge.kt-badge--danger.kt-badge--inline.kt-badge--pill.kt-badge--rounded 2 pending
+                                                .kt-notification__custom.kt-space-between
+                                                    a.btn.btn-secondary.btn-pill.btn-bold(href!=baseUrl + 'login/logout', ) Sign Out
                     #kt_body.kt-body.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor.kt-grid--stretch
                         .kt-container.kt-container--fluid.kt-grid.kt-grid--ver.pl-0
                             #kt_content.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor

@@ -42,8 +42,20 @@ block mainContent
                                 .col-lg-4.col-md12
                                     .kt-portlet__body.add-card-body
                                         //div
-                                        .kt-portlet.kt-portlet--height-fluid
-                                            #price
+                                        .kt-portlet.kt-portlet--height-fluid.transparent
+                                            #price.price-button-container
+                                                if userName == ""
+                                                    a#buy_btn.btn.btn-success.price-button(href="/login")
+                                                        | Contratar
+                                                else
+                                                    a#buy_btn.btn.btn-success.price-button(href="/application?id=" + data['id'])
+                                                        | Contratar
+                                                .price-description
+                                                    h4
+                                                        | Aquiler mensual
+                                                    br
+                                                    h1=data['price'] 
+                                                        |  $
                         .document-detail-container
                             .row
                                 .col-md-8

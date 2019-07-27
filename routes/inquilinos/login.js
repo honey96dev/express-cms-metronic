@@ -101,7 +101,7 @@ const logoutProc = (req, res, next) => {
             });
         } else {
             // res.redirect(config.server.inquilinosBaseUrl);
-            res.redirect('/');
+            res.redirect('/property');
         }
     }
 };

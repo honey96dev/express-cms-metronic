@@ -7,7 +7,7 @@ const router = express.Router();
 
 const indexProc = (req, res, next) => {
     res.render('inquilinos/property/index', {
-        userName: "UserName", // req.session.inquilinos.name,
+        userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
         title: 'Index',
         baseUrl: config.server.inquilinosBaseUrl,
         uri: 'index',
@@ -108,7 +108,7 @@ const viewProc = (req, res, next) => {
             }
             
             res.render('inquilinos/property/view', {
-                userName: "User",
+                userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""),
                 title: 'Nueva Anuncios',
                 baseUrl: config.server.inquilinosBaseUrl,
                 uri: 'anuncios',
@@ -125,7 +125,7 @@ const viewProc = (req, res, next) => {
     } else {
         // console.log('alreadyLogin', req.session.inquilinos);
         res.render('inquilinos/property/view', {
-            userName: "User",
+            userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""),
             title: 'Nueva Anuncio',
             baseUrl: config.server.inquilinosBaseUrl,
             uri: 'anuncios',

@@ -1,10 +1,10 @@
 let instance;
 
-function AddListing() {
+function Property() {
 
 }
 
-AddListing.prototype.init = function() {
+Property.prototype.init = function() {
     const self = this;
     self.id = $('#id').val();
 
@@ -57,14 +57,12 @@ AddListing.prototype.init = function() {
         }
     });
 
-    $(".kt-checkbox").unbindAll();
-
     self.photoZone = [];
     self.prevPhoto = [];
     self.initPhotoDropzone();
 };
 
-AddListing.prototype.initPhotoDropzone = function () {
+Property.prototype.initPhotoDropzone = function () {
     const self = this;
     $.ajax({
         url: '/anuncios/photo',
@@ -112,7 +110,7 @@ AddListing.prototype.initPhotoDropzone = function () {
     })
 };
 
-AddListing.prototype.showErrorMsg = function (form, type, msg) {
+Property.prototype.showErrorMsg = function (form, type, msg) {
     const alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\
 			<span></span>\
@@ -126,6 +124,6 @@ AddListing.prototype.showErrorMsg = function (form, type, msg) {
 };
 
 $(document).ready(function () {
-    instance = new AddListing();
+    instance = new Property();
     instance.init();
 });

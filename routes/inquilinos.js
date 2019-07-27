@@ -33,7 +33,8 @@ function alreadyLogin(req, res, next) {
 router.use('/password', passwordRouter);
 router.use('/registro', registroRouter);
 router.use('/login', loginRouter);
-router.use('/', dashboardRouter);
+//router.use('/', dashboardRouter);
+router.use('/', propertyRouter);
 router.use('/dashboard', dashboardRouter);
 router.use('/propiedades', propiedadesRouter);
 router.use('/anuncios', listingRouter);
