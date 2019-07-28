@@ -6,6 +6,7 @@ module.exports = {
         portSsl: 443,
         propietariosBaseUrl: 'http://propietarios.alquilerista.com/',
         adminBaseUrl: 'http://admin.alquilerista.com/',
+        inquilinosBaseUrl: 'http://inquilinos.alquilerista.com/',
         // propietariosBaseUrl: 'https://propietarios.alquilerista.com/',
         // adminBaseUrl: 'https://admin.alquilerista.com/',
         name: 'CMS',
