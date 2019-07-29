@@ -94,7 +94,7 @@ Property.prototype.initPhotoDropzone = function () {
                 html = $(sprintf('<div class="col-md-4">' +
                     '<div class="image-100 dropzone" id="%s" style="background: url(%s) no-repeat center; background-size: cover;"></div>' +
                     '<input type="hidden" id="%s" name="photo" value="%s">' +
-                    '</div>', '/uploads/photo/' + data[i], id2, data[i]));
+                    '</div>', id, '/uploads/photo/' + data[i], id2, data[i]));
                 html.appendTo(container);
             }
 

@@ -7656,7 +7656,7 @@ a.text-dark:hover, a.text-dark:focus {
 .btn-secondary {
   background-color: transparent;
   border: 1px solid #e2e5ec;
-  color: #595d6e; }
+  color: #FD5622; }
   .show > .btn-secondary.dropdown-toggle, .btn-secondary:focus, .btn-secondary.active, .btn-secondary:active, .btn-secondary:hover {
     color: #595d6e;
     border-color: #e2e5ec;
@@ -15522,7 +15522,8 @@ strong {
   color: #ffffff !important; }
 
 .kt-bg-brand {
-  background-color: #5d78ff !important; }
+  background-color: #5d78ff !important;
+  border-radius: 18px !important; }
 
 .kt-bg-fill-brand {
   background-color: #5d78ff !important;
@@ -26231,7 +26232,7 @@ body.swal2-height-auto {
   .kt-badge.kt-badge--pill {
     border-radius: 2rem; }
   .kt-badge.kt-badge--rounded {
-    border-radius: 4px; }
+    border-radius: 30px !important; }
   .kt-badge.kt-badge--dot {
     display: inline-block;
     line-height: 6px;

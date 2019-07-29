@@ -10,18 +10,21 @@
 
 .price-button-container {
     background: white;
-    border-radius: 8px;
     width: 250px;
     height: 250px;
+    border-radius: 8px;
     margin:auto;
 }
 
 .price-button-container .price-button {
     width: 250px;
-    height: 50px;
+    height: 70px;
     position: absolute;
-    top: 200px;
     border-radius: 8px;
+    top: 200px;
+    padding-top: 21px;
+    font-size: 18pt;
+    font-family: proxima-nova,sans-serif;
 }
 
 .price-button-container .price-description {
@@ -30,9 +33,36 @@
     position: absolute;
     z-index: 1;
     background: white;
-    border-radius: 8px;
+    border-radius: 8px 8px 0px 0px;
     text-align: center;
     padding-top: 50px;
+}
+
+.price-title {
+    font-size: 14pt;
+    font-weight: 400;
+    color: #9c99b6;
+}
+
+.price-value {
+    font-size: 24pt;
+    font-weight: 500;    
+    color: black;
+}
+
+.rb-btn-green {
+    background-color: #53c160;
+    border: 1px solid #53c160;
+}
+
+.rb-btn-green.active, .rb-btn-green:not(:disabled):active {
+    background: #3ca548 !important;
+    border: 1px solid #53c160;
+}
+
+.rb-btn-green.hover, .rb-btn-green:not(:disabled):hover {
+    background: #42b850 !important;
+    border: 1px solid #53c160;
 }
 
 .transparent {
