@@ -6,11 +6,18 @@ import sprintfJs from 'sprintf-js';
 const router = express.Router();
 
 const indexProc = (req, res, next) => {
+    let search = req.query.search;
+    let sort = req.query.sort;
+    if (sort == "" || sort == undefined)
+        sort = "newest";
+    console.log(req);
     res.render('inquilinos/property/index', {
         userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
         title: 'Index',
         baseUrl: config.server.inquilinosBaseUrl,
         uri: 'index',
+        search: search,
+        sort: sort,
         styles: [
             'stylesheets/site/inquilinos/property/index.css',
         ],
@@ -21,7 +28,25 @@ const indexProc = (req, res, next) => {
 }
 
 const listProc = (req, res, next) => {
-    let sql = sprintfJs.sprintf("SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `%s` P LEFT JOIN `%s` R ON R.property_id = P.id;", config.dbTblName.properties, config.dbTblName.property_photos);
+    let search = req.query.search;
+    let sort = req.query.sort;
+    let sql = "";
+    if(search == "")
+        sql = sprintfJs.sprintf("SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `%s` P LEFT JOIN `%s` R ON R.property_id = P.id", config.dbTblName.properties, config.dbTblName.property_photos);
+    else
+        sql = "SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `" + config.dbTblName.properties + "` P LEFT JOIN `" + config.dbTblName.property_photos + "` R ON R.property_id = P.id WHERE P.name like '%" + search + "%' OR P.address LIKE '%" + search + "%'";
+    if(sort == "newest") {
+        sql += " ORDER BY P.creationDate;";
+    }
+    else if(sort == "bestmatch") {
+
+    }
+    else if(sort == "pricehigh") {
+        sql += " ORDER BY P.price desc;";
+    }
+    else if(sort == "pricelow") {
+        sql += " ORDER BY P.price;";
+    }
     dbConn.query(sql, null, (error, result, fields) => {
         if (error) {
             console.log(error);

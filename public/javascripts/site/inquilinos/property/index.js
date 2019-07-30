@@ -6,9 +6,11 @@ function Property() {
 Property.prototype.init = function () {
     const self = this;
     self.baseUrl = $('#baseUrl').val();
-
+    var search = $("#search").val();
+    var sort = $("#sort").val();
     $.ajax({
         url: self.baseUrl + 'property/list',
+        data: "search=" + search + "&sort=" + sort,
         method: 'GET',
         dataType: 'json',
         success: function (res, status, xhr) {

@@ -8,26 +8,34 @@ block mainContent
                     .kt-portlet__head
                         .kt-portlet__head-label
                             form#demo-2
-                                input(type="search" placeholder="Search")                            
+                                input#search(name="search" type="search" placeholder="Search" value!=search)                            
                         .kt-portlet__head-toolbar
+                            input#sort(name="sort" type="hidden" placeholder="Search" value!=sort)      
                             a.btn.btn-label-orange.btn-bold.btn-sm.dropdown-toggle(href="#" data-toggle="dropdown" aria-expanded="false")
-                                | Newest First
+                                if sort == "newest"
+                                    | Newest First
+                                else if sort == "bestmatch"
+                                    | Best Match
+                                else if sort == "pricelow"
+                                    | By Price: Low to High
+                                else if sort == "pricehigh"
+                                    | By Price: High to Low
                             .dropdown-menu.dropdown-menu-fit.dropdown-menu-right(x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(579px, 46px, 0px);")
                                 ul.kt-nav
                                     li.kt-nav__item
-                                        a.kt-nav__link(href="#")
+                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=newest")
                                             span.kt-nav__link-text
                                                 | Newest First
                                     li.kt-nav__item
-                                        a.kt-nav__link(href="#")
+                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=bestmatch")
                                             span.kt-nav__link-text
                                                 | Best Match
                                     li.kt-nav__item
-                                        a.kt-nav__link(href="#")
+                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=pricelow")
                                             span.kt-nav__link-text
                                                 | By Price: Low to High
                                     li.kt-nav__item
-                                        a.kt-nav__link(href="#")
+                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=pricehigh")
                                             span.kt-nav__link-text
                                                 | By Price: High to  Low
                     .kt-portlet__body.property-list-body-box-scroll
@@ -39,29 +47,6 @@ block mainContent
                                             | 1990 
                                         | New York apartments for rent
                             #itemList.row
-                                .col-lg-6.col-md-12
-                                    .kt-portlet.kt-portlet--height-fluid.kt-widget19.property-list-box
-                                        .kt-portlet__body.kt-portlet__body--fit.kt-portlet__body--unfill
-                                            .kt-widget19__pic.kt-portlet-fit--top.kt-portlet-fit--sides(style="min-height: 178px; background-image: url(./assets/media//products/product4.jpg)")
-                                                .kt-widget19__labels
-                                                    a.btn.btn-label-light-o2.btn-bold(href="#")
-                                                        | $1,850
-                                        .kt-portlet__body
-                                            .kt-widget19__wrapper
-                                                .kt-widget19__content
-                                                    .kt-widget19__info.pl-0
-                                                        a.kt-widget19__username(href="#")
-                                                            | 3500 Snyder Avenue
-                                                        p.kt-widget19__time
-                                                            | 3500 Snyder Ave, Brooklyn, NY 11203, USA  Brooklyn, NY 11203, USA
-                                                .kt-widget19__text
-                                                    .row.m-0.form-row
-                                                        .col-4
-                                                            | 2 Bed
-                                                        .col-4
-                                                            | 2 Bath
-                                                        .col-4
-                                                            | 850 Sq Ft
                             .row.m-0
                                 .col-6
                                     .btn.btn-orange.btn-md.btn-tall.btn-wide.kt-font-bold.kt-font-transform-u(data-ktwizard-type="action-next")
