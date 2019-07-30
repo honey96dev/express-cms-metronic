@@ -110,8 +110,8 @@ Property.prototype.initPhotoDropzone = function () {
             var captionText = $("#gallery-caption");
             $(".gallery-item").click(function(){
                 modal.css("display", "block");
-                modalImg.attr("src", this.attr("src"));
-                captionText.innerHTML = this.alt;
+                modalImg.attr("src", $(this).attr("src"));
+                //captionText.innerHTML = this.alt;
             });
 
             // Get the <span> element that closes the modal
