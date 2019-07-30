@@ -106,11 +106,11 @@ Property.prototype.initPhotoDropzone = function () {
 
             var modal = $("#myModal");
             // Get the image and insert it inside the modal - use its "alt" text as a caption
-            var modalImg = $("#gallery-image");
+            var modalImg = $("#gallery_image");
             var captionText = $("#gallery-caption");
             $(".gallery-item").click(function(){
                 modal.css("display", "block");
-                modalImg.attr("src", $(this).attr("src"));
+                modalImg.attr("src", "/uploads/photo/" + $(this).parent().children("input").val());
                 //captionText.innerHTML = this.alt;
             });
 
