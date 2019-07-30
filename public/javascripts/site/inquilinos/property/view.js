@@ -92,7 +92,7 @@ Property.prototype.initPhotoDropzone = function () {
                 if(data[i].length === 0)
                     continue;
                 html = $(sprintf('<div class="col-md-4">' +
-                    '<div class="image-100 dropzone" id="%s" style="background: url(%s) no-repeat center; background-size: cover;"></div>' +
+                    '<div class="image-100 dropzone gallery-item" id="%s" style="background: url(%s) no-repeat center; background-size: cover;"></div>' +
                     '<input type="hidden" id="%s" name="photo" value="%s">' +
                     '</div>', id, '/uploads/photo/' + data[i], id2, data[i]));
                 html.appendTo(container);
@@ -103,6 +103,24 @@ Property.prototype.initPhotoDropzone = function () {
             }
 
             self.dropzoneCnt = $('.image-100.dropzone').length;
+
+            var modal = $("#myModal");
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var modalImg = $("#gallery-image");
+            var captionText = $("#gallery-caption");
+            $(".gallery-item").click(function(){
+                modal.css("display", "block");
+                modalImg.attr("src", this.attr("src"));
+                captionText.innerHTML = this.alt;
+            });
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() { 
+                modal.css("display", "none");
+            }
         },
         error: function (error) {
             //self.addPhotoDropzone();
