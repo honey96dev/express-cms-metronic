@@ -8,9 +8,14 @@ const router = express.Router();
 const indexProc = (req, res, next) => {
     let search = req.query.search;
     let sort = req.query.sort;
+    let page = req.query.page;
+    
     if (sort == "" || sort == undefined)
         sort = "newest";
-    console.log(req);
+    
+    if (page == "" || page == undefined)
+        page = 1;
+    
     res.render('inquilinos/property/index', {
         userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
         title: 'Index',
@@ -18,6 +23,7 @@ const indexProc = (req, res, next) => {
         uri: 'index',
         search: search,
         sort: sort,
+        page: page,
         styles: [
             'stylesheets/site/inquilinos/property/index.css',
         ],
@@ -30,28 +36,33 @@ const indexProc = (req, res, next) => {
 const listProc = (req, res, next) => {
     let search = req.query.search;
     let sort = req.query.sort;
+    let page = req.query.page;
     let sql = "";
     if(search == "")
         sql = sprintfJs.sprintf("SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `%s` P LEFT JOIN `%s` R ON R.property_id = P.id", config.dbTblName.properties, config.dbTblName.property_photos);
     else
         sql = "SELECT P.*, IFNULL(R.fileNames, '') `photos` FROM `" + config.dbTblName.properties + "` P LEFT JOIN `" + config.dbTblName.property_photos + "` R ON R.property_id = P.id WHERE P.name like '%" + search + "%' OR P.address LIKE '%" + search + "%'";
     if(sort == "newest") {
-        sql += " ORDER BY P.creationDate;";
+        sql += " ORDER BY P.creationDate";
     }
     else if(sort == "bestmatch") {
 
     }
     else if(sort == "pricehigh") {
-        sql += " ORDER BY P.price desc;";
+        sql += " ORDER BY P.price desc";
     }
     else if(sort == "pricelow") {
-        sql += " ORDER BY P.price;";
+        sql += " ORDER BY P.price";
     }
+    let start = (page - 1) * 10;
+    sql += " LIMIT " + start + ", 10";
     dbConn.query(sql, null, (error, result, fields) => {
         if (error) {
             console.log(error);
             res.status(200).send({
                 result: 'error',
+                prev: "false",
+                next: "false",
                 message: 'Error desconocido',
                 data: [],
             });
@@ -66,6 +77,8 @@ const listProc = (req, res, next) => {
 
         res.status(200).send({
             result: 'success',
+            prev: page > 1 ? "true" : "false",
+            next: result.length < 10 ? "false" : "true",
             data: result,
         });
     });

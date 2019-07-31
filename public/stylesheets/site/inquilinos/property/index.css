@@ -1,0 +1,10 @@
+.disabled {
+    background: #eee !important;
+    color: #333;
+}
+
+.disabled:hover {
+    background: #eee !important;
+    color: #333 !important;
+    cursor: default !important;
+}

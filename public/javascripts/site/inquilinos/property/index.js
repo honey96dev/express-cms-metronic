@@ -6,18 +6,7 @@ function Property() {
 Property.prototype.init = function () {
     const self = this;
     self.baseUrl = $('#baseUrl').val();
-    var search = $("#search").val();
-    var sort = $("#sort").val();
-    $.ajax({
-        url: self.baseUrl + 'property/list',
-        data: "search=" + search + "&sort=" + sort,
-        method: 'GET',
-        dataType: 'json',
-        success: function (res, status, xhr) {
-            const data = res.data;
-            $('#itemList').html(self.generateList(data));
-        },
-    });
+    showRooms(1);
 };
 
 Property.prototype.generateList = function(items) {
@@ -60,4 +49,39 @@ $(document).on("click", ".card-wrap", function (e) {
     } else {
         document.location = instance.baseUrl + 'property/view?id=' + id;
     }
+
+    $("#prev_btn").click(function() {
+        var page = eval($("#page").val()) - 1;
+        showRooms(page);
+    });
+
+    $("#next_btn").click(function() {
+        var page = eval($("#page").val()) + 1;
+        showRooms(page);
+    });
 });
+
+function showRooms(page) {
+    var search = $("#search").val();
+    var sort = $("#sort").val();
+    var baseUrl = $('#baseUrl').val();
+    $.ajax({
+        url: baseUrl + 'property/list',
+        data: "search=" + search + "&sort=" + sort + "&page=" + page,
+        method: 'GET',
+        dataType: 'json',
+        success: function (res, status, xhr) {
+            const data = res.data;
+            if(res.prev == "false")
+                $("#prev_btn").addClass("disabled", "disabled");
+            else
+                $("#prev_btn").removeClass("disabled");
+            if(res.next == "false")
+                $("#next_btn").addClass("disabled", "disabled");
+            else
+                $("#next_btn").removeClass("disabled");
+
+            $('#itemList').html(instance.generateList(data));
+        },
+    });
+}
