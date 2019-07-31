@@ -179,8 +179,24 @@ const viewProc = (req, res, next) => {
     }
 };
 
+const applicationProc = (req, res, next) => {    
+    res.render('inquilinos/property/application', {
+        userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+        title: 'Index',
+        baseUrl: config.server.inquilinosBaseUrl,
+        uri: 'application',
+        styles: [
+            'stylesheets/site/inquilinos/property/application.css',
+        ],
+        scripts: [
+            'javascripts/site/inquilinos/property/application.js',
+        ],
+    })
+};
+
 router.get('/', indexProc);
 router.get('/list', listProc);
 router.get('/view', viewProc);
+router.get('/application', applicationProc);
 
 module.exports = router;
