@@ -7,6 +7,7 @@ import propiedadesRouter from "./propietarios/propiedades";
 import listingRouter from "./propietarios/listing";
 import documentosRouter from "./propietarios/documentos";
 import passwordRouter from "./propietarios/password";
+import trovitXml from "../core/trovitXml";
 
 const router = express.Router();
 
@@ -32,11 +33,18 @@ function alreadyLogin(req, res, next) {
 router.use('/password', alreadyLogin, passwordRouter);
 router.use('/registro', alreadyLogin, registroRouter);
 router.use('/login', alreadyLogin, loginRouter);
+router.use('/wp_feed.xml', wpfeedFunc);
 router.use('/', requiresLogin, dashboardRouter);
 router.use('/dashboard', requiresLogin, dashboardRouter);
 router.use('/propiedades', requiresLogin, propiedadesRouter);
 router.use('/anuncios', requiresLogin, listingRouter);
 router.use('/documentos', requiresLogin, documentosRouter);
+
+function wpfeedFunc(req, res, next) {
+    return trovitXml.generateTrovitXml((xml) => {
+        res.status(200).send(xml);
+    });
+}
 
 router.use(function(req, res, next){
     res.status(404);

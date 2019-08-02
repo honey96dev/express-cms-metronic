@@ -31,7 +31,7 @@
     "morgan": "~1.9.1",
     "multer": "^1.4.1",
     "mysql2": "^1.6.5",
-    "nodemailer": "^6.1.1",
+    "nodemailer": "^6.3.0",
     "path": "^0.12.7",
     "pug": "2.0.0-beta11",
     "sprintf-js": "^1.1.2",

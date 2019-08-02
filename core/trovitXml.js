@@ -52,6 +52,7 @@ const generateTrovitXml = (resolve, reject) => {
         }
 
         resolve(xml);
+        return xml;
     });
 };
 

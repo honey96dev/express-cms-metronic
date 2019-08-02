@@ -250,7 +250,30 @@ const addSaveProc = (req, res, next) => {
                     return;
                 }
 
-                trovitXml.generateTrovitXml();
+                //TODO: Email Send
+                const nodemailer = require('nodemailer');
+                let transport = nodemailer.createTransport({
+                    host: config.smtp.host,
+                    port: config.smtp.port,
+                    auth: {
+                       user: config.smtp.user,
+                       pass: config.smtp.pass
+                    }
+                });
+                const message = {
+                    from: config.smtp.user, // Sender address
+                    to: 'salesinfo@trovit.com',         // List of recipients
+                    subject: 'Trovit Ads', // Subject line
+                    text: 'http://propietarios.alquilerista.com/wp_feed.xml' // Plain text body
+                };
+                transport.sendMail(message, function(err, info) {
+                    if (err) {
+                      console.log(err)
+                    } else {
+                      console.log(info);
+                    }
+                });
+
 
                 res.status(200).send({
                     result: 'success',
