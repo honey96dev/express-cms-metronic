@@ -128,6 +128,9 @@ AddListing.prototype.init = function() {
             return;
         }
 
+        if($(".dz-image").length == 0)
+            return;
+
         btn.attr('disabled', true);
         // btn.addClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', true);
         // console.log('addButton');

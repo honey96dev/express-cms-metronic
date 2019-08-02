@@ -7,6 +7,41 @@ Property.prototype.init = function () {
     const self = this;
     self.baseUrl = $('#baseUrl').val();
     showRooms(1);
+
+    self.mapView = new GMaps({
+        div: '#gmap',
+        lat: 41.38506389999999,
+        lng: 2.1734035
+    });
+
+    GMaps.geocode({
+        address: "Barcelona, Spain",
+        callback: function(results, status) {
+            if (status == 'OK') {
+                var latlng = results[0].geometry.location;
+                self.mapView.fitBounds(results[0].geometry.viewport);
+                self.mapView.addMarker({
+                    lat: latlng.lat(),
+                    lng: latlng.lng()
+                });
+            }
+        }
+    });
+
+    
+    $("#prev_btn").click(function() {
+        if($("#prev_btn").hasClass("disabled"))
+            return;
+        var page = eval($("#page").val()) - 1;
+        showRooms(page);
+    });
+
+    $("#next_btn").click(function() {
+        if($("#next_btn").hasClass("disabled"))
+            return;
+        var page = eval($("#page").val()) + 1;
+        showRooms(page);
+    });
 };
 
 function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
@@ -65,16 +100,6 @@ $(document).on("click", ".card-wrap", function (e) {
     } else {
         document.location = instance.baseUrl + 'property/view?id=' + id;
     }
-
-    $("#prev_btn").click(function() {
-        var page = eval($("#page").val()) - 1;
-        showRooms(page);
-    });
-
-    $("#next_btn").click(function() {
-        var page = eval($("#page").val()) + 1;
-        showRooms(page);
-    });
 });
 
 function showRooms(page) {

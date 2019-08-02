@@ -15,6 +15,9 @@ const indexProc = (req, res, next) => {
     
     if (page == "" || page == undefined)
         page = 1;
+
+    if (search == "" || search == undefined)
+        search = "";
     
     res.render('inquilinos/property/index', {
         userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
