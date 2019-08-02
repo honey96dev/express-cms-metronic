@@ -106,6 +106,7 @@ function showRooms(page) {
     var search = $("#search").val();
     var sort = $("#sort").val();
     var baseUrl = $('#baseUrl').val();
+    $('#page').val(page);
     $.ajax({
         url: baseUrl + 'property/list',
         data: "search=" + search + "&sort=" + sort + "&page=" + page,
