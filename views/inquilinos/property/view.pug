@@ -16,7 +16,7 @@ block mainContent
                     form#form(action='' data-method!=method)
                         input#id.form-control.my-input.property-name(type='hidden' name='id' value!=data['id'])
                         .document-property-container
-                            .row
+                            .row.width1024
                                 .col-lg-8.col-md-12
                                     .kt-portlet__body.my-card.add-card-body
                                         .form-control-sec
@@ -54,8 +54,8 @@ block mainContent
                                                     p.price-title
                                                         | Aquiler mensual
                                                     p.price-value
-                                                        |  $ 
                                                         =data['price'] 
+                                                        |  €
                                                     .disponible-desde
                                                         | Disponible desde: 
                                                         span.disponible-desde-date=data['availableForm']

@@ -5,6 +5,8 @@
 
 #description {
     font-size: 14pt;
+    word-break: break-all;
+    line-height: 29px;
 }
 
 .my-card {
@@ -57,7 +59,7 @@
 .disponible-desde {
     width: 100%;
     height: 40px;
-    background: #bbb;
+    background: #ebedf2;
     position: absolute;
     top: 170px;
     padding-top: 10px;
@@ -215,6 +217,24 @@
 .document-detail-container {
     margin-top: 0px;
     padding: 0px 26px 26px 26px;
+    
+    width: 1024px;
+    margin: auto;
+}
+
+.width1024 {
+    width: 1024px;
+    margin: auto;
+}
+
+@media (max-width: 1024px) {
+    .document-detail-container {        
+        width: 100%;
+    }
+    
+    .width1024 {   
+        width: 100%;
+    }
 }
 
 .image-100 {

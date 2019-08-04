@@ -8,3 +8,11 @@
     color: #333 !important;
     cursor: default !important;
 }
+
+#prev_btn {
+    border-radius: 50px;
+}
+
+#next_btn {
+    border-radius: 50px;
+}

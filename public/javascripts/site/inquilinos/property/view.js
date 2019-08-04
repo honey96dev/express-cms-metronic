@@ -425,6 +425,7 @@ function ImageViewMode(theMode){
 	}
 }
 
+
 //function to find element Position
 function findPos(obj) {
     var curleft = curtop = 0;
