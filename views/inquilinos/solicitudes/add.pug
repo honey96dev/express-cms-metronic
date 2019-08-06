@@ -13,55 +13,49 @@ block mainContent
         .row
             .col-12
                 .kt-portlet.kt-portlet--height-fluid
-                    form#form(data-method!=method)
+                    form#form(action='' data-method!=method)
                         input#id.form-control.my-input.property-name(type='hidden' name='id' value!=data['id'])
                         .document-property-container
-                            .row.width1024
+                            .row
                                 .col-lg-8.col-md-12
                                     .kt-portlet__body.my-card.add-card-body
                                         .form-control-sec
-                                            input#name.form-control.my-input.property-name(name='name' placeholder='Nombre de la Propiedad' value!=data['name'] readonly)
+                                            input#name.form-control.my-input.property-name(name='name' placeholder='Nombre de la Propiedad' value!=data['name'])
                                         .form-control-sec
-                                            input#address.form-control.my-input.property-address(name='address' placeholder='Dirección' value!=data['address'] readonly)
+                                            input#address.form-control.my-input.property-address(name='address' placeholder='Dirección' value!=data['address'])
                                         .row.property-select2-sec
                                             .col-md-3.my-input-sec
                                                 p.white-p Tipo
-                                                input#type.form-control.my-input(name='type' placeholder='type' value!=data['type'] readonly)
+                                                select#type.form-control.kt-select2.my-input.select2-transparent(name='type')
+                                                    option
+                                                        for type in types
+                                                            option(value!=type selected=(data['type'] == type))=type
                                                 input#type1.form-control.my-input.property-address(type='hidden' name='type1')
                                             .col-md-3.my-input-sec
                                                 p.white-p Habitaciones
-                                                input#type.form-control.my-input(name='rooms' placeholder='type' value!=data['rooms'] readonly)
+                                                select#rooms.form-control.kt-select2.my-input.select2-transparent(name='rooms')
+                                                    option
+                                                        for room in rooms
+                                                            option(value!=room selected=(data['rooms'] == room))=room
                                                 input#rooms1.form-control.my-input.property-address(type='hidden' name='rooms1')
                                             .col-md-3.my-input-sec
                                                 p.white-p Baños
-                                                input#type.form-control.my-input(name='baths' placeholder='type' value!=data['baths'] readonly)
+                                                select#baths.form-control.kt-select2.my-input.select2-transparent(name='baths')
+                                                    option
+                                                        for bath in baths
+                                                            option(value!=bath selected=(data['baths'] == bath))=bath
                                                 input#baths1.form-control.my-input.property-address(type='hidden' name='baths1')
                                             .col-md-3.my-input-sec
                                                 p.white-p Metros
-                                                input#surface.form-control.my-input.property-surface(placeholder='Metros' name='surface' type='number' value!=data['surface'] readonly)
+                                                input#surface.form-control.my-input.property-surface(placeholder='Metros' name='surface' type='number' value!=data['surface'])
                                 .col-lg-4.col-md12
                                     .kt-portlet__body.add-card-body
                                         //div
-                                        .kt-portlet.kt-portlet--height-fluid.transparent
-                                            #price.price-button-container
-                                                if userName == ""
-                                                    a#buy_btn.btn.btn-success.price-button.rb-btn-green(href="/login")
-                                                        | Contratar
-                                                else
-                                                    a#buy_btn.btn.btn-success.price-button.rb-btn-green(href="/application?id=" + data['id'])
-                                                        | Contratar
-                                                .price-description
-                                                    p.price-title
-                                                        | Aquiler mensual
-                                                    p.price-value
-                                                        =data['price'] 
-                                                        |  €
-                                                    .disponible-desde
-                                                        | Disponible desde: 
-                                                        span.disponible-desde-date=data['availableForm']
+                                        .kt-portlet.kt-portlet--height-fluid
+                                                #gmap.kt-portlet__body.property-map-card
                         .document-detail-container
                             .row
-                                .col-md-12
+                                .col-md-8
                                     #photos.row.row-spacing-10
                                         //.col-md-4
                                         //    #photo1.image-100.dropzone
@@ -72,32 +66,47 @@ block mainContent
                                         //.col-md-4
                                         //    #photo3.image-100.dropzone
                                         //    // <img class="image-100" src="images/add_photo.svg" alt="add photo"/>
-                            //- .row
-                            //-     .col-lg-4.col-md-3
-                            //-         p Precio del Alquiler mensual
-                            //-         .input-group.price-input-sec
-                            //-             .input-group-prepend
-                            //-                 span.input-group-text €
-                            //-             input#monthlyPrice.form-control.price-input.price-input-real(name='monthlyPrice' placeholder='Precio del Alquiler mensual' type='number' value!=data['monthlyPrice'] readonly)
-                            //-     .col-lg-4.col-md-3
-                            //-         p Fianza
-                            //-         .input-group.price-input-sec
-                            //-             .input-group-prepend
-                            //-                 span.input-group-text €
-                            //-             input#securityDeposit.form-control.price-input.price-input-real(name='securityDeposit' placeholder='Fianza' type='number' value!=data['securityDeposit'] readonly)
-                            .description-container.row
-                                .content-container.col-md-12
-                                    div
-                                        p#description.content-font=data['description']
+                                .col-md-4.hidden-sm-down
+                                    .detail-container.first-detail-container
+                                        div
+                                            p
+                                                | A los inquilinos les gusta ver fotos de la propiedad. Recomendamos que la primera foto sea de la fachada.
+                                        .text-right.goot-it-font
+                                            //a.goot-it-font Goot it
                             .row
-                                .content-container.col-md-12
+                                .col-lg-4.col-md-3
+                                    p Precio del Alquiler mensual
+                                    .input-group.price-input-sec
+                                        .input-group-prepend
+                                            span.input-group-text €
+                                        input#monthlyPrice.form-control.price-input.price-input-real(name='monthlyPrice' placeholder='Precio del Alquiler mensual' type='number' value!=data['monthlyPrice'])
+                                .col-lg-4.col-md-3
+                                    p Fianza
+                                    .input-group.price-input-sec
+                                        .input-group-prepend
+                                            span.input-group-text €
+                                        input#securityDeposit.form-control.price-input.price-input-real(name='securityDeposit' placeholder='Fianza' type='number' value!=data['securityDeposit'])
+                            .description-container.row
+                                .content-container.col-md-8
+                                    div
+                                        textarea#description.form-control.content-font.description-rectangle.price-input(name='description' placeholder='Description' rows='5')=data['description']
+                                        span.form-text.text-muted.text-right Mínimo 140 carácteres
+                                .col-md-4.hidden-sm-down
+                                    .detail-container
+                                        div
+                                            p
+                                                | Describe lo que diferencia tu propiedad de las demás.
+                                        .text-right.goot-it-font
+                                            //a.goot-it-font Goot it
+                            .row
+                                .content-container.col-md-8
                                     .amenities-container
                                         .title-content.text-padding-1
                                             | Características
                                         .row.amenities-list
                                             .col-md-6
                                                 .amenities-item
-                                                    label.kt-checkbox.kt-checkbox--warning.kt-disabled
+                                                    label.kt-checkbox.kt-checkbox--warning
                                                         input#washer(type="checkbox" name="washer" checked=data['washer'] == 1)
                                                         span
                                                         i.fas.fa-tshirt
@@ -217,26 +226,48 @@ block mainContent
                                                         span
                                                         i.fas.fa-tint
                                                         | Suministros incluidos
-                            
+                                .col-md-4
+                                    .detail-container.text-padding-1
+                                        div
+                                            p
+                                                | Marca las características que posee tu inmueble. A los inquilinos les gusta conocer lo que tu propiedad ofrece.
+                                        .text-right.goot-it-font
+                                            //a.goot-it-font Goot it
                             .avaliable-container.row
-                                .col-md-12
-                                    #gmap.kt-portlet__body.property-map-card
-                                
-    #gallery_container(style="display: none;")
-        #bg
-            a.nextImageBtn(href='#', title='next')
-            a.prevImageBtn(href='#', title='previous')
-            img#bgimg(src='images/Universe_and_planets_digital_art_wallpaper_denebola.jpg', width='1680', height='1050', alt='Denebola', title='Denebola')
-        #preloader
-            img(src='/images/ajax-loader_dark.gif', width='32', height='32')
-        span.close
-            | &times;
-        #toolbar(style="display:none;")
-            a(href='#', title='Maximize', onclick="ImageViewMode('full');return false")
-                img(src='/images/toolbar_fs_icon.png', width='50', height='50')
-        #thumbnails_wrapper
-            #outer_container
-                .thumbScroller
-                    #gallery_image_container.container
+                                .content-container.col-lg-8.col-md-12
+                                    div
+                                        .input-group.date.col-lg-6.col-md-6
+                                            .input-group-prepend
+                                                span.input-group-text
+                                                    i.la.la-calendar
+                                            input#availableForm.form-control.price-input(type="text" name='availableForm' placeholder="Available from" readonly value=data['availableForm'])
 
+                                        .col
+                                            .available-free Publica tu anuncio
+                                            .row
+                                                .available-trovit
+                                                    label Trovit
+                                                    span.kt-switch.kt-switch--danger
+                                                        label
+                                                            input#freeListingTrovit(type='checkbox' name='freeListingTrovit' value=data['freeListingTrovit'] checked=data['freeListingTrovit'] == 1)
+                                                            span
+
+                                .col-lg-4.col-md-12
+                                    .detail-container
+                                        div
+                                            p
+                                                | Especifica cuando tu propiedad estará disponible para ser alquilada.
+                                        .text-right.goot-it-font
+                                            //a.goot-it-font Goot it
+                    .avaliable-container.row
+                        .col-md-8
+                            .form-control-sec.property-create-button-sec
+                                button#saveButton.btn.btn-secondary.edit-button.btn-elevate.btn-pill.property-create-button(type='button')
+                                    if (data['id'])
+                                        | Guardar
+                                    else
+                                        | Crear Propiedad
+                                if (data['id'])
+                                    button#backButton.btn.btn-secondary.back-button.btn-elevate.btn-pill.property-create-button(type='button')
+                                        | Atrás
 

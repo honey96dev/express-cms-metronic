@@ -4,6 +4,7 @@ block mainContent
     #kt_body.kt-body.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor.kt-grid--stretch
         .kt-container.kt-container--fluid.kt-grid.kt-grid--ver
             // begin:: Aside
+            input#home_id( name="home_id" type="hidden" value!=home_id)
             button#kt_aside_close_btn.kt-aside-close
                 i.la.la-close
             #kt_aside.kt-aside.kt-aside--fixed.kt-grid__item.kt-grid.kt-grid--desktop.kt-grid--hor-desktop
@@ -77,103 +78,75 @@ block mainContent
                                                         h3.kt-portlet__head-title.font-big
                                                             | Rent Application
                                                 // begin::Form
-                                                form.kt-form.custome-font-form
+                                                form#save_form.kt-form.custome-font-form(method="put")
+                                                    input#user_id.form-control(name="user_id" type='hidden' value!=data.user_id)
+                                                    input#home_id.form-control(name="home_id" type='hidden' value!=data.home_id)
+                                                    input#app_id.form-control(name="app_id" type='hidden' value!=data.id)
                                                     .kt-portlet__body
-                                                        .form-group.form-group-last
-                                                            .alert.alert-secondary(role='alert')
-                                                                div
-                                                                .alert-text.w-100
-                                                                    h5.mb-3.font-big Sebastian Nevado
-                                                                    .row.application-phone-details
-                                                                        .col-md-6.col-lg-4
-                                                                            label Email
-                                                                            input.form-control(type='text', disabled='', placeholder='xyz@ggmail.com')
-                                                                        .col-md-6.col-lg-4
-                                                                            label Phone
-                                                                            input.form-control(type='text', placeholder='')
-                                                        // <h5 class="mb-4">Phone Number</h5>
-                                                        // <div class="row">
-                                                        // <div class="col-md-6">
-                                                        // <div class="form-group">
-                                                        // <label>Country</label>
-                                                        // <select class="form-control" >
-                                                        // <option>1</option>
-                                                        // <option>2</option>
-                                                        // <option>3</option>
-                                                        // <option>4</option>
-                                                        // <option>5</option>
-                                                        // </select>
-                                                        // </div>
-                                                        // </div>
-                                                        // <div class="col-md-6">
-                                                        // <div class="form-group">
-                                                        // <label>Phone</label>
-                                                        // <div class="input-group custome-input-group">
-                                                        // <input type="text" class="form-control" placeholder="00000000000">
-                                                        // <div class="input-group-prepend"><span class="input-group-text"><i class="la la-check"></i></span></div>
-                                                        // </div>
-                                                        // </div>
-                                                        // </div>
-                                                        // </div>
-                                                        // <h5 class="mb-4">Move-In</h5>
-                                                        // <div class="row">
-                                                        // <div class="col-md-6">
-                                                        // <div class="form-group">
-                                                        // <label>Expected Date</label>
-                                                        // <input type="text" class="form-control" id="kt_datepicker_1" readonly="" placeholder="Select date">
-                                                        // </div>
-                                                        // </div>
-                                                        // <div class="col-md-6">
-                                                        // <div class="form-group">
-                                                        // <label>Term</label>
-                                                        // <select class="form-control" >
-                                                        // <option>1 Year</option>
-                                                        // <option>2 Year</option>
-                                                        // <option>3 Year</option>
-                                                        // <option>4 Year</option>
-                                                        // <option>5 Year</option>
-                                                        // </select>
-                                                        // </div>
-                                                        // </div>
-                                                        // </div>
+                                                        .form-group.form-group-last(style="margin-bottom: 15px;")
+                                                            div
+                                                            .w-100
+                                                                h5.mb-3.font-big Sebastian Nevado
+                                                                .row.application-phone-details
+                                                                    .col-md-6.col-lg-6
+                                                                        label Email
+                                                                        input#user_email.form-control(name="user_email" type='text', disabled='', placeholder!=userEmail value!=data.user_email)
+                                                                    .col-md-6.col-lg-6
+                                                                        label Phone
+                                                                        input#user_phone.form-control(name="user_phone" type='text', placeholder='' value!=data.user_phone)
                                                         h5.mb-4 Employment
                                                         .row
                                                             .col-md-12
                                                                 .kt-radio-inline
                                                                     label.kt-radio
-                                                                        input(type='radio', name='radio2', checked='')
+                                                                        if data.employment_type == "1"
+                                                                            input#employment_type_employed(name="employment_type" type='radio' checked='' value="1")
+                                                                        else
+                                                                            input#employment_type_employed(name="employment_type" type='radio' value="1")
                                                                         |	Employed
                                                                         span
                                                                     label.kt-radio.mobile-left-freelancer
-                                                                        input(type='radio', name='radio2')
+                                                                        if data.employment_type == "2"
+                                                                            input#employment_type_freelancer(name="employment_type" type='radio' checked='' value="2")
+                                                                        else
+                                                                            input#employment_type_freelancer(name="employment_type" type='radio' value="2")
                                                                         |	Freelancer
                                                                         span
                                                                     label.kt-radio
-                                                                        input(type='radio', name='radio2')
+                                                                        if data.employment_type == "3"
+                                                                            input#employment_type_unemployed(name="employment_type" type='radio' checked='' value="3")
+                                                                        else
+                                                                            input#employment_type_unemployed(name="employment_type" type='radio' value="3")
                                                                         |	Unemployed
                                                                         span
                                                                     label.kt-radio
-                                                                        input(type='radio', name='radio2')
+                                                                        if data.employment_type == "4"
+                                                                            input#employment_type_student(name="employment_type" type='radio' checked='' value="4")
+                                                                        else
+                                                                            input#employment_type_student(name="employment_type" type='radio' value="4")
                                                                         |	Student
                                                                         span
                                                         .row.mt-4
                                                             .col-md-4
                                                                 .form-group
                                                                     label Enter Employer
-                                                                    input.form-control(type='text', placeholder='')
+                                                                    input#employer_name.form-control(name="employer_name", type='text', placeholder='' value!=data.employer_name)
                                                             .col-md-4
                                                                 .form-group
                                                                     label Enter Title
-                                                                    input.form-control(type='text', placeholder='')
+                                                                    input#employment_title.form-control(name="employment_title" type='text', placeholder='' value!=data.employment_title)
                                                             .col-md-4
                                                                 .form-group
                                                                     label Enter Monthly Income
                                                                     .input-group
                                                                         span.input-group-text €
-                                                                        input.form-control(type='text', placeholder='')
+                                                                        input#monthly_income.form-control(name="monthly_income" type='text', placeholder='' value!=data.monthly_income)
                                                                         .input-group-prepend
                                                             .col-md-12.mb-4
-                                                                p.text-orange +	Add another Family member 
+                                                                // p.text-orange +	Add another Family member
+                                                        
+                                                        h5.mb-4 Solvency 
+                                                        .row
                                                             .col-lg-5.col-md-6
                                                                 // begin:: Widgets/Revenue Change
                                                                 .kt-portlet--height-fluid
@@ -185,7 +158,7 @@ block mainContent
                                                                                 | % of your income adddressed to pay the rent
                                                                         .kt-widget14__content(style='display:block')
                                                                             .kt-widget14__chart
-                                                                                #kt_chart_revenue_change(style='height: 150px; width: 150px;')
+                                                                                canvas#kt_chart_revenue_change
                                                                             br
                                                                             .kt-widget14__legends
                                                                                 .kt-widget14__legend
@@ -209,7 +182,7 @@ block mainContent
                                                                                 .col-md-6.application-phone-details
                                                                                     .input-group
                                                                                         span.input-group-text €
-                                                                                        input.form-control(type='text', placeholder='')
+                                                                                        input#monthly_rent.form-control(name="monthly_rent" type='text', placeholder='' value!=data.monthly_rent)
                                                                                         .input-group-prepend
                                                                                     hr
                                                                                     .kt-widget14__header
@@ -220,7 +193,7 @@ block mainContent
                                                                                 .col-md-6.application-phone-details
                                                                                     .input-group
                                                                                         span.input-group-text €
-                                                                                        input.form-control(type='text', placeholder='')
+                                                                                        input#security_deposite.form-control(name="security_deposite" type='text', placeholder='' value!=data.security_deposite)
                                                                                         .input-group-prepend
                                                                                     hr
                                                                                     .kt-widget14__header
@@ -253,13 +226,13 @@ block mainContent
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Address
-                                                                                            input.form-control(type='text', placeholder='')
+                                                                                            input#rental_history_address.form-control(name="rental_history_address" type='text', placeholder='' value!=data.rental_history_address)
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Monthly Rent(Optional)
                                                                                             .input-group
                                                                                                 span.input-group-text €
-                                                                                                input.form-control(type='text', placeholder='')
+                                                                                                input#rental_monthly_rent.form-control(name="rental_monthly_rent" type='text', placeholder='' value!=data.rental_monthly_rent)
                                                                                                 .input-group-prepend
                                                                                     .col-md-12
                                                                                         h5.mb-3 Contact Details
@@ -267,15 +240,15 @@ block mainContent
                                                                                             .col-md-6
                                                                                                 .form-group
                                                                                                     label Name
-                                                                                                    input.form-control(type='text', placeholder='')
+                                                                                                    input#contact_name.form-control(name="contact_name" type='text', placeholder='' value!=data.contact_name)
                                                                                             .col-md-6
                                                                                                 .form-group
                                                                                                     label Telephone
-                                                                                                    input.form-control(type='text', placeholder='')
+                                                                                                    input#contact_telephone.form-control(name="contact_telephone" type='text', placeholder='' value!=data.contact_telephone)
                                                                                             .col-md-6
                                                                                                 .form-group
                                                                                                     label Email
-                                                                                                    input.form-control(type='text', placeholder='')
+                                                                                                    input#contact_email.form-control(name="contact_email" type='text', placeholder='' value!=data.contact_email)
                                                                 #accordionExample8.accordion.accordion-solid.accordion-toggle-plus
                                                                     .card
                                                                         #headingOne8.card-header
@@ -287,21 +260,21 @@ block mainContent
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Full Name
-                                                                                            input.form-control(type='text', placeholder='')
+                                                                                            input#reference_name.form-control(name="reference_name" type='text', placeholder='' value!=data.reference_name)
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Enter Relationship
-                                                                                            input.form-control(type='text', placeholder='')
+                                                                                            input#reference_relationship.form-control(name="reference_relationship" type='text', placeholder='' value!=data.reference_relationship)
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Phone
-                                                                                            input.form-control(type='text', placeholder='')
+                                                                                            input#reference_phone.form-control(name="reference_phone" type='text', placeholder='' value!=data.reference_phone)
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Email
-                                                                                            input.form-control(type='text', placeholder='')
+                                                                                            input#reference_email.form-control(name="reference_email" type='text', placeholder='' value!=data.reference_email)
                                                                                     .col-md-12
-                                                                                        p.text-orange +	Add another reference 
+                                                                                        // p.text-orange +	Add another reference 
                                                                 #accordionExample9.accordion.accordion-solid.accordion-toggle-plus
                                                                     .card
                                                                         #headingOne9.card-header
@@ -313,7 +286,8 @@ block mainContent
                                                                                     .col-md-12
                                                                                         .form-group
                                                                                             label Any info that might be useful for landlord
-                                                                                            textarea.form-control(rows='8', placeholder='')
+                                                                                            textarea#cover_letter.form-control(name="cover_letter" rows='8', placeholder='')
+                                                                                                 =data.cover_letter
                                                                                             span.form-text.text-muted.pull-right 0/1000
                                                                 //
                                                                     <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample1">
@@ -340,7 +314,7 @@ block mainContent
                                                                     </div>
                                                     .kt-portlet__foot
                                                         .kt-form__actions.text-center
-                                                            button#application_submit.btn.btn-orange(type='reset') Submit
+                                                            button#application_submit.btn.btn-orange(type='button') Submit
                                                 // end::Form
                                                 // end::Portlet
                                                 // end::Portlet

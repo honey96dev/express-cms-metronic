@@ -202,23 +202,255 @@ const viewProc = (req, res, next) => {
 };
 
 const applicationProc = (req, res, next) => {    
-    res.render('inquilinos/property/application', {
-        userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
-        title: 'Index',
-        baseUrl: config.server.inquilinosBaseUrl,
-        uri: 'application',
-        styles: [
-            'stylesheets/site/inquilinos/property/application.css',
-        ],
-        scripts: [
-            'javascripts/site/inquilinos/property/application.js',
-        ],
-    })
+    const params = req.query;
+
+    const app_id = params.app_id;
+
+    let data = {
+        id: app_id,
+        home_id : params.id,
+        user_id : req.session.inquilinos.id,
+        user_email : "",
+        user_phone : "",
+        employment_type : "",
+        employer_name : "",
+        employment_title : "",
+        monthly_income : "",
+        monthly_rent : "",
+        security_deposite : "",
+        rental_history_address : "",
+        rental_monthly_rent : "",
+        contact_name : "",
+        contact_telephone : "",
+        contact_email : "",
+        reference_name : "",
+        reference_relationship : "",
+        reference_phone : "",
+        reference_email : "",
+        cover_letter : "",
+        rent : "",
+        family_income : "",
+    };
+
+    if(app_id != "")
+    {
+        let sql = sprintfJs.sprintf("select * from `%s` where id='%s'", dbTblName.application, app_id);
+
+        dbConn.query(sql, null, (error, result, fields) => {
+            if (error) {
+                console.log(error);
+                res.render('inquilinos/property/application', {
+                    userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+                    userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+                    title: 'Index',
+                    baseUrl: config.server.inquilinosBaseUrl,
+                    uri: 'application',
+                    data: data,
+                    styles: [
+                        //'vendors/custom/percentage-loader/css/documentation.css',
+                        'stylesheets/site/inquilinos/property/application.css',
+                    ],
+                    scripts: [
+                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                        'javascripts/site/inquilinos/property/application.js',
+                    ],
+                });
+                return;
+            }
+            if(result.length == 0) {
+                res.render('inquilinos/property/application', {
+                    userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+                    userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+                    title: 'Index',
+                    baseUrl: config.server.inquilinosBaseUrl,
+                    uri: 'application',
+                    data: data,
+                    styles: [
+                        //'vendors/custom/percentage-loader/css/documentation.css',
+                        'stylesheets/site/inquilinos/property/application.css',
+                    ],
+                    scripts: [
+                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                        'javascripts/site/inquilinos/property/application.js',
+                    ],
+                });
+                return;
+            }
+            console.log(result);
+            data.id = result[0].id;
+            data.home_id = result[0].home_id;
+            data.user_id = result[0].user_id;
+            data.user_email = result[0].user_email;
+            data.user_phone = result[0].user_phone;
+            data.employment_type = result[0].employment_type;
+            data.employer_name = result[0].employer_name;
+            data.employment_title = result[0].employment_title;
+            data.monthly_income = result[0].monthly_income;
+            data.rent = result[0].rent;
+            data.family_income = result[0].family_income;
+            data.monthly_rent = result[0].monthly_rent;
+            data.security_deposite = result[0].security_deposite;
+            data.rental_history_address = result[0].rental_history_address;
+            data.rental_monthly_rent = result[0].rental_monthly_rent;
+            data.contact_name = result[0].contact_name;
+            data.contact_telephone = result[0].contact_telephone;
+            data.contact_email = result[0].contact_email;
+            data.reference_name = result[0].reference_name;
+            data.reference_relationship = result[0].reference_relationship;
+            data.reference_phone = result[0].reference_phone;
+            data.reference_email = result[0].reference_email;
+            data.cover_letter = result[0].cover_letter;
+
+            res.render('inquilinos/property/application', {
+                userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+                userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+                title: 'Index',
+                baseUrl: config.server.inquilinosBaseUrl,
+                uri: 'application',
+                data: data,
+                styles: [
+                    //'vendors/custom/percentage-loader/css/documentation.css',
+                    'stylesheets/site/inquilinos/property/application.css',
+                ],
+                scripts: [
+                    'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                    'javascripts/site/inquilinos/property/application.js',
+                ],
+            });
+            return;
+        });
+    }
+    else {
+
+        res.render('inquilinos/property/application', {
+            userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+            userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+            title: 'Index',
+            baseUrl: config.server.inquilinosBaseUrl,
+            uri: 'application',
+            data: data,
+            styles: [
+                //'vendors/custom/percentage-loader/css/documentation.css',
+                'stylesheets/site/inquilinos/property/application.css',
+            ],
+            scripts: [
+                'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                'javascripts/site/inquilinos/property/application.js',
+            ],
+        });
+    }
 };
+
+
+const applicationPostProc = (req, res, next) => {    
+    const paramsQuery = req.query;
+    const paramsForm = req.body;
+
+    console.log(paramsQuery);
+    console.log(paramsForm);
+    const app_id = paramsForm.app_id;
+    const home_id = paramsForm.id;
+    const user_id = req.session.inquilinos.id;
+    const user_email = req.session.inquilinos.email;
+    const user_phone = paramsForm.user_phone;
+    const employment_type = paramsForm.employment_type;
+    const employer_name = paramsForm.employer_name;
+    const employment_title = paramsForm.employment_title; 
+    const monthly_income = paramsForm.monthly_income;
+    const monthly_rent = paramsForm.monthly_rent;
+    const security_deposite = paramsForm.security_deposite;
+    const rental_history_address = paramsForm.rental_history_address;
+    const rental_monthly_rent = paramsForm.rental_monthly_rent;
+    const contact_name = paramsForm.contact_name;
+    const contact_telephone = paramsForm.contact_telephone;
+    const contact_email = paramsForm.contact_email;
+    const reference_name = paramsForm.reference_name;
+    const reference_relationship = paramsForm.reference_relationship;
+    const reference_phone = paramsForm.reference_phone;
+    const reference_email = paramsForm.reference_email;
+    const cover_letter = paramsForm.cover_letter;
+    const rent = "";
+    const family_income  = "";
+    if(app_id == "") {
+        let sql = sprintfJs.sprintf("insert into `%s` (home_id,user_id,user_email,user_phone," +
+            "employment_type,employer_name,employment_title,monthly_income,rent,family_income,monthly_rent," +
+            "security_deposite,rental_history_address,rental_monthly_rent,contact_name,contact_telephone,contact_email," +
+            "reference_name,reference_relationship,reference_phone,reference_email,cover_letter) " +
+            "values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", 
+            dbTblName.application, home_id,user_id,user_email,user_phone,
+            employment_type,employer_name,employment_title,monthly_income,rent,family_income,monthly_rent,
+            security_deposite,rental_history_address,rental_monthly_rent,contact_name,contact_telephone,contact_email,
+            reference_name,reference_relationship,reference_phone,reference_email,cover_letter);
+
+        dbConn.query(sql, null, (error, result, fields) => {
+            if (error) {
+                console.log(error);
+                res.status(200).send({
+                    result: 'error',
+                    message: 'Error desconocido',
+                });
+                return;
+            }
+
+            res.status(200).send({
+                result: 'success',
+                message: 'Guardado correctamente',
+            });
+        });
+    } 
+    else {
+        let sql = sprintfJs.sprintf("update `%s` set home_id='%s',user_id='%s',user_email='%s',user_phone='%s'," +
+            "employment_type='%s',employer_name='%s',employment_title='%s',monthly_income='%s',rent='%s',family_income='%s',monthly_rent='%s'," +
+            "security_deposite='%s',rental_history_address='%s',rental_monthly_rent='%s',contact_name='%s',contact_telephone='%s',contact_email='%s'," +
+            "reference_name='%s',reference_relationship='%s',reference_phone='%s',reference_email='%s',cover_letter='%s' where id='%s'", 
+            dbTblName.application, home_id,user_id,user_email,user_phone,
+            employment_type,employer_name,employment_title,monthly_income,rent,family_income,monthly_rent,
+            security_deposite,rental_history_address,rental_monthly_rent,contact_name,contact_telephone,contact_email,
+            reference_name,reference_relationship,reference_phone,reference_email,cover_letter, app_id);
+
+        dbConn.query(sql, null, (error, result, fields) => {
+            if (error) {
+                console.log(error);
+                res.status(200).send({
+                    result: 'error',
+                    message: 'Error desconocido',
+                });
+                return;
+            }
+
+            res.status(200).send({
+                result: 'success',
+                message: 'Guardado correctamente',
+            });
+        });
+    }
+
+
+};
+
+function requiresLogin(req, res, next) {
+    if (req.session && req.session.inquilinos && req.session.inquilinos.id) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+function alreadyLogin(req, res, next) {
+    if (req.url === '/logout') {
+        return next();
+    }
+    if (req.session && req.session.inquilinos && req.session.inquilinos.id) {
+        res.redirect('/');
+    } else {
+        return next();
+    }
+}
 
 router.get('/', indexProc);
 router.get('/list', listProc);
 router.get('/view', viewProc);
-router.get('/application', applicationProc);
+router.get('/application', requiresLogin, applicationProc);
+router.put('/application', requiresLogin, applicationPostProc);
 
 module.exports = router;

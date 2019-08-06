@@ -1,0 +1,55 @@
+extends ../layout
+
+block mainContent
+    #kt_body.kt-body.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor.kt-grid--stretch
+        .kt-container.kt-container--fluid.kt-grid.kt-grid--ver
+            // begin:: Aside
+            input#home_id( name="home_id" type="hidden" value!=home_id)
+            button#kt_aside_close_btn.kt-aside-close
+                i.la.la-close
+            #kt_aside.kt-aside.kt-aside--fixed.kt-grid__item.kt-grid.kt-grid--desktop.kt-grid--hor-desktop
+                // begin:: Aside Menu
+                #kt_aside_menu_wrapper.kt-aside-menu-wrapper.kt-grid__item.kt-grid__item--fluid
+                    #kt_aside_menu.kt-aside-menu(data-ktmenu-vertical='1', data-ktmenu-scroll='1')
+                        ul.kt-menu__nav
+                            li.kt-menu__section.kt-menu__section--first
+                                h4.kt-menu__section-text Departments
+                                i.kt-menu__section-icon.flaticon-more-v2
+                            li.kt-menu__item(aria-haspopup='true')
+                                a.kt-menu__link(href='#')
+                                    i.kt-menu__link-icon.flaticon-suitcase
+                                    span.kt-menu__link-text Listing
+                            li.kt-menu__item(aria-haspopup='true')
+                                a.kt-menu__link(href='#')
+                                    i.kt-menu__link-icon.flaticon-suitcase
+                                    span.kt-menu__link-text Application
+                // end:: Aside Menu
+                // end:: Aside
+            #kt_content.kt-content.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor
+                // begin:: Subheader
+                #kt_subheader.kt-subheader.kt-grid__item
+                    .kt-container.kt-container--fluid
+                        .kt-container.kt-container--fluid.kt-grid__item.kt-grid__item--fluid(style="padding: 0px !important; margin-top: 10px;")
+                            .row(style="width: 100%;")
+                                .col-12
+                                    .kt-portlet.kt-portlet--height-fluid.kt-portlet--height-fluid-transparent
+                                        .kt-portlet__head
+                                            .kt-portlet__head-label
+                                                span.kt-portlet__head-icon
+                                                    i.margin-auto.la.la-bullhorn
+                                                h3.kt-portlet__head-title=title
+                            #itemList(style="width: 100%;")
+                                .row
+                                
+                            #deleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deleteModalLabel', aria-hidden='true')
+                                .modal-dialog(role='document')
+                                    .modal-content
+                                        .modal-header
+                                            h5.modal-title(style='margin-top: 0') Delete
+                                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                        form#deleteForm.modal-body(action='/solicitudes/delete', data-method='', novalidate='novalidate')
+                                            input#application_id.form-control(type='hidden', name='application_id')
+                                            p Do you want to delete?
+                                        .modal-footer
+                                            button#closeModal.btn.btn-primary.btn-elevate.btn-pill(type='button', name='closeModal', data-dismiss='modal', style='background: #AEAAAA; padding: 8.45px 2.3rem; border-color: #AEAAAA;') Cancel
+                                            button#deleteButton.btn.btn-primary.btn-elevate.btn-pill(type='button', name='deleteButton', style='background: #FF5722; padding: 8.45px 2.3rem;border-color: #FF5722;') Delete

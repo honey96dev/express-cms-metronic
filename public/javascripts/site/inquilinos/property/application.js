@@ -7,7 +7,126 @@ Application.prototype.init = function () {
     const self = this;
     self.baseUrl = $('#baseUrl').val();
     
+    $('#kt_chart_revenue_change').ClassyLoader({
+      speed: 10,
+      diameter: 80,
+      fontSize: '30px',
+      fontFamily: 'Courier',
+      fontColor: 'rgba(0,0,0,0.4)',
+      lineColor: 'rgba(0,255,153,1)',
+      percentage: 80,
+      lineWidth: 20,
+      start: 'top',
+      remainingLineColor: 'rgba(255,0,102,1)'
+  });
+
+  $('#application_submit').click(function (e) {
+      e.preventDefault();
+      const form = $('#save_form');
+      const btn = $(this);
+
+      form.validate({
+          rules: {
+              user_phone: {
+                  required: true,
+              },
+              employment_type: {
+                  required: true,
+              },
+              employer_name: {
+                  required: true,
+              },
+              employment_title: {
+                  required: true,
+              },
+              monthly_income: {
+                  required: true,
+              },
+              monthly_rent: {
+                  required: true,
+              },
+              security_deposite: {
+                  required: true,
+              },
+              rental_history_address: {
+                  required: true,
+              },
+              contact_name: {
+                  required: true,
+              },
+              contact_telephone: {
+                  required: true,
+              },
+              contact_email: {
+                  required: true,
+              },
+              reference_name: {
+                  required: true,
+              },
+              reference_relationship: {
+                  required: true,
+              },
+              reference_phone: {
+                  required: true,
+              },
+              reference_email: {
+                  required: true,
+              },
+              cover_letter: {
+                  required: true,
+              },
+          },
+          messages: {
+
+          },
+      });
+
+      if (!form.valid()) {
+          return;
+      }
+
+      btn.attr('disabled', true);
+      // btn.addClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', true);
+      // console.log('addButton');
+      form.ajaxSubmit({
+          method: "put",
+          dataType: 'json',
+          success: function (response, status, xhr, $form) {
+              const result = response.result;
+              const message = response.message;
+              // const data = response.data;
+              // const insertId = response.insertId;
+              btn.attr('disabled', false);
+              if (result === 'success') {
+                  self.showErrorMsg(form, 'success', message);
+                  setTimeout(function () {
+                      // document.location = '/anuncios';
+                  }, 2000);
+              } else if (result === 'error') {
+                  self.showErrorMsg(form, 'danger', message);
+              }
+          },
+          error: function (error) {
+              btn.attr('disabled', false);
+              self.showErrorMsg(form, 'danger', 'Error desconocido');
+          }
+      });
+  });
 };
+
+Application.prototype.showErrorMsg = function (form, type, msg) {
+  const alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\
+    <span></span>\
+  </div>');
+
+  form.find('.alert').remove();
+  alert.appendTo(form);
+  //alert.animateClass('fadeIn animated');
+  KTUtil.animateClass(alert[0], 'fadeIn animated');
+  alert.find('span').html(msg);
+};
+
 
 function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
     try {

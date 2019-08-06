@@ -8,6 +8,7 @@ import listingRouter from "./inquilinos/listing";
 import documentosRouter from "./inquilinos/documentos";
 import passwordRouter from "./inquilinos/password";
 import propertyRouter from "./inquilinos/property";
+import solicitudesRouter from "./inquilinos/solicitudes";
 
 const router = express.Router();
 
@@ -40,6 +41,7 @@ router.use('/propiedades', propiedadesRouter);
 router.use('/anuncios', listingRouter);
 router.use('/documentos', documentosRouter);
 router.use('/property', propertyRouter);
+router.use('/solicitudes', solicitudesRouter);
 
 router.use(function(req, res, next){
     res.status(404);

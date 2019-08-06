@@ -52,6 +52,7 @@ module.exports = {
         propietarios: 'users',
         documentos: 'documentos',
         properties: 'properties',
+        application: 'application',
         property_photos: 'property_photos',
         amenities: 'amenities',
         tokens: 'tokens',
