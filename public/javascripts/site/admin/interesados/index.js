@@ -48,7 +48,7 @@ Interesados.prototype.init = function() {
                 data: "id",
                 className: "text-center",
                 render: function (data, type, row) {
-                    return '<button class="btn btn-clean btn-sm btn-icon btn-orange" data-toggle="modal", data-target="#userDetailsModal" onclick="instance.editUser(\'' + data + '\')"><i class="fa fa-edit margin-auto"></i></button>';
+                    return '<button class="btn btn-clean btn-sm btn-icon btn-orange" onclick="instance.editUser(\'' + data + '\')"><i class="fa fa-edit margin-auto"></i></button>';
                 },
                 orderable: false,
             }, {
@@ -132,24 +132,7 @@ Interesados.prototype.init = function() {
 
 Interesados.prototype.editUser = function(idx) {
     let self = this;
-    const dataSet = self.table.rows().data();
-    const row = dataSet[idx];
-    console.log(dataSet, idx, row);
-    $('#userId').val(row.id);
-    $('#name').val(row.name);
-    $('#email').val(row.email);
-    $('#telephone').val(row.telephone);
-    // $.ajax({
-    //     url: '',
-    //     method: 'GET',
-    //     dataType: 'json',
-    //     data: {
-    //         id: id,
-    //     },
-    //     success: function (res, xhr, status) {
-    //         $('email')
-    //     },
-    // });
+    parent.location.href = self.baseUrl + 'interesados/application?app_id=' + idx;
 };
 
 Interesados.prototype.deleteUser = function(id) {

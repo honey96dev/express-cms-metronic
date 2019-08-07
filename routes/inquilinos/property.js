@@ -282,7 +282,7 @@ const applicationProc = (req, res, next) => {
             }
             console.log(result);
             data.id = result[0].id;
-            data.home_id = result[0].home_id;
+            //data.home_id = result[0].home_id;
             data.user_id = result[0].user_id;
             data.user_email = result[0].user_email;
             data.user_phone = result[0].user_phone;
@@ -308,8 +308,11 @@ const applicationProc = (req, res, next) => {
             let sql = sprintfJs.sprintf("select * from `%s` where application_id='%s'", dbTblName.application_documents, app_id);
 
             dbConn.query(sql, null, (error, result, fields) => {
-                data.documents_name = result[0].documents_name;
-                data.documents_path = result[0].documents_path;
+                console.log(result);
+                if(result.length > 0) {
+                    data.documents_name = result[0].documents_name;
+                    data.documents_path = result[0].documents_path;
+                }
             });
 
             res.render('inquilinos/property/application', {
@@ -360,7 +363,7 @@ const applicationPostProc = (req, res, next) => {
     console.log(paramsQuery);
     console.log(paramsForm);
     const app_id = paramsForm.app_id;
-    const home_id = paramsForm.id;
+    const home_id = paramsForm.home_id;
     const user_id = req.session.inquilinos.id;
     const user_email = req.session.inquilinos.email;
     const user_phone = paramsForm.user_phone;
@@ -406,11 +409,12 @@ const applicationPostProc = (req, res, next) => {
             }
 
             let application_id = result.insertId;
-            sql = sprintfJs.sprintf("INSERT INTO `%s` (`application_id`, `document_name`, `documents_path`) VALUES ('%d', '%s', '%s') " +
-                " ON DUPLICATE KEY UPDATE `application_id` = VALUES(`application_id`), `document_name` = VALUES(`document_name`), `documents_path` = VALUES(`documents_path`);",
+            let sql = sprintfJs.sprintf("INSERT INTO `%s` (`application_id`, `documents_name`, `documents_path`) VALUES ('%d', '%s', '%s') " +
+                " ON DUPLICATE KEY UPDATE `application_id` = VALUES(`application_id`), `documents_name` = VALUES(`documents_name`), `documents_path` = VALUES(`documents_path`);",
                 dbTblName.application_documents, application_id, documents_name, documents_path);
             dbConn.query(sql, null, (error, result, fields) => { 
-
+                if(error)
+                    console.log(sql);
             });
 
             res.status(200).send({
@@ -452,8 +456,6 @@ const applicationPostProc = (req, res, next) => {
             });
         });
     }
-
-
 };
 
 const uploadPostProc = (req, res, next) => {    
@@ -477,7 +479,7 @@ const uploadPostProc = (req, res, next) => {
             result: 'success',
             message: 'Uploaded',
             fileName: file.name,
-            filePath: filePath,
+            filePath: fileName,
         });
     });
 }

@@ -1,0 +1,227 @@
+extends ../layout
+
+block mainContent
+    .row
+        .col-md-12
+            // begin::Portlet
+            .kt-portlet
+                .kt-portlet__head
+                    .kt-portlet__head-label
+                        h3.kt-portlet__head-title.font-big
+                            | Rent Application
+                // begin::Form
+                form#save_form.kt-form.custome-font-form(method="put")
+                    input#user_id.form-control(name="user_id" type='hidden' value!=data.user_id)
+                    input#home_id.form-control(name="home_id" type='hidden' value!=data.home_id)
+                    input#app_id.form-control(name="app_id" type='hidden' value!=data.id)
+                    input#documents_path( name="documents_path" type="hidden" value!=data.documents_path)
+                    input#documents_name( name="documents_name" type="hidden" value!=data.documents_name)
+                    .kt-portlet__body
+                        .form-group.form-group-last(style="margin-bottom: 15px;")
+                            div
+                            .w-100
+                                h5.mb-3.font-big Sebastian Nevado
+                                .row.application-phone-details
+                                    .col-md-6.col-lg-6
+                                        label Email
+                                        input#user_email.form-control(name="user_email" type='text', disabled='', placeholder!=userEmail value!=data.user_email readonly)
+                                    .col-md-6.col-lg-6
+                                        label Phone
+                                        input#user_phone.form-control(name="user_phone" type='text', placeholder='' value!=data.user_phone readonly)
+                        h5.mb-4 Employment
+                        .row
+                            .col-md-12
+                                div(style="position: fixed;width: 100%;height: 30px;margin-top: -10px;background: transparent;z-index: 1;")
+                                .kt-radio-inline
+                                    label.kt-radio
+                                        if data.employment_type == "1"
+                                            input#employment_type_employed(name="employment_type" type='radio' checked='' value="1" readonly)
+                                        else
+                                            input#employment_type_employed(name="employment_type" type='radio' value="1" readonly)
+                                        |	Employed
+                                        span
+                                    label.kt-radio.mobile-left-freelancer
+                                        if data.employment_type == "2"
+                                            input#employment_type_freelancer(name="employment_type" type='radio' checked='' value="2" readonly)
+                                        else
+                                            input#employment_type_freelancer(name="employment_type" type='radio' value="2" readonly)
+                                        |	Freelancer
+                                        span
+                                    label.kt-radio
+                                        if data.employment_type == "3"
+                                            input#employment_type_unemployed(name="employment_type" type='radio' checked='' value="3" readonly)
+                                        else
+                                            input#employment_type_unemployed(name="employment_type" type='radio' value="3" readonly)
+                                        |	Unemployed
+                                        span
+                                    label.kt-radio
+                                        if data.employment_type == "4"
+                                            input#employment_type_student(name="employment_type" type='radio' checked='' value="4" readonly)
+                                        else
+                                            input#employment_type_student(name="employment_type" type='radio' value="4" readonly)
+                                        |	Student
+                                        span
+                        .row.mt-4
+                            .col-md-4
+                                .form-group
+                                    label Enter Employer
+                                    input#employer_name.form-control(name="employer_name", type='text', placeholder='' value!=data.employer_name readonly)
+                            .col-md-4
+                                .form-group
+                                    label Enter Title
+                                    input#employment_title.form-control(name="employment_title" type='text', placeholder='' value!=data.employment_title readonly)
+                            .col-md-4
+                                .form-group
+                                    label Enter Monthly Income
+                                    .input-group
+                                        span.input-group-text €
+                                        input#monthly_income.form-control(name="monthly_income" type='text', placeholder='' value!=data.monthly_income readonly)
+                                        .input-group-prepend
+                            .col-md-12.mb-4
+                                // p.text-orange +	Add another Family member
+                        
+                        h5.mb-4 Solvency 
+                        .row
+                            .col-lg-5.col-md-6
+                                // begin:: Widgets/Revenue Change
+                                .kt-portlet--height-fluid
+                                    .kt-widget14.pt-0
+                                        .kt-widget14__header
+                                            h3.kt-widget14__title
+                                                | Rental effort ratio
+                                            span.kt-widget14__desc
+                                                | % of your income adddressed to pay the rent
+                                        .kt-widget14__content(style='display:block')
+                                            .kt-widget14__chart
+                                                canvas#kt_chart_revenue_change
+                                            br
+                                            .kt-widget14__legends
+                                                .kt-widget14__legend
+                                                    span.kt-widget14__bullet.kt-bg-success
+                                                    span.kt-widget14__stats Rent : 1.000€
+                                                .kt-widget14__legend
+                                                    span.kt-widget14__bullet.kt-bg-danger
+                                                    span.kt-widget14__stats Family income : 4.000€
+                                // end:: Widgets/Revenue Change
+                            .col-lg-7.col-md-6
+                                // begin:: Widgets/Revenue Change
+                                .kt-portlet--height-fluid
+                                    .kt-widget14.pt-0
+                                        .kt-widget14__header
+                                            h3.kt-widget14__title
+                                                | Your Offer
+                                            span.kt-widget14__desc
+                                                | Optionally, you can submit your proposal to the Landlord
+                                        .kt-widget14__content
+                                            .row
+                                                .col-md-6.application-phone-details
+                                                    .input-group
+                                                        span.input-group-text €
+                                                        input#monthly_rent.form-control(name="monthly_rent" type='text', placeholder='' value!=data.monthly_rent readonly)
+                                                        .input-group-prepend
+                                                    hr
+                                                    .kt-widget14__header
+                                                        h3.kt-widget14__title
+                                                            | Monthly Rent
+                                                        span.kt-widget14__desc
+                                                            //| Your price is XX% above / below the listing
+                                                .col-md-6.application-phone-details
+                                                    .input-group
+                                                        span.input-group-text €
+                                                        input#security_deposite.form-control(name="security_deposite" type='text', placeholder='' value!=data.security_deposite readonly)
+                                                        .input-group-prepend
+                                                    hr
+                                                    .kt-widget14__header
+                                                        h3.kt-widget14__title
+                                                            | Security Deposite
+                                                        span.kt-widget14__desc
+                                                            //| Your deposit is XX% above / below the listing
+                                // end:: Widgets/Revenue Change
+                        .row
+                            .col-md-12
+                                #accordionExample6.accordion.accordion-solid.accordion-toggle-plus
+                                    .card
+                                        #headingOne6.card-header
+                                            .card-title.collapsed(data-toggle='collapse', data-target='#collapseOne6', aria-expanded='false', aria-controls='collapseOne6')
+                                                | Documents
+                                        #collapseOne6.collapse(aria-labelledby='headingOne6', data-parent='#accordionExample6', style='')
+                                            .card-body
+                                                | For example W-2, proof of income, statement from your bank. Most landlords expect to receive these documents. Adding them will increase your chances to be approved.
+                                                #m-dropzone-one.kt-dropzone.dz-clickable.mt-4(action!=baseUrl + 'property/upload')
+                                                    .kt-dropzone__msg.dz-message.needsclick
+                                                        h3.kt-dropzone__msg-title Drop files here or click to upload.
+                                #accordionExample7.accordion.accordion-solid.accordion-toggle-plus
+                                    .card
+                                        #headingOne7.card-header
+                                            .card-title.collapsed(data-toggle='collapse', data-target='#collapseOne7', aria-expanded='false', aria-controls='collapseOne7')
+                                                | Add rental history
+                                        #collapseOne7.collapse(aria-labelledby='headingOne7', data-parent='#accordionExample7', style='')
+                                            .card-body
+                                                .row
+                                                    .col-md-6
+                                                        .form-group
+                                                            label Address
+                                                            input#rental_history_address.form-control(name="rental_history_address" type='text', placeholder='' readonly value!=data.rental_history_address)
+                                                    .col-md-6
+                                                        .form-group
+                                                            label Monthly Rent(Optional)
+                                                            .input-group
+                                                                span.input-group-text €
+                                                                input#rental_monthly_rent.form-control(name="rental_monthly_rent" type='text', placeholder='' readonly value!=data.rental_monthly_rent)
+                                                                .input-group-prepend
+                                                    .col-md-12
+                                                        h5.mb-3 Contact Details
+                                                        .row
+                                                            .col-md-6
+                                                                .form-group
+                                                                    label Name
+                                                                    input#contact_name.form-control(name="contact_name" type='text', placeholder='' readonly value!=data.contact_name)
+                                                            .col-md-6
+                                                                .form-group
+                                                                    label Telephone
+                                                                    input#contact_telephone.form-control(name="contact_telephone" type='text', placeholder='' readonly value!=data.contact_telephone)
+                                                            .col-md-6
+                                                                .form-group
+                                                                    label Email
+                                                                    input#contact_email.form-control(name="contact_email" type='text', placeholder='' readonly value!=data.contact_email)
+                                #accordionExample8.accordion.accordion-solid.accordion-toggle-plus
+                                    .card
+                                        #headingOne8.card-header
+                                            .card-title.collapsed(data-toggle='collapse', data-target='#collapseOne8', aria-expanded='false', aria-controls='collapseOne8')
+                                                | I have people that can be used as reference
+                                        #collapseOne8.collapse(aria-labelledby='headingOne8', data-parent='#accordionExample8', style='')
+                                            .card-body
+                                                .row
+                                                    .col-md-6
+                                                        .form-group
+                                                            label Full Name
+                                                            input#reference_name.form-control(name="reference_name" type='text', placeholder='' readonly value!=data.reference_name)
+                                                    .col-md-6
+                                                        .form-group
+                                                            label Enter Relationship
+                                                            input#reference_relationship.form-control(name="reference_relationship" type='text', placeholder='' readonly value!=data.reference_relationship)
+                                                    .col-md-6
+                                                        .form-group
+                                                            label Phone
+                                                            input#reference_phone.form-control(name="reference_phone" type='text', placeholder='' readonly value!=data.reference_phone)
+                                                    .col-md-6
+                                                        .form-group
+                                                            label Email
+                                                            input#reference_email.form-control(name="reference_email" type='text', placeholder='' readonly value!=data.reference_email)
+                                                    .col-md-12
+                                                        // p.text-orange +	Add another reference 
+                                #accordionExample9.accordion.accordion-solid.accordion-toggle-plus
+                                    .card
+                                        #headingOne9.card-header
+                                            .card-title.collapsed(data-toggle='collapse', data-target='#collapseOne9', aria-expanded='false', aria-controls='collapseOne9')
+                                                | Cover letter
+                                        #collapseOne9.collapse(aria-labelledby='headingOne9', data-parent='#accordionExample9', style='')
+                                            .card-body
+                                                .row
+                                                    .col-md-12
+                                                        .form-group
+                                                            label Any info that might be useful for landlord
+                                                            textarea#cover_letter.form-control(name="cover_letter" rows='8', placeholder='' readonly)
+                                                                    =data.cover_letter
+                                                            span.form-text.text-muted.pull-right 0/1000
+                

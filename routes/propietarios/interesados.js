@@ -1,5 +1,5 @@
 import express from 'express';
-import config from '../../core/config';
+import config,{dbTblName} from '../../core/config';
 import dbConn from '../../core/dbConn';
 import sprintfJs from 'sprintf-js';
 
@@ -29,7 +29,7 @@ const indexProc = (req, res, next) => {
 };
 
 const listProc = (req, res, next) => {
-    if (req.xhr) {
+    //if (req.xhr) {
         let sql = sprintfJs.sprintf("select (SELECT @row_number := @row_number + 1) `num`, a.id, b.`name`, a.user_email as email, a.user_phone as telephone, c.`name` as properties_name, c.creationDate as createdDate from `%s` a left join `%s` b on a.user_id=b.id left join `%s` c on a.home_id=c.id, (SELECT @row_number := -1) `N`;", config.dbTblName.application, config.dbTblName.propietarios, config.dbTblName.properties);
         dbConn.query(sql, null, (error, results, fields) => {
             if (error) {
@@ -46,9 +46,9 @@ const listProc = (req, res, next) => {
                 });
             }
         });
-    } else {
-        res.redirect(404);
-    }
+    //} else {
+    //    res.redirect(404);
+    //}
 };
 
 const editProc = (req, res, next) => {
@@ -107,12 +107,164 @@ const deleteProc = (req, res, next) => {
     });
 };
 
+const applicationProc = (req, res, next) => {    
+    const params = req.query;
+
+    const app_id = params.app_id;
+
+    let data = {
+        id: app_id,
+        home_id : params.id,
+        user_id : "",
+        user_email : "",
+        user_phone : "",
+        employment_type : "",
+        employer_name : "",
+        employment_title : "",
+        monthly_income : "",
+        monthly_rent : "",
+        security_deposite : "",
+        rental_history_address : "",
+        rental_monthly_rent : "",
+        contact_name : "",
+        contact_telephone : "",
+        contact_email : "",
+        reference_name : "",
+        reference_relationship : "",
+        reference_phone : "",
+        reference_email : "",
+        cover_letter : "",
+        rent : "",
+        family_income : "",
+        documents_path : "",
+        documents_name : "",
+    };
+
+    if(app_id != "")
+    {
+        let sql = sprintfJs.sprintf("select * from `%s` where id='%s'", dbTblName.application, app_id);
+
+        dbConn.query(sql, null, (error, result, fields) => {
+            if (error) {
+                console.log(error);
+                res.render('propietarios/interesados/application', {
+                    userName: (req.session.propietarios != undefined ? req.session.propietarios.name : ""), // req.session.inquilinos.name,
+                    userEmail: (req.session.propietarios != undefined ? req.session.propietarios.email : ""), // req.session.inquilinos.name,
+                    title: 'Index',
+                    baseUrl: config.server.propietariosBaseUrl,
+                    uri: 'application',
+                    data: data,
+                    styles: [
+                        //'vendors/custom/percentage-loader/css/documentation.css',
+                        'stylesheets/site/propietarios/interesados/application.css',
+                    ],
+                    scripts: [
+                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                        'javascripts/site/propietarios/interesados/application.js',
+                    ],
+                });
+                return;
+            }
+            if(result.length == 0) {
+                res.render('propietarios/interesados/application', {
+                    userName: (req.session.propietarios != undefined ? req.session.propietarios.name : ""), // req.session.inquilinos.name,
+                    userEmail: (req.session.propietarios != undefined ? req.session.propietarios.email : ""), // req.session.inquilinos.name,
+                    title: 'Index',
+                    baseUrl: config.server.propietariosBaseUrl,
+                    uri: 'application',
+                    data: data,
+                    styles: [
+                        //'vendors/custom/percentage-loader/css/documentation.css',
+                        'stylesheets/site/propietarios/interesados/application.css',
+                    ],
+                    scripts: [
+                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                        'javascripts/site/propietarios/interesados/application.js',
+                    ],
+                });
+                return;
+            }
+            console.log(result);
+            data.id = result[0].id;
+            //data.home_id = result[0].home_id;
+            data.user_id = result[0].user_id;
+            data.user_email = result[0].user_email;
+            data.user_phone = result[0].user_phone;
+            data.employment_type = result[0].employment_type;
+            data.employer_name = result[0].employer_name;
+            data.employment_title = result[0].employment_title;
+            data.monthly_income = result[0].monthly_income;
+            data.rent = result[0].rent;
+            data.family_income = result[0].family_income;
+            data.monthly_rent = result[0].monthly_rent;
+            data.security_deposite = result[0].security_deposite;
+            data.rental_history_address = result[0].rental_history_address;
+            data.rental_monthly_rent = result[0].rental_monthly_rent;
+            data.contact_name = result[0].contact_name;
+            data.contact_telephone = result[0].contact_telephone;
+            data.contact_email = result[0].contact_email;
+            data.reference_name = result[0].reference_name;
+            data.reference_relationship = result[0].reference_relationship;
+            data.reference_phone = result[0].reference_phone;
+            data.reference_email = result[0].reference_email;
+            data.cover_letter = result[0].cover_letter;
+
+            let sql = sprintfJs.sprintf("select * from `%s` where application_id='%s'", dbTblName.application_documents, app_id);
+
+            dbConn.query(sql, null, (error, result, fields) => {
+                console.log(result);
+                if(result.length > 0) {
+                    data.documents_name = result[0].documents_name;
+                    data.documents_path = result[0].documents_path;
+                }
+            });
+
+            res.render('propietarios/interesados/application', {
+                userName: (req.session.propietarios != undefined ? req.session.propietarios.name : ""), // req.session.inquilinos.name,
+                userEmail: (req.session.propietarios != undefined ? req.session.propietarios.email : ""), // req.session.inquilinos.name,
+                title: 'Index',
+                baseUrl: config.server.propietariosBaseUrl,
+                uri: 'application',
+                data: data,
+                styles: [
+                    //'vendors/custom/percentage-loader/css/documentation.css',
+                    'stylesheets/site/propietarios/interesados/application.css',
+                ],
+                scripts: [
+                    'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                    'javascripts/site/propietarios/interesados/application.js',
+                ],
+            });
+            return;
+        });
+    }
+    else {
+
+        res.render('propietarios/interesados/application', {
+            userName: (req.session.propietarios != undefined ? req.session.propietarios.name : ""), // req.session.inquilinos.name,
+            userEmail: (req.session.propietarios != undefined ? req.session.propietarios.email : ""), // req.session.inquilinos.name,
+            title: 'Index',
+            baseUrl: config.server.propietariosBaseUrl,
+            uri: 'application',
+            data: data,
+            styles: [
+                //'vendors/custom/percentage-loader/css/documentation.css',
+                'stylesheets/site/propietarios/interesados/application.css',
+            ],
+            scripts: [
+                'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                'javascripts/site/propietarios/interesados/application.js',
+            ],
+        });
+    }
+};
+
 router.get('/', indexProc);
 
 router.get('/list', listProc);
 
-router.put('/save', editProc);
-
 router.delete('/delete', deleteProc);
+
+router.get('/application', applicationProc);
 
 module.exports = router;

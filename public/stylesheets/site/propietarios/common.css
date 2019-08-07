@@ -118,3 +118,219 @@
 /*body {*/
     /*min-height: 850px;*/
 /*}*/
+
+.btn-label-orange{
+	    background-color: rgba(255, 87, 34, 0.05);
+    color: #ff5722;
+   
+}
+.btn-label-orange:hover{
+	    background-color: rgba(255, 87, 34, 0.05);
+    color: #ff5722;
+   
+}
+.property-list-box  .kt-widget19__labels {
+    top: 15px !important;
+    left: 15px !important;
+}
+.property-list-box .btn.btn-label-light-o2 {
+    background-color: rgb(255, 87, 34);
+    color: #ffffff;
+    cursor: text !important;
+    border-radius: 50px;
+    padding: 5px 15px;
+}
+.property-list-box  .kt-widget19__time{
+        text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.kt-widget19 .kt-widget19__wrapper .kt-widget19__content .kt-widget19__info .kt-widget19__time {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #716a67;
+    margin-top: 6px;
+        margin-bottom: 13px;
+}
+.property-list-box .kt-portlet__body {
+	background-color: #fff !important
+}
+.kt-widget19__username{
+color: #000 !important;
+}
+.kt-widget19 .kt-widget19__wrapper .kt-widget19__content .kt-widget19__info .kt-widget19__username:hover {
+    color: #ff5722;
+    transition: color 0.3s ease;
+    margin-bottom: 0px;
+        margin-bottom: 0px;
+}
+.property-list-without-login .kt-portlet--height-fluid {
+    box-shadow: 0px 0px 0px 0px rgba(82, 63, 105, 0.1);
+    background-color: transparent;
+    border: 1px solid #cccccc4f;
+    margin-bottom: 0px;
+}
+.kt-widget19 .kt-widget19__wrapper .kt-widget19__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 0.7rem 0;
+    border-bottom: 1px solid #cccccc52;
+}
+.kt-widget19 .kt-widget19__wrapper {
+    margin-bottom: 0rem;
+}
+.kt-widget19 .kt-widget19__wrapper .kt-widget19__text {
+    text-align: justify;
+    color: #74788d;
+    font-size: 1rem;
+    font-weight: 400;
+        margin-top: 16px;
+
+}
+.property-list-box  .kt-portlet__body {
+    padding: 18px;
+}
+.property-list-box{
+	transition: all 0.2s ease;
+	    margin-bottom: 20px !important;
+}
+.property-list-box:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    box-shadow: 0 14px 24px 0 rgba(50,49,58,.25);
+    z-index: 2;
+    cursor: pointer;
+}
+.property-list-body-box-scroll{
+	    height: calc(100vh - 132px);
+    overflow: auto;
+}
+.btn-orange{
+	color: #fff;
+        background-color: rgb(255, 87, 34);
+    border-color: rgb(255, 87, 34);
+    cursor: pointer;
+}
+.btn-orange:hover{
+	color: #fff !important;
+}
+
+
+/* application form page */
+.application-phone-details h6{
+	font-size: 15px;
+}
+.custome-input-group.input-group i {
+    color: #ffffff;
+    line-height: 0;
+}
+.custome-input-group .input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fefeff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #20d658;
+    border: 1px solid #20d658;
+    border-radius: 4px;
+}
+.kt-radio > span:after {
+    border: solid #ff5621;
+    background: #ff5621;
+}
+.kt-radio > input:checked ~ span {
+    border: 1px solid #ff5925;
+}
+.accordion.accordion-solid{
+margin-bottom: 15px;
+}
+.text-orange{
+	    color: #ff5621;
+	    cursor: pointer;
+}
+.custome-font-form h5{
+ font-size: 20px;
+}
+.custome-font-form .card-title{
+font-size: 20px !important;
+}
+.accordion.accordion-toggle-plus .card .card-header .card-title {
+    color: #ff5621;
+    position: relative;
+}
+.font-big{
+    font-size: 23px !important;
+}
+.application-phone-details h6, .application-phone-details .form-control{
+    font-size: 20px !important;
+}
+input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none; 
+}
+
+
+input[type=search] {
+       background: #f8f8fb url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: solid 1px #fff0;
+    padding: 9px 10px 9px 32px;
+   
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+     width: 130px;
+    background-color: #fff;
+    border-color: rgb(255, 87, 34);
+    
+    -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+    -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+    box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+
+input:-moz-placeholder {
+    color: #999;
+}
+input::-webkit-input-placeholder {
+    color: #999;
+}
+
+/* Demo 2 */
+#demo-2 input[type=search] {
+    width: 15px;
+   padding-left: 35px;
+    color: #1b1919;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    width: 40%;
+}
+#demo-2 input[type=search]:hover {
+    background-color: #fff;
+    outline: 0;
+}
+
+#demo-2 input:-moz-placeholder {
+    color: transparent;
+}
+#demo-2 input::-webkit-input-placeholder {
+    color: transparent;
+}
+

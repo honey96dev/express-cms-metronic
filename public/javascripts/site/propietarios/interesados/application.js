@@ -171,4 +171,7 @@ $(document).ready(function () {
     });
 
     $("div#m-dropzone-one").addClass("dropzone");
+
+    $(".kt-radio").unbind();
+    $("span").unbind();
 });
