@@ -82,6 +82,8 @@ block mainContent
                                                     input#user_id.form-control(name="user_id" type='hidden' value!=data.user_id)
                                                     input#home_id.form-control(name="home_id" type='hidden' value!=data.home_id)
                                                     input#app_id.form-control(name="app_id" type='hidden' value!=data.id)
+                                                    input#documents_path( name="documents_path" type="hidden" value!=data.documents_path)
+                                                    input#documents_name( name="documents_name" type="hidden" value!=data.documents_name)
                                                     .kt-portlet__body
                                                         .form-group.form-group-last(style="margin-bottom: 15px;")
                                                             div
@@ -212,7 +214,7 @@ block mainContent
                                                                         #collapseOne6.collapse(aria-labelledby='headingOne6', data-parent='#accordionExample6', style='')
                                                                             .card-body
                                                                                 | For example W-2, proof of income, statement from your bank. Most landlords expect to receive these documents. Adding them will increase your chances to be approved.
-                                                                                #m-dropzone-one.kt-dropzone.dropzone.dz-clickable.mt-4(action='inc/api/dropzone/upload.php')
+                                                                                #m-dropzone-one.kt-dropzone.dz-clickable.mt-4(action!=baseUrl + 'property/upload')
                                                                                     .kt-dropzone__msg.dz-message.needsclick
                                                                                         h3.kt-dropzone__msg-title Drop files here or click to upload.
                                                                 #accordionExample7.accordion.accordion-solid.accordion-toggle-plus

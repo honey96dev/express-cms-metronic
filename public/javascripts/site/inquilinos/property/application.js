@@ -147,4 +147,28 @@ function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
 $(document).ready(function () {
     instance = new Application();
     instance.init();
+
+    const dropzoneOptions = {
+        url: '/property/upload'
+    };
+
+    var drop = new Dropzone("#m-dropzone-one", dropzoneOptions);
+    drop.on('success', function(file, res) {
+        var fileName = res.fileName;
+        var filePath = res.filePath;
+        var documents_name = $("#documents_name").val();
+        var documents_path = $("#documents_path").val();
+        if(documents_name == "" || documents_name == undefined) {
+            documents_name = fileName;
+            documents_path = filePath;
+        }
+        else {
+            documents_name = documents_name + "," + fileName;
+            documents_path = documents_path + "," + filePath;
+        }
+        $("#documents_name").val(documents);
+        $("#documents_path").val(documents);
+    });
+
+    $("div#m-dropzone-one").addClass("dropzone");
 });

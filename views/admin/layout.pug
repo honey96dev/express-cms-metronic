@@ -239,6 +239,19 @@ html(lang='en')
                                                     i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-home
                                                     span.kt-menu__link-text Lista de propiedades
                                         li.kt-menu__section
+                                            h4.kt-menu__section-text INTERESADOS
+                                            i.kt-menu__section-icon.flaticon-more-v2
+                                        if uri == 'interesados'
+                                            li.kt-menu__item.kt-menu__item--active(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'interesados')
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-bullhorn
+                                                    span.kt-menu__link-text Lista de interesados
+                                        else
+                                            li.kt-menu__item(aria-haspopup='true')
+                                                a.kt-menu__link(href!=baseUrl + 'interesados')
+                                                    i.kt-menu__link-icon.navigation-icon-1.auto-margin.la.la-bullhorn
+                                                    span.kt-menu__link-text Lista de interesados
+                                        li.kt-menu__section
                                             h4.kt-menu__section-text ANUNCIOS
                                             i.kt-menu__section-icon.flaticon-more-v2
                                         if uri == 'anuncios'

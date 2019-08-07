@@ -1,0 +1,47 @@
+extends ../layout
+
+block mainContent
+    .row
+        .col-12
+            .kt-portlet.kt-portlet--height-fluid
+                .kt-portlet__head
+                    .kt-portlet__head-label
+                        span.kt-portlet__head-icon
+                            i.margin-auto.far.fa-user(style='font-size: 20px !important;')
+                        h3.kt-portlet__head-title=title
+                .kt-portlet__body
+                    .input#baseUrl(type='hidden' value!=baseUrl)
+                    .kt-content.kt-grid__item.kt-grid__item--fluid
+                        table#usersTable.table
+                            thead
+                                tr
+                                    td Landlord's name
+                                    td Nombre
+                                    td Email
+                                    td Teléfono
+                                    td Property name
+                                    td Fecha creación
+                                    td
+                                    td
+                            tbody
+    #userDetailsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='userDetailsModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5.modal-title(style='margin-top: 0') Usuario
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                form#userDetailsForm.modal-body(action='/interesados/save', data-method='PUT', novalidate='novalidate')
+                    input#userId.form-control(type='hidden', name='userId')
+                    //.modal-body
+                    .form-group.document-details
+                        label Nombre
+                        input#name.form-control(type='text', name='name')
+                    .form-group.document-details
+                        label Email
+                        input#email.form-control(type='email', name='email')
+                    .form-group.document-details
+                        label Teléfono
+                        input#telephone.form-control(type='text', name='telephone')
+                .modal-footer
+                    button#closeModal.btn.btn-primary.btn-elevate.btn-pill(type='button', name='closeModal', data-dismiss='modal', style='background: #AEAAAA; padding: 8.45px 2.3rem; border-color: #AEAAAA;') Cancel
+                    button#saveUser.btn.btn-primary.btn-elevate.btn-pill(type='button', name='saveDocument', style='background: #FF5722; padding: 8.45px 2.3rem;border-color: #FF5722;') Guardar

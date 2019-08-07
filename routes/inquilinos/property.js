@@ -2,6 +2,8 @@ import express from 'express';
 import config, {dbTblName} from '../../core/config';
 import dbConn from '../../core/dbConn';
 import sprintfJs from 'sprintf-js';
+import path from 'path';
+import uuid from 'uuid';
 
 const router = express.Router();
 
@@ -230,6 +232,8 @@ const applicationProc = (req, res, next) => {
         cover_letter : "",
         rent : "",
         family_income : "",
+        documents_path : "",
+        documents_name : "",
     };
 
     if(app_id != "")
@@ -301,6 +305,13 @@ const applicationProc = (req, res, next) => {
             data.reference_email = result[0].reference_email;
             data.cover_letter = result[0].cover_letter;
 
+            let sql = sprintfJs.sprintf("select * from `%s` where application_id='%s'", dbTblName.application_documents, app_id);
+
+            dbConn.query(sql, null, (error, result, fields) => {
+                data.documents_name = result[0].documents_name;
+                data.documents_path = result[0].documents_path;
+            });
+
             res.render('inquilinos/property/application', {
                 userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                 userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
@@ -369,6 +380,8 @@ const applicationPostProc = (req, res, next) => {
     const reference_phone = paramsForm.reference_phone;
     const reference_email = paramsForm.reference_email;
     const cover_letter = paramsForm.cover_letter;
+    const documents_name = paramsForm.documents_name;
+    const documents_path = paramsForm.documents_path;
     const rent = "";
     const family_income  = "";
     if(app_id == "") {
@@ -391,6 +404,14 @@ const applicationPostProc = (req, res, next) => {
                 });
                 return;
             }
+
+            let application_id = result.insertId;
+            sql = sprintfJs.sprintf("INSERT INTO `%s` (`application_id`, `document_name`, `documents_path`) VALUES ('%d', '%s', '%s') " +
+                " ON DUPLICATE KEY UPDATE `application_id` = VALUES(`application_id`), `document_name` = VALUES(`document_name`), `documents_path` = VALUES(`documents_path`);",
+                dbTblName.application_documents, application_id, documents_name, documents_path);
+            dbConn.query(sql, null, (error, result, fields) => { 
+
+            });
 
             res.status(200).send({
                 result: 'success',
@@ -418,6 +439,13 @@ const applicationPostProc = (req, res, next) => {
                 return;
             }
 
+            sql = sprintfJs.sprintf("INSERT INTO `%s` (`application_id`, `document_name`, `documents_path`) VALUES ('%d', '%s', '%s') " +
+                " ON DUPLICATE KEY UPDATE `application_id` = VALUES(`application_id`), `document_name` = VALUES(`document_name`), `documents_path` = VALUES(`documents_path`);",
+                dbTblName.application_documents, app_id, documents_name, documents_path);
+            dbConn.query(sql, null, (error, result, fields) => { 
+                
+            });
+
             res.status(200).send({
                 result: 'success',
                 message: 'Guardado correctamente',
@@ -427,6 +455,32 @@ const applicationPostProc = (req, res, next) => {
 
 
 };
+
+const uploadPostProc = (req, res, next) => {    
+    console.log(req.files);
+    let file = req.files.file;
+
+    const extension = path.extname(file.name);
+    const appDir = path.dirname(require.main.filename);
+    const fileName = sprintfJs.sprintf('%s%s', uuid(), extension);
+    const filePath = sprintfJs.sprintf('%s/../public/uploads/application/%s', appDir, fileName);
+    console.log(fileName, filePath);
+    file.mv(filePath, function(err) {
+        if (err) {
+            return res.status(200).send({
+                result: 'error',
+                message: 'Not uploaded',
+            });
+        }
+
+        return res.status(200).send({
+            result: 'success',
+            message: 'Uploaded',
+            fileName: file.name,
+            filePath: filePath,
+        });
+    });
+}
 
 function requiresLogin(req, res, next) {
     if (req.session && req.session.inquilinos && req.session.inquilinos.id) {
@@ -452,5 +506,6 @@ router.get('/list', listProc);
 router.get('/view', viewProc);
 router.get('/application', requiresLogin, applicationProc);
 router.put('/application', requiresLogin, applicationPostProc);
+router.post('/upload', requiresLogin, uploadPostProc);
 
 module.exports = router;
