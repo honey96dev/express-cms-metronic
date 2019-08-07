@@ -112,6 +112,30 @@ Application.prototype.init = function () {
           }
       });
   });
+  
+  var documents_name = $("#documents_name").val();
+  var documents_path = $("#documents_path").val();
+
+  var arr_names = documents_name.split(",");
+  var arr_paths = documents_path.split(",");
+  for(i = 0; i < arr_names.length; i++) {
+      if(arr_names[i] == "")
+        continue;
+      var html = '<div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">' +
+              '<div class="dz-image">' +
+                  '<img data-dz-thumbnail="" width=120 height=120 alt="' + arr_names[i] + '" src="' + self.baseUrl + "uploads/application/" + arr_paths[i] + '">' +
+              '</div>  ' +
+              '<div class="dz-details">  ' +
+                  '<div class="dz-size">' +
+                      '<span data-dz-size=""></span>' +
+                  '</div>    ' +
+                  '<div class="dz-filename">' +
+                      '<span data-dz-name="">' + arr_names[i] + '</span>' +
+                  '</div>  ' +
+              '</div>  ' +
+          '</div>';
+      $(html).appendTo($("#m-dropzone-one"));
+  }
 };
 
 Application.prototype.showErrorMsg = function (form, type, msg) {

@@ -313,25 +313,23 @@ const applicationProc = (req, res, next) => {
                     data.documents_name = result[0].documents_name;
                     data.documents_path = result[0].documents_path;
                 }
+                res.render('inquilinos/property/application', {
+                    userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+                    userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+                    title: 'Index',
+                    baseUrl: config.server.inquilinosBaseUrl,
+                    uri: 'application',
+                    data: data,
+                    styles: [
+                        //'vendors/custom/percentage-loader/css/documentation.css',
+                        'stylesheets/site/inquilinos/property/application.css',
+                    ],
+                    scripts: [
+                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                        'javascripts/site/inquilinos/property/application.js',
+                    ],
+                });
             });
-
-            res.render('inquilinos/property/application', {
-                userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
-                userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                title: 'Index',
-                baseUrl: config.server.inquilinosBaseUrl,
-                uri: 'application',
-                data: data,
-                styles: [
-                    //'vendors/custom/percentage-loader/css/documentation.css',
-                    'stylesheets/site/inquilinos/property/application.css',
-                ],
-                scripts: [
-                    'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
-                    'javascripts/site/inquilinos/property/application.js',
-                ],
-            });
-            return;
         });
     }
     else {

@@ -217,25 +217,24 @@ const applicationProc = (req, res, next) => {
                     data.documents_name = result[0].documents_name;
                     data.documents_path = result[0].documents_path;
                 }
+                res.render('propietarios/interesados/application', {
+                    userName: (req.session.propietarios != undefined ? req.session.propietarios.name : ""), // req.session.inquilinos.name,
+                    userEmail: (req.session.propietarios != undefined ? req.session.propietarios.email : ""), // req.session.inquilinos.name,
+                    title: 'Index',
+                    baseUrl: config.server.propietariosBaseUrl,
+                    uri: 'application',
+                    data: data,
+                    styles: [
+                        //'vendors/custom/percentage-loader/css/documentation.css',
+                        'stylesheets/site/propietarios/interesados/application.css',
+                    ],
+                    scripts: [
+                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                        'javascripts/site/propietarios/interesados/application.js',
+                    ],
+                });
             });
 
-            res.render('propietarios/interesados/application', {
-                userName: (req.session.propietarios != undefined ? req.session.propietarios.name : ""), // req.session.inquilinos.name,
-                userEmail: (req.session.propietarios != undefined ? req.session.propietarios.email : ""), // req.session.inquilinos.name,
-                title: 'Index',
-                baseUrl: config.server.propietariosBaseUrl,
-                uri: 'application',
-                data: data,
-                styles: [
-                    //'vendors/custom/percentage-loader/css/documentation.css',
-                    'stylesheets/site/propietarios/interesados/application.css',
-                ],
-                scripts: [
-                    'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
-                    'javascripts/site/propietarios/interesados/application.js',
-                ],
-            });
-            return;
         });
     }
     else {

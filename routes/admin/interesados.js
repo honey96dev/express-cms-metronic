@@ -183,25 +183,25 @@ const applicationProc = (req, res, next) => {
                     data.documents_name = result[0].documents_name;
                     data.documents_path = result[0].documents_path;
                 }
+                res.render('admin/interesados/application', {
+                    userName: (req.session.admin != undefined ? req.session.admin.name : ""), // req.session.inquilinos.name,
+                    userEmail: (req.session.admin != undefined ? req.session.admin.email : ""), // req.session.inquilinos.name,
+                    title: 'Index',
+                    baseUrl: config.server.adminBaseUrl,
+                    uri: 'application',
+                    data: data,
+                    styles: [
+                        //'vendors/custom/percentage-loader/css/documentation.css',
+                        'stylesheets/site/admin/interesados/application.css',
+                    ],
+                    scripts: [
+                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                        'javascripts/site/admin/interesados/application.js',
+                    ],
+                });
+                return;
             });
 
-            res.render('admin/interesados/application', {
-                userName: (req.session.admin != undefined ? req.session.admin.name : ""), // req.session.inquilinos.name,
-                userEmail: (req.session.admin != undefined ? req.session.admin.email : ""), // req.session.inquilinos.name,
-                title: 'Index',
-                baseUrl: config.server.adminBaseUrl,
-                uri: 'application',
-                data: data,
-                styles: [
-                    //'vendors/custom/percentage-loader/css/documentation.css',
-                    'stylesheets/site/admin/interesados/application.css',
-                ],
-                scripts: [
-                    'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
-                    'javascripts/site/admin/interesados/application.js',
-                ],
-            });
-            return;
         });
     }
     else {

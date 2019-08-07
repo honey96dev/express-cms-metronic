@@ -147,9 +147,9 @@ block mainContent
                                         #collapseOne6.collapse(aria-labelledby='headingOne6', data-parent='#accordionExample6', style='')
                                             .card-body
                                                 | For example W-2, proof of income, statement from your bank. Most landlords expect to receive these documents. Adding them will increase your chances to be approved.
-                                                #m-dropzone-one.kt-dropzone.dz-clickable.mt-4(action!=baseUrl + 'property/upload')
+                                                iframe#ajaxdownload(width=0 height=0 style="width: 0px; height: 0px;")
+                                                #m-dropzone-one.kt-dropzone.mt-4(action!=baseUrl + 'property/upload')
                                                     .kt-dropzone__msg.dz-message.needsclick
-                                                        h3.kt-dropzone__msg-title Drop files here or click to upload.
                                 #accordionExample7.accordion.accordion-solid.accordion-toggle-plus
                                     .card
                                         #headingOne7.card-header
