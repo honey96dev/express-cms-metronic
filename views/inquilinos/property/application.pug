@@ -95,7 +95,7 @@ block mainContent
                                                                         input#user_email.form-control(name="user_email" type='text', disabled='', placeholder!=userEmail value!=data.user_email)
                                                                     .col-md-6.col-lg-6
                                                                         label Phone
-                                                                        input#user_phone.form-control(name="user_phone" type='text', placeholder='' value!=data.user_phone)
+                                                                        input#user_phone.form-control(name="user_phone" type='number', placeholder='' value!=data.user_phone)
                                                         h5.mb-4 Employment
                                                         .row
                                                             .col-md-12
@@ -142,7 +142,7 @@ block mainContent
                                                                     label Enter Monthly Income
                                                                     .input-group
                                                                         span.input-group-text €
-                                                                        input#monthly_income.form-control(name="monthly_income" type='text', placeholder='' value!=data.monthly_income)
+                                                                        input#monthly_income.form-control(name="monthly_income" type='number', placeholder='' value!=data.monthly_income)
                                                                         .input-group-prepend
                                                             .col-md-12.mb-4
                                                                 // p.text-orange +	Add another Family member
@@ -184,7 +184,7 @@ block mainContent
                                                                                 .col-md-6.application-phone-details
                                                                                     .input-group
                                                                                         span.input-group-text €
-                                                                                        input#monthly_rent.form-control(name="monthly_rent" type='text', placeholder='' value!=data.monthly_rent)
+                                                                                        input#monthly_rent.form-control(name="monthly_rent" type='number', placeholder='' value!=data.monthly_rent)
                                                                                         .input-group-prepend
                                                                                     hr
                                                                                     .kt-widget14__header
@@ -195,7 +195,7 @@ block mainContent
                                                                                 .col-md-6.application-phone-details
                                                                                     .input-group
                                                                                         span.input-group-text €
-                                                                                        input#security_deposite.form-control(name="security_deposite" type='text', placeholder='' value!=data.security_deposite)
+                                                                                        input#security_deposite.form-control(name="security_deposite" type='number', placeholder='' value!=data.security_deposite)
                                                                                         .input-group-prepend
                                                                                     hr
                                                                                     .kt-widget14__header
@@ -234,7 +234,7 @@ block mainContent
                                                                                             label Monthly Rent(Optional)
                                                                                             .input-group
                                                                                                 span.input-group-text €
-                                                                                                input#rental_monthly_rent.form-control(name="rental_monthly_rent" type='text', placeholder='' value!=data.rental_monthly_rent)
+                                                                                                input#rental_monthly_rent.form-control(name="rental_monthly_rent" type='number', placeholder='' value!=data.rental_monthly_rent)
                                                                                                 .input-group-prepend
                                                                                     .col-md-12
                                                                                         h5.mb-3 Contact Details
@@ -246,7 +246,7 @@ block mainContent
                                                                                             .col-md-6
                                                                                                 .form-group
                                                                                                     label Telephone
-                                                                                                    input#contact_telephone.form-control(name="contact_telephone" type='text', placeholder='' value!=data.contact_telephone)
+                                                                                                    input#contact_telephone.form-control(name="contact_telephone" type='number', placeholder='' value!=data.contact_telephone)
                                                                                             .col-md-6
                                                                                                 .form-group
                                                                                                     label Email
@@ -270,7 +270,7 @@ block mainContent
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Phone
-                                                                                            input#reference_phone.form-control(name="reference_phone" type='text', placeholder='' value!=data.reference_phone)
+                                                                                            input#reference_phone.form-control(name="reference_phone" type='number', placeholder='' value!=data.reference_phone)
                                                                                     .col-md-6
                                                                                         .form-group
                                                                                             label Email

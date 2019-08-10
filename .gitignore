@@ -80,3 +80,4 @@ config/config.js
 core/config.js
 public/uploads
 1.png
+sslcert/RootCA.crt

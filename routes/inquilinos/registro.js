@@ -14,7 +14,7 @@ const sendVerificationEmail = (email, name) => {
     dbConn.query(sql, null, (error, results, fields) => {
         if (!error) {
             const tokenUrl = sprintfJs.sprintf('%sregistro/verifyEmail?token=%s&email=%s&name=%s', config.server.inquilinosBaseUrl, token, email, name);
-            mailer.sendVerificationMail(email, name, tokenUrl);
+            mailer.sendVerificationMail(email, name, tokenUrl, "inquilinos");
         }
     });
 };
@@ -29,7 +29,7 @@ const signupProc = (req, res, next) => {
         const name = params.name.trim();
         const hash = myCrypto.hmacHex(password);
 
-        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, email);
+        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s' and site='Inquilinos';", config.dbTblName.propietarios, email);
         dbConn.query(sql, null, (error, results, fields) => {
             if (error) {
                 res.status(200).send({
@@ -52,7 +52,7 @@ const signupProc = (req, res, next) => {
             }
             const today = new Date();
             const date = sprintfJs.sprintf("%04d-%02d-%02d", today.getFullYear(), today.getMonth() + 1, today.getDate());
-            sql = sprintfJs.sprintf("INSERT INTO `%s`(`email`, `password`, `name`, `createdDate`, `emailVerified`, `allow`) VALUES('%s', '%s', '%s', '%s', '0', '0');", config.dbTblName.propietarios,
+            sql = sprintfJs.sprintf("INSERT INTO `%s`(`email`, `password`, `name`, `createdDate`, `emailVerified`, `allow`, `site`) VALUES('%s', '%s', '%s', '%s', '0', '0', 'Inquilinos');", config.dbTblName.propietarios,
                 email, hash, name, date);
             dbConn.query(sql, null, (error, results, fields) => {
                 if (error) {
@@ -85,7 +85,7 @@ router.get('/verifyEmail', (req, res, next) => {
     const token = req.query.token;
     const email = req.query.email;
     const name = req.query.name;
-    let sql = sprintfJs.sprintf("SELECT T.*, U.name FROM `tokens` T JOIN `%s` U ON U.email = T.email WHERE BINARY T.token = '%s';", config.dbTblName.propietarios, token);
+    let sql = sprintfJs.sprintf("SELECT T.*, U.name FROM `tokens` T JOIN `%s` U ON U.email = T.email WHERE BINARY T.token = '%s' and U.site='Inquilinos';", config.dbTblName.propietarios, token);
     const successView = 'inquilinos/verifyEmail/success';
     const failView = 'inquilinos/verifyEmail/fail';
     dbConn.query(sql, null, (error, results, fields) => {
@@ -117,7 +117,7 @@ router.get('/verifyEmail', (req, res, next) => {
             const expire = parseInt(results[0].expire);
             console.log('verify', timestamp, expire);
             if (timestamp < expire) {
-                sql = sprintfJs.sprintf("UPDATE `%s` SET `emailVerified` = 1 WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, results[0].email);
+                sql = sprintfJs.sprintf("UPDATE `%s` SET `emailVerified` = 1 WHERE BINARY `email` = '%s' and site='Inquilinos';", config.dbTblName.propietarios, results[0].email);
                 dbConn.query(sql, null, (error) => {
                     if (error) {
                         res.render(failView, {
@@ -171,7 +171,7 @@ router.post('/sendVerificationEmail', (req, res, next) => {
                     // message: 'Sorry! Unknown error',
                 });
             } else {
-                sql = sprintfJs.sprintf("SELECT `name` FROM `%s` WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, email);
+                sql = sprintfJs.sprintf("SELECT `name` FROM `%s` WHERE BINARY `email` = '%s' and site='inquilinos';", config.dbTblName.propietarios, email);
                 // console.log('verify-email', sql);
                 dbConn.query(sql, null, (error, results, fields) => {
                     if (error) {

@@ -30,51 +30,51 @@ Application.prototype.init = function () {
               user_phone: {
                   required: true,
               },
-              employment_type: {
-                  required: true,
-              },
-              employer_name: {
-                  required: true,
-              },
-              employment_title: {
-                  required: true,
-              },
-              monthly_income: {
-                  required: true,
-              },
-              monthly_rent: {
-                  required: true,
-              },
-              security_deposite: {
-                  required: true,
-              },
-              rental_history_address: {
-                  required: true,
-              },
-              contact_name: {
-                  required: true,
-              },
-              contact_telephone: {
-                  required: true,
-              },
-              contact_email: {
-                  required: true,
-              },
-              reference_name: {
-                  required: true,
-              },
-              reference_relationship: {
-                  required: true,
-              },
-              reference_phone: {
-                  required: true,
-              },
-              reference_email: {
-                  required: true,
-              },
-              cover_letter: {
-                  required: true,
-              },
+            //   employment_type: {
+            //       required: true,
+            //   },
+            //   employer_name: {
+            //       required: true,
+            //   },
+            //   employment_title: {
+            //       required: true,
+            //   },
+            //   monthly_income: {
+            //       required: true,
+            //   },
+            //   monthly_rent: {
+            //       required: true,
+            //   },
+            //   security_deposite: {
+            //       required: true,
+            //   },
+            //   rental_history_address: {
+            //       required: true,
+            //   },
+            //   contact_name: {
+            //       required: true,
+            //   },
+            //   contact_telephone: {
+            //       required: true,
+            //   },
+            //   contact_email: {
+            //       required: true,
+            //   },
+            //   reference_name: {
+            //       required: true,
+            //   },
+            //   reference_relationship: {
+            //       required: true,
+            //   },
+            //   reference_phone: {
+            //       required: true,
+            //   },
+            //   reference_email: {
+            //       required: true,
+            //   },
+            //   cover_letter: {
+            //       required: true,
+            //   },
           },
           messages: {
 

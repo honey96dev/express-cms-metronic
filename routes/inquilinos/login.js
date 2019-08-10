@@ -15,7 +15,7 @@ const loginProc = (req, res, next) => {
         const rememberMe = !!(params.remember_me) ? params.remember_me.trim() : undefined;
         const hash = myCrypto.hmacHex(password);
 
-        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, email);
+        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s' and site='Inquilinos';", config.dbTblName.propietarios, email);
         dbConn.query(sql, null, (error, results, fields) => {
             if (error) {
                 res.status(200).send({
@@ -36,7 +36,7 @@ const loginProc = (req, res, next) => {
                 });
                 return;
             }
-            sql = sprintfJs.sprintf("SELECT U.* FROM `%s` U WHERE BINARY U.email = '%s' AND BINARY U.password = '%s';", config.dbTblName.propietarios, email, hash);
+            sql = sprintfJs.sprintf("SELECT U.* FROM `%s` U WHERE BINARY U.email = '%s' AND BINARY U.password = '%s' and BINARY U.emailVerified='1' and U.site='Inquilinos';", config.dbTblName.propietarios, email, hash);
             // console.log('login', sql);
             dbConn.query(sql, null, (error, results, fields) => {
                 if (error) {

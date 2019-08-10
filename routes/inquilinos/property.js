@@ -23,7 +23,7 @@ const indexProc = (req, res, next) => {
     
     res.render('inquilinos/property/index', {
         userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
-        title: 'Index',
+        title: 'Alquiler de Inmuebles',
         baseUrl: config.server.inquilinosBaseUrl,
         uri: 'index',
         search: search,
@@ -171,7 +171,7 @@ const viewProc = (req, res, next) => {
             
             res.render('inquilinos/property/view', {
                 userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""),
-                title: 'Nueva Anuncios',
+                title: 'Nuevo Anuncio',
                 baseUrl: config.server.inquilinosBaseUrl,
                 uri: 'anuncios',
                 types,
@@ -188,7 +188,7 @@ const viewProc = (req, res, next) => {
         // console.log('alreadyLogin', req.session.inquilinos);
         res.render('inquilinos/property/view', {
             userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""),
-            title: 'Nueva Anuncio',
+            title: 'Nuevo Anuncio',
             baseUrl: config.server.inquilinosBaseUrl,
             uri: 'anuncios',
             types,
@@ -246,7 +246,7 @@ const applicationProc = (req, res, next) => {
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                     userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                    title: 'Index',
+                    title: 'Solicitude de Alquiler',
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
@@ -265,7 +265,7 @@ const applicationProc = (req, res, next) => {
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                     userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                    title: 'Index',
+                    title: 'Solicitude de Alquiler',
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
@@ -316,7 +316,7 @@ const applicationProc = (req, res, next) => {
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                     userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                    title: 'Index',
+                    title: 'Solicitude de Alquiler',
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
@@ -337,7 +337,7 @@ const applicationProc = (req, res, next) => {
         res.render('inquilinos/property/application', {
             userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
             userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-            title: 'Index',
+            title: 'Solicitude de Alquiler',
             baseUrl: config.server.inquilinosBaseUrl,
             uri: 'application',
             data: data,

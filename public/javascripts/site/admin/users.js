@@ -12,6 +12,16 @@ Users.prototype.init = function() {
         columns: [
             {
                 // width: '12%',
+                data: "site",
+                className: "text-right",
+                render: function (data, type, row) {
+                    if(data=="Inquilinos")
+                        return '<button class="btn btn-fixed-width btn-inquilinos btn-sm btn-icon btn-orange btn-pill">' + data + '</button>';
+                    else
+                        return '<button class="btn btn-fixed-width btn-propietario btn-sm btn-icon btn-orange btn-pill">' + data + '</button>';                    
+                },
+            }, {
+                // width: '12%',
                 data: "name",
                 className: "text-right",
             }, {
@@ -25,6 +35,13 @@ Users.prototype.init = function() {
                 // render: function (data) {
                 //     return '';
                 // },
+            }, {
+                // width: '12%',
+                data: "emailVerified",
+                className: "text-right",
+                render: function (data, type, row) {
+                    return data == '0' ? "Non-Logged" : "Logged";
+                },
             }, {
                 // width: '12%',
                 data: "createdDate",
