@@ -97,55 +97,60 @@ block mainContent
                                                                         label Phone
                                                                         input#user_phone.form-control(name="user_phone" type='number', placeholder='' value!=data.user_phone)
                                                         h5.mb-4 Employment
+                                                        div#employment_containter
+                                                            input#employment_count(name="employment_count" type="hidden" value!=employment_count)
+                                                            - for (i = 0; i < employment_count; i++)
+                                                                .row
+                                                                    .col-md-12
+                                                                        .kt-radio-inline
+                                                                            label.kt-radio
+                                                                                if data.employment_type[i] == "1"
+                                                                                    input.employment_type_employed(name!=("employment_type" + i) type='radio' checked='' value="1")
+                                                                                else
+                                                                                    input.employment_type_employed(name!=("employment_type" + i) type='radio' value="1")
+                                                                                |	Employed
+                                                                                span
+                                                                            label.kt-radio.mobile-left-freelancer
+                                                                                if data.employment_type[i] == "2"
+                                                                                    input.employment_type_freelancer(name!=("employment_type" + i) type='radio' checked='' value="2")
+                                                                                else
+                                                                                    input.employment_type_freelancer(name!=("employment_type" + i) type='radio' value="2")
+                                                                                |	Freelancer
+                                                                                span
+                                                                            label.kt-radio
+                                                                                if data.employment_type[i] == "3"
+                                                                                    input.employment_type_unemployed(name!=("employment_type" + i) type='radio' checked='' value="3")
+                                                                                else
+                                                                                    input.employment_type_unemployed(name!=("employment_type" + i) type='radio' value="3")
+                                                                                |	Unemployed
+                                                                                span
+                                                                            label.kt-radio
+                                                                                if data.employment_type[i] == "4"
+                                                                                    input.employment_type_student(name!=("employment_type" + i) type='radio' checked='' value="4")
+                                                                                else
+                                                                                    input.employment_type_student(name!=("employment_type" + i) type='radio' value="4")
+                                                                                |	Student
+                                                                                span
+                                                                .row.mt-4
+                                                                    .col-md-4
+                                                                        .form-group
+                                                                            label Enter Employer
+                                                                            input.employer_name.form-control(name="employer_name[]", type='text', placeholder='' value!=data.employer_name[i])
+                                                                    .col-md-4
+                                                                        .form-group
+                                                                            label Enter Title
+                                                                            input.employment_title.form-control(name="employment_title[]" type='text', placeholder='' value!=data.employment_title[i])
+                                                                    .col-md-4
+                                                                        .form-group
+                                                                            label Enter Monthly Income
+                                                                            .input-group
+                                                                                span.input-group-text €
+                                                                                input.monthly_income.form-control(name="monthly_income[]" type='number', placeholder='' value!=data.monthly_income[i])
+                                                                                .input-group-prepend
                                                         .row
-                                                            .col-md-12
-                                                                .kt-radio-inline
-                                                                    label.kt-radio
-                                                                        if data.employment_type == "1"
-                                                                            input#employment_type_employed(name="employment_type" type='radio' checked='' value="1")
-                                                                        else
-                                                                            input#employment_type_employed(name="employment_type" type='radio' value="1")
-                                                                        |	Employed
-                                                                        span
-                                                                    label.kt-radio.mobile-left-freelancer
-                                                                        if data.employment_type == "2"
-                                                                            input#employment_type_freelancer(name="employment_type" type='radio' checked='' value="2")
-                                                                        else
-                                                                            input#employment_type_freelancer(name="employment_type" type='radio' value="2")
-                                                                        |	Freelancer
-                                                                        span
-                                                                    label.kt-radio
-                                                                        if data.employment_type == "3"
-                                                                            input#employment_type_unemployed(name="employment_type" type='radio' checked='' value="3")
-                                                                        else
-                                                                            input#employment_type_unemployed(name="employment_type" type='radio' value="3")
-                                                                        |	Unemployed
-                                                                        span
-                                                                    label.kt-radio
-                                                                        if data.employment_type == "4"
-                                                                            input#employment_type_student(name="employment_type" type='radio' checked='' value="4")
-                                                                        else
-                                                                            input#employment_type_student(name="employment_type" type='radio' value="4")
-                                                                        |	Student
-                                                                        span
-                                                        .row.mt-4
-                                                            .col-md-4
-                                                                .form-group
-                                                                    label Enter Employer
-                                                                    input#employer_name.form-control(name="employer_name", type='text', placeholder='' value!=data.employer_name)
-                                                            .col-md-4
-                                                                .form-group
-                                                                    label Enter Title
-                                                                    input#employment_title.form-control(name="employment_title" type='text', placeholder='' value!=data.employment_title)
-                                                            .col-md-4
-                                                                .form-group
-                                                                    label Enter Monthly Income
-                                                                    .input-group
-                                                                        span.input-group-text €
-                                                                        input#monthly_income.form-control(name="monthly_income" type='number', placeholder='' value!=data.monthly_income)
-                                                                        .input-group-prepend
                                                             .col-md-12.mb-4
-                                                                // p.text-orange +	Add another Family member
+                                                                p.text-orange 
+                                                                    a#add_familymember +	Add another Family member
                                                         
                                                         h5.mb-4 Solvency 
                                                         .row
@@ -257,26 +262,29 @@ block mainContent
                                                                             .card-title.collapsed(data-toggle='collapse', data-target='#collapseOne8', aria-expanded='false', aria-controls='collapseOne8')
                                                                                 | I have people that can be used as reference
                                                                         #collapseOne8.collapse(aria-labelledby='headingOne8', data-parent='#accordionExample8', style='')
-                                                                            .card-body
-                                                                                .row
-                                                                                    .col-md-6
-                                                                                        .form-group
-                                                                                            label Full Name
-                                                                                            input#reference_name.form-control(name="reference_name" type='text', placeholder='' value!=data.reference_name)
-                                                                                    .col-md-6
-                                                                                        .form-group
-                                                                                            label Enter Relationship
-                                                                                            input#reference_relationship.form-control(name="reference_relationship" type='text', placeholder='' value!=data.reference_relationship)
-                                                                                    .col-md-6
-                                                                                        .form-group
-                                                                                            label Phone
-                                                                                            input#reference_phone.form-control(name="reference_phone" type='number', placeholder='' value!=data.reference_phone)
-                                                                                    .col-md-6
-                                                                                        .form-group
-                                                                                            label Email
-                                                                                            input#reference_email.form-control(name="reference_email" type='text', placeholder='' value!=data.reference_email)
-                                                                                    .col-md-12
-                                                                                        // p.text-orange +	Add another reference 
+                                                                            input#reference_count(type="hidden" name="reference_count" value!=reference_count)
+                                                                            #reference_containter.card-body
+                                                                                - for (i = 0; i < reference_count; i++)
+                                                                                    .row
+                                                                                        .col-md-6
+                                                                                            .form-group
+                                                                                                label Full Name
+                                                                                                input.reference_name.form-control(name="reference_name[]" type='text', placeholder='' value!=data.reference_name[i])
+                                                                                        .col-md-6
+                                                                                            .form-group
+                                                                                                label Enter Relationship
+                                                                                                input.reference_relationship.form-control(name="reference_relationship[]" type='text', placeholder='' value!=data.reference_relationship[i])
+                                                                                        .col-md-6
+                                                                                            .form-group
+                                                                                                label Phone
+                                                                                                input.reference_phone.form-control(name="reference_phone[]" type='number', placeholder='' value!=data.reference_phone[i])
+                                                                                        .col-md-6
+                                                                                            .form-group
+                                                                                                label Email
+                                                                                                input.reference_email.form-control(name="reference_email[]" type='text', placeholder='' value!=data.reference_email[i])
+                                                                            .col-md-12
+                                                                                p.text-orange
+                                                                                    a#add_reference +	Add another reference 
                                                                 #accordionExample9.accordion.accordion-solid.accordion-toggle-plus
                                                                     .card
                                                                         #headingOne9.card-header

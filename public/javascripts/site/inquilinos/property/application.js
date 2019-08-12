@@ -136,6 +136,18 @@ Application.prototype.init = function () {
             '</div>';
         $(html).appendTo($("#m-dropzone-one"));
     }
+
+    $("#add_familymember").click(function() {
+        var employment_count = eval($("#employment_count").val());
+        $('<div class="row"><div class="col-md-12"><div class="kt-radio-inline"><label class="kt-radio"><input class="employment_type_employed" name="employment_type' + employment_count + '" type="radio" value="1">	Employed<span></span></label><label class="kt-radio mobile-left-freelancer"><input class="employment_type_freelancer" name="employment_type' + employment_count + '" type="radio" value="2">	Freelancer<span></span></label><label class="kt-radio"><input class="employment_type_unemployed" name="employment_type' + employment_count + '" type="radio" value="3">	Unemployed<span></span></label><label class="kt-radio"><input class="employment_type_student" name="employment_type' + employment_count + '" type="radio" value="4">	Student<span></span></label></div></div></div><div class="row mt-4"><div class="col-md-4"><div class="form-group"><label>Enter Employer</label><input class="employer_name form-control" name="employer_name[]" type="text" placeholder="" value=""></div></div><div class="col-md-4"><div class="form-group"><label>Enter Title</label><input class="employment_title form-control" name="employment_title[]" type="text" placeholder="" value=""></div></div><div class="col-md-4"><div class="form-group"><label>Enter Monthly Income</label><div class="input-group"><span class="input-group-text">€</span><input class="monthly_income form-control" name="monthly_income[]" type="number" placeholder="" value=""><div class="input-group-prepend"></div></div></div></div></div>').appendTo($("#employment_containter"));
+        $("#employment_count").val(employment_count + 1);
+    });
+
+    $("#add_reference").click(function() {
+        var reference_count = eval($("#reference_count").val());
+        $('<div class="row"><div class="col-md-6"><div class="form-group"><label>Full Name</label><input class="reference_name form-control" name="reference_name[]" type="text" placeholder="" value=""></div></div><div class="col-md-6"><div class="form-group"><label>Enter Relationship</label><input class="reference_relationship form-control" name="reference_relationship[]" type="text" placeholder="" value=""></div></div><div class="col-md-6"><div class="form-group"><label>Phone</label><input class="reference_phone form-control" name="reference_phone[]" type="number" placeholder="" value=""></div></div><div class="col-md-6"><div class="form-group"><label>Email</label><input class="reference_email form-control" name="reference_email[]" type="text" placeholder="" value=""></div></div></div>').appendTo($("#reference_containter"));
+        $("#reference_count").val(reference_count + 1);
+    });
 };
 
 Application.prototype.showErrorMsg = function (form, type, msg) {

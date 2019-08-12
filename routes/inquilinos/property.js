@@ -205,8 +205,11 @@ const viewProc = (req, res, next) => {
 
 const applicationProc = (req, res, next) => {    
     const params = req.query;
+    console.log(params);
 
     const app_id = params.app_id;
+    let employment_count = 1;
+    let reference_count = 1;
 
     let data = {
         id: app_id,
@@ -250,6 +253,8 @@ const applicationProc = (req, res, next) => {
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
+                    employment_count: employment_count,
+                    reference_count: reference_count,
                     styles: [
                         //'vendors/custom/percentage-loader/css/documentation.css',
                         'stylesheets/site/inquilinos/property/application.css',
@@ -269,6 +274,8 @@ const applicationProc = (req, res, next) => {
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
+                    employment_count: employment_count,
+                    reference_count: reference_count,
                     styles: [
                         //'vendors/custom/percentage-loader/css/documentation.css',
                         'stylesheets/site/inquilinos/property/application.css',
@@ -286,10 +293,11 @@ const applicationProc = (req, res, next) => {
             data.user_id = result[0].user_id;
             data.user_email = result[0].user_email;
             data.user_phone = result[0].user_phone;
-            data.employment_type = result[0].employment_type;
-            data.employer_name = result[0].employer_name;
-            data.employment_title = result[0].employment_title;
-            data.monthly_income = result[0].monthly_income;
+            data.employment_type = result[0].employment_type.split("#");
+            employment_count = data.employment_type.length;
+            data.employer_name = result[0].employer_name.split("#");
+            data.employment_title = result[0].employment_title.split("#");
+            data.monthly_income = result[0].monthly_income.split("#");
             data.rent = result[0].rent;
             data.family_income = result[0].family_income;
             data.monthly_rent = result[0].monthly_rent;
@@ -299,10 +307,11 @@ const applicationProc = (req, res, next) => {
             data.contact_name = result[0].contact_name;
             data.contact_telephone = result[0].contact_telephone;
             data.contact_email = result[0].contact_email;
-            data.reference_name = result[0].reference_name;
-            data.reference_relationship = result[0].reference_relationship;
-            data.reference_phone = result[0].reference_phone;
-            data.reference_email = result[0].reference_email;
+            data.reference_name = result[0].reference_name.split("#");
+            data.reference_relationship = result[0].reference_relationship.split("#");
+            data.reference_phone = result[0].reference_phone.split("#");
+            data.reference_email = result[0].reference_email.split("#");
+            reference_count = data.reference_name.length;
             data.cover_letter = result[0].cover_letter;
 
             let sql = sprintfJs.sprintf("select * from `%s` where application_id='%s'", dbTblName.application_documents, app_id);
@@ -313,6 +322,7 @@ const applicationProc = (req, res, next) => {
                     data.documents_name = result[0].documents_name;
                     data.documents_path = result[0].documents_path;
                 }
+                console.log(data);
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                     userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
@@ -320,6 +330,8 @@ const applicationProc = (req, res, next) => {
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
+                    employment_count: employment_count,
+                    reference_count: reference_count,
                     styles: [
                         //'vendors/custom/percentage-loader/css/documentation.css',
                         'stylesheets/site/inquilinos/property/application.css',
@@ -341,6 +353,8 @@ const applicationProc = (req, res, next) => {
             baseUrl: config.server.inquilinosBaseUrl,
             uri: 'application',
             data: data,
+            employment_count: employment_count,
+            reference_count: reference_count,
             styles: [
                 //'vendors/custom/percentage-loader/css/documentation.css',
                 'stylesheets/site/inquilinos/property/application.css',
@@ -365,10 +379,15 @@ const applicationPostProc = (req, res, next) => {
     const user_id = req.session.inquilinos.id;
     const user_email = req.session.inquilinos.email;
     const user_phone = paramsForm.user_phone;
-    const employment_type = paramsForm.employment_type;
-    const employer_name = paramsForm.employer_name;
-    const employment_title = paramsForm.employment_title; 
-    const monthly_income = paramsForm.monthly_income;
+    const employment_count = paramsForm.employment_count;
+    const employer_name = paramsForm["employer_name[]"].join("#");
+    const employment_title = paramsForm["employment_title[]"].join("#"); 
+    const monthly_income = paramsForm["monthly_income[]"].join("#");
+    let employment_types = [];
+    for(let i = 0; i < employment_count; i++)
+        employment_types.push(paramsForm["employment_type" + i]);
+    const employment_type = employment_types.join("#");
+
     const monthly_rent = paramsForm.monthly_rent;
     const security_deposite = paramsForm.security_deposite;
     const rental_history_address = paramsForm.rental_history_address;
@@ -376,10 +395,10 @@ const applicationPostProc = (req, res, next) => {
     const contact_name = paramsForm.contact_name;
     const contact_telephone = paramsForm.contact_telephone;
     const contact_email = paramsForm.contact_email;
-    const reference_name = paramsForm.reference_name;
-    const reference_relationship = paramsForm.reference_relationship;
-    const reference_phone = paramsForm.reference_phone;
-    const reference_email = paramsForm.reference_email;
+    const reference_name = paramsForm["reference_name[]"].join("#");
+    const reference_relationship = paramsForm["reference_relationship[]"].join("#");
+    const reference_phone = paramsForm["reference_phone[]"].join("#");
+    const reference_email = paramsForm["reference_email[]"].join("#");
     const cover_letter = paramsForm.cover_letter;
     const documents_name = paramsForm.documents_name;
     const documents_path = paramsForm.documents_path;
