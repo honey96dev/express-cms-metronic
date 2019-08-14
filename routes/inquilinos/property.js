@@ -214,6 +214,8 @@ const applicationProc = (req, res, next) => {
     let data = {
         id: app_id,
         home_id : params.id,
+        precio: "0",
+        fianza: "0",
         user_id : req.session.inquilinos.id,
         user_email : "",
         user_phone : "",
@@ -238,13 +240,15 @@ const applicationProc = (req, res, next) => {
         documents_path : "",
         documents_name : "",
     };
+    console.log(params);
 
-    if(app_id != "")
+    if(app_id != "" && app_id != undefined)
     {
+        console.log(app_id);
         let sql = sprintfJs.sprintf("select * from `%s` where id='%s'", dbTblName.application, app_id);
 
         dbConn.query(sql, null, (error, result, fields) => {
-            if (error) {
+            if (error || result.length == 0) {
                 console.log(error);
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
@@ -266,30 +270,9 @@ const applicationProc = (req, res, next) => {
                 });
                 return;
             }
-            if(result.length == 0) {
-                res.render('inquilinos/property/application', {
-                    userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
-                    userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                    title: 'Solicitude de Alquiler',
-                    baseUrl: config.server.inquilinosBaseUrl,
-                    uri: 'application',
-                    data: data,
-                    employment_count: employment_count,
-                    reference_count: reference_count,
-                    styles: [
-                        //'vendors/custom/percentage-loader/css/documentation.css',
-                        'stylesheets/site/inquilinos/property/application.css',
-                    ],
-                    scripts: [
-                        'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
-                        'javascripts/site/inquilinos/property/application.js',
-                    ],
-                });
-                return;
-            }
-            console.log(result);
+            
             data.id = result[0].id;
-            //data.home_id = result[0].home_id;
+            data.home_id = result[0].home_id;
             data.user_id = result[0].user_id;
             data.user_email = result[0].user_email;
             data.user_phone = result[0].user_phone;
@@ -313,16 +296,69 @@ const applicationProc = (req, res, next) => {
             data.reference_email = result[0].reference_email.split("#");
             reference_count = data.reference_name.length;
             data.cover_letter = result[0].cover_letter;
-
-            let sql = sprintfJs.sprintf("select * from `%s` where application_id='%s'", dbTblName.application_documents, app_id);
-
-            dbConn.query(sql, null, (error, result, fields) => {
-                console.log(result);
-                if(result.length > 0) {
-                    data.documents_name = result[0].documents_name;
-                    data.documents_path = result[0].documents_path;
+            
+            let sql = sprintfJs.sprintf("select * from `%s` where id='%s'", dbTblName.properties, result[0].home_id);
+            dbConn.query(sql, null, (error, propResult, fields) => {
+                if (error || propResult.length == 0) {
+                    res.render('inquilinos/property/application', {
+                        userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+                        userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+                        title: 'Solicitude de Alquiler',
+                        baseUrl: config.server.inquilinosBaseUrl,
+                        uri: 'application',
+                        data: data,
+                        employment_count: employment_count,
+                        reference_count: reference_count,
+                        styles: [
+                            //'vendors/custom/percentage-loader/css/documentation.css',
+                            'stylesheets/site/inquilinos/property/application.css',
+                        ],
+                        scripts: [
+                            'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                            'javascripts/site/inquilinos/property/application.js',
+                        ],
+                    });
                 }
-                console.log(data);
+
+                data.precio = propResult[0].monthlyPrice;
+                data.fianza = propResult[0].securityDeposit;
+
+                let sql = sprintfJs.sprintf("select * from `%s` where application_id='%s'", dbTblName.application_documents, app_id);
+
+                dbConn.query(sql, null, (error, result, fields) => {
+                    console.log(result);
+                    if(result.length > 0) {
+                        data.documents_name = result[0].documents_name;
+                        data.documents_path = result[0].documents_path;
+                    }
+                    console.log(data);
+                    res.render('inquilinos/property/application', {
+                        userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+                        userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+                        title: 'Solicitude de Alquiler',
+                        baseUrl: config.server.inquilinosBaseUrl,
+                        uri: 'application',
+                        data: data,
+                        employment_count: employment_count,
+                        reference_count: reference_count,
+                        styles: [
+                            //'vendors/custom/percentage-loader/css/documentation.css',
+                            'stylesheets/site/inquilinos/property/application.css',
+                        ],
+                        scripts: [
+                            'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                            'javascripts/site/inquilinos/property/application.js',
+                        ],
+                    });
+                });
+            });
+        });
+    }
+    else {
+        let sql = sprintfJs.sprintf("select * from `%s` where id='%s'", dbTblName.properties, params.id);
+        console.log(sql);
+        dbConn.query(sql, null, (error, propResult, fields) => {
+            if (error || propResult.length == 0) {
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                     userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
@@ -341,28 +377,30 @@ const applicationProc = (req, res, next) => {
                         'javascripts/site/inquilinos/property/application.js',
                     ],
                 });
-            });
-        });
-    }
-    else {
+            }
+            console.log("here");
 
-        res.render('inquilinos/property/application', {
-            userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
-            userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-            title: 'Solicitude de Alquiler',
-            baseUrl: config.server.inquilinosBaseUrl,
-            uri: 'application',
-            data: data,
-            employment_count: employment_count,
-            reference_count: reference_count,
-            styles: [
-                //'vendors/custom/percentage-loader/css/documentation.css',
-                'stylesheets/site/inquilinos/property/application.css',
-            ],
-            scripts: [
-                'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
-                'javascripts/site/inquilinos/property/application.js',
-            ],
+            data.precio = propResult[0].monthlyPrice;
+            data.fianza = propResult[0].securityDeposit;
+
+            res.render('inquilinos/property/application', {
+                userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
+                userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
+                title: 'Solicitude de Alquiler',
+                baseUrl: config.server.inquilinosBaseUrl,
+                uri: 'application',
+                data: data,
+                employment_count: employment_count,
+                reference_count: reference_count,
+                styles: [
+                    //'vendors/custom/percentage-loader/css/documentation.css',
+                    'stylesheets/site/inquilinos/property/application.css',
+                ],
+                scripts: [
+                    'vendors/custom/percentage-loader/js/jquery.classyloader.min.js',
+                    'javascripts/site/inquilinos/property/application.js',
+                ],
+            });
         });
     }
 };

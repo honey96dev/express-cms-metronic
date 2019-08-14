@@ -6,19 +6,6 @@ function Application() {
 Application.prototype.init = function () {
     const self = this;
     self.baseUrl = $('#baseUrl').val();
-    
-    $('#kt_chart_revenue_change').ClassyLoader({
-      speed: 10,
-      diameter: 80,
-      fontSize: '30px',
-      fontFamily: 'Courier',
-      fontColor: 'rgba(0,0,0,0.4)',
-      lineColor: 'rgba(0,255,153,1)',
-      percentage: 80,
-      lineWidth: 20,
-      start: 'top',
-      remainingLineColor: 'rgba(255,0,102,1)'
-  });
 
   $('#application_submit').click(function (e) {
       e.preventDefault();
@@ -140,7 +127,34 @@ Application.prototype.init = function () {
           '</div>';
       $(html).appendTo($("#m-dropzone-one"));
   }
+
+  $(".monthly_income").change(calcRate);
+  calcRate();
 };
+
+function calcRate() {
+  var rent_money = eval($("#monthly_rent").val() == "" ? 0 : $("#monthly_rent").val());
+  $("#rent_money").html(formatMoney(rent_money, 0, ",", ".") + " €");
+  var monthly_income = 0;
+  $(".monthly_income").each(function() {
+      monthly_income += eval($(this).val() == "" ? 0 : $(this).val());
+  });
+  $("#family_income").html(formatMoney(monthly_income, 0, ",", ".") + " €");
+
+  
+  $('#kt_chart_revenue_change').ClassyLoader({
+      speed: 10,
+      diameter: 80,
+      fontSize: '30px',
+      fontFamily: 'Courier',
+      fontColor: 'rgba(0,0,0,0.4)',
+      lineColor: 'rgba(0,255,153,1)',
+      percentage: monthly_income == 0 ? 100 : rent_money * 100.0 / monthly_income,
+      lineWidth: 20,
+      start: 'top',
+      remainingLineColor: 'rgba(255,0,102,1)'
+  });
+}
 
 Application.prototype.showErrorMsg = function (form, type, msg) {
   const alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
