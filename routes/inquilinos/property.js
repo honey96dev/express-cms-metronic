@@ -253,7 +253,7 @@ const applicationProc = (req, res, next) => {
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                     userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                    title: 'Solicitude de Alquiler',
+                    title: 'Solicitud de Alquiler',
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
@@ -303,7 +303,7 @@ const applicationProc = (req, res, next) => {
                     res.render('inquilinos/property/application', {
                         userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                         userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                        title: 'Solicitude de Alquiler',
+                        title: 'Solicitud de Alquiler',
                         baseUrl: config.server.inquilinosBaseUrl,
                         uri: 'application',
                         data: data,
@@ -335,7 +335,7 @@ const applicationProc = (req, res, next) => {
                     res.render('inquilinos/property/application', {
                         userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                         userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                        title: 'Solicitude de Alquiler',
+                        title: 'Solicitud de Alquiler',
                         baseUrl: config.server.inquilinosBaseUrl,
                         uri: 'application',
                         data: data,
@@ -362,7 +362,7 @@ const applicationProc = (req, res, next) => {
                 res.render('inquilinos/property/application', {
                     userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                     userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                    title: 'Solicitude de Alquiler',
+                    title: 'Solicitud de Alquiler',
                     baseUrl: config.server.inquilinosBaseUrl,
                     uri: 'application',
                     data: data,
@@ -386,7 +386,7 @@ const applicationProc = (req, res, next) => {
             res.render('inquilinos/property/application', {
                 userName: (req.session.inquilinos != undefined ? req.session.inquilinos.name : ""), // req.session.inquilinos.name,
                 userEmail: (req.session.inquilinos != undefined ? req.session.inquilinos.email : ""), // req.session.inquilinos.name,
-                title: 'Solicitude de Alquiler',
+                title: 'Solicitud de Alquiler',
                 baseUrl: config.server.inquilinosBaseUrl,
                 uri: 'application',
                 data: data,
