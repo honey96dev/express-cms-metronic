@@ -418,9 +418,9 @@ const applicationPostProc = (req, res, next) => {
     const user_email = req.session.inquilinos.email;
     const user_phone = paramsForm.user_phone;
     const employment_count = paramsForm.employment_count;
-    const employer_name = paramsForm["employer_name[]"].join("#");
-    const employment_title = paramsForm["employment_title[]"].join("#"); 
-    const monthly_income = paramsForm["monthly_income[]"].join("#");
+    const employer_name = Array.isArray(paramsForm["employer_name[]"]) ? paramsForm["employer_name[]"].join("#") : paramsForm["employer_name[]"];
+    const employment_title = Array.isArray(paramsForm["employment_title[]"]) ? paramsForm["employment_title[]"].join("#") : paramsForm["employment_title[]"];
+    const monthly_income = Array.isArray(paramsForm["monthly_income[]"]) ? paramsForm["monthly_income[]"].join("#") : paramsForm["monthly_income[]"];
     let employment_types = [];
     for(let i = 0; i < employment_count; i++)
         employment_types.push(paramsForm["employment_type" + i]);
@@ -433,10 +433,10 @@ const applicationPostProc = (req, res, next) => {
     const contact_name = paramsForm.contact_name;
     const contact_telephone = paramsForm.contact_telephone;
     const contact_email = paramsForm.contact_email;
-    const reference_name = paramsForm["reference_name[]"].join("#");
-    const reference_relationship = paramsForm["reference_relationship[]"].join("#");
-    const reference_phone = paramsForm["reference_phone[]"].join("#");
-    const reference_email = paramsForm["reference_email[]"].join("#");
+    const reference_name = Array.isArray(paramsForm["reference_name[]"]) ? paramsForm["reference_name[]"].join("#") : paramsForm["reference_name[]"];
+    const reference_relationship = Array.isArray(paramsForm["reference_relationship[]"]) ? paramsForm["reference_relationship[]"].join("#") : paramsForm["reference_relationship[]"];
+    const reference_phone = Array.isArray(paramsForm["reference_phone[]"]) ? paramsForm["reference_phone[]"].join("#") : paramsForm["reference_phone[]"];
+    const reference_email = Array.isArray(paramsForm["reference_email[]"]) ? paramsForm["reference_email[]"].join("#") : paramsForm["reference_email[]"];
     const cover_letter = paramsForm.cover_letter;
     const documents_name = paramsForm.documents_name;
     const documents_path = paramsForm.documents_path;
