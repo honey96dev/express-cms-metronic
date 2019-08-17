@@ -41,7 +41,7 @@ router.use('/propiedades', propiedadesRouter);
 router.use('/anuncios', listingRouter);
 router.use('/documentos', documentosRouter);
 router.use('/property', propertyRouter);
-router.use('/solicitudes', solicitudesRouter);
+router.use('/solicitudes', requiresLogin, solicitudesRouter);
 
 router.use(function(req, res, next){
     res.status(404);
