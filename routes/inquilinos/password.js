@@ -14,7 +14,7 @@ const sendResetPasswordEmail = (email, name) => {
     dbConn.query(sql, null, (error, results, fields) => {
         if (!error) {
             const tokenUrl = sprintfJs.sprintf('%spassword/resetPassword?token=%s&email=%s&name=%s', config.server.inquilinosBaseUrl, token, email, name);
-            mailer.sendResetPasswordMail(email, name, tokenUrl);
+            mailer.sendResetPasswordMail(email, name, tokenUrl, "inquilinos");
         }
     });
 };

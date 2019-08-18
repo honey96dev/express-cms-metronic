@@ -29,7 +29,7 @@ const signupProc = (req, res, next) => {
         const name = params.name.trim();
         const hash = myCrypto.hmacHex(password);
 
-        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s' and site='Inquilinos';", config.dbTblName.propietarios, email);
+        let sql = sprintfJs.sprintf("SELECT COUNT(`email`) `count` FROM `%s` WHERE BINARY `email` = '%s';", config.dbTblName.propietarios, email);
         dbConn.query(sql, null, (error, results, fields) => {
             if (error) {
                 res.status(200).send({
