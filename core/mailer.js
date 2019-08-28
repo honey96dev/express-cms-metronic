@@ -81,7 +81,7 @@ exports.sendResetPasswordMail = (to, name, tokenUrl, site = "") => {
             console.log(tokenUrl);
             console.log(html);
             let transporter = nodemailer.createTransport({
-                // service: smtp.service,
+                service: smtp.service,
                 host: smtp.host,
                 port: smtp.port,
                 secure: smtp.secure,
