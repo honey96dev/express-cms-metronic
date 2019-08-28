@@ -54,9 +54,7 @@ exports.sendVerificationMail = (to, name, tokenUrl, siteName) => {
             });
 
             const mailOptions = {
-                from: 'Mariona de Alquilerista',
-                // from: sprintfJs.sprintf('%s<%s>', server.name, smtp.user),
-                // to: 'honey96dev@gmail.com',
+                from: site == "inquilinos" ? 'Inquilinos Alquilerista' : 'Propietarios Alquilerista',
                 to: to,
                 subject: '¡Bienvenido a Alquilerista!',
                 html: html,
@@ -97,9 +95,7 @@ exports.sendResetPasswordMail = (to, name, tokenUrl, site = "") => {
             });
 
             const mailOptions = {
-                from: 'Mariona de Alquilerista',
-                // from: sprintfJs.sprintf('%s<%s>', server.name, smtp.user),
-                // to: 'honey96dev@gmail.com',
+                from:  site == "inquilinos" ? 'Inquilinos Alquilerista' : 'Propietarios Alquilerista',
                 to: to,
                 subject: '¡Bienvenido a Alquilerista!',
                 html: html,
