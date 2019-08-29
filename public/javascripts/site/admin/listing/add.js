@@ -270,6 +270,7 @@ AddListing.prototype.addPhotoDropzone = function () {
         maxFiles: 1,
         parallelUploads: 1,
         acceptedFiles: 'image/*',
+        maxFilesize: 5
     };
 
     self.dropzoneCnt = $('.image-100.dropzone').length;
