@@ -214,6 +214,7 @@ AddListing.prototype.initPhotoDropzone = function () {
                 maxFiles: 1,
                 parallelUploads: 1,
                 acceptedFiles: 'image/*',
+                maxFilesize: 5
             };
             let html = '<div class="col-md-4 text-center">' +
                 '<div class="image-100 dropzone" id="photo2"></div>' +

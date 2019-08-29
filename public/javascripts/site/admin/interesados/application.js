@@ -200,7 +200,8 @@ $(document).ready(function () {
     instance.init();
 
     const dropzoneOptions = {
-        url: '/property/upload'
+        url: '/property/upload',
+        maxFilesize: 5
     };
 
     var drop = new Dropzone("#m-dropzone-one", dropzoneOptions);
