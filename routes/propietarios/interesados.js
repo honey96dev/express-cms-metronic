@@ -237,7 +237,7 @@ const applicationProc = (req, res, next) => {
                     res.render('propietarios/interesados/application', {
                         userName: (req.session.propietarios != undefined ? req.session.propietarios.name : ""), // req.session.inquilinos.name,
                         userEmail: (req.session.propietarios != undefined ? req.session.propietarios.email : ""), // req.session.inquilinos.name,
-                        title: 'Index',
+                        title: 'Interesados - Alquilerista',
                         baseUrl: config.server.propietariosBaseUrl,
                         employment_count: employment_count,
                         reference_count: reference_count,
