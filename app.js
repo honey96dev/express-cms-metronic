@@ -59,7 +59,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(fileUpload({
-    limits: { fileSize: 50 * 1024 * 1024 },
+    limits: { fileSize: 5 * 1024 * 1024 },
 }));
 
 app.use(subdomain('propietarios', propietariosRouter));
