@@ -201,6 +201,7 @@ $(document).ready(function () {
 
     const dropzoneOptions = {
         url: '/property/upload',
+        maxFilesize: 5
     };
 
     var drop = new Dropzone("#m-dropzone-one", dropzoneOptions);
