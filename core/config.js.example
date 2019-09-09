@@ -38,6 +38,7 @@ module.exports = {
         secure: true,
         userinquilinos: 'inquilinos@bodypal.com',
         userpropietarios: 'propietarios@bodypal.com',
+        notification: 'inquilinos@alquilerista.com',
         pass: 'Alqu1ler1sta',
     },
     // smtp: {

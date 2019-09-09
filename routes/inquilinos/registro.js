@@ -15,6 +15,7 @@ const sendVerificationEmail = (email, name) => {
         if (!error) {
             const tokenUrl = sprintfJs.sprintf('%sregistro/verifyEmail?token=%s&email=%s&name=%s', config.server.inquilinosBaseUrl, token, email, name);
             mailer.sendVerificationMail(email, name, tokenUrl, "inquilinos");
+            mailer.sendNotificationMail(email, name, "inquilinos");
         }
     });
 };

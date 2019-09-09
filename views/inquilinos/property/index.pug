@@ -1,56 +1,81 @@
 extends ../layout
 
 block mainContent
-    .kt-container.kt-container--fluid.kt-grid__item.kt-grid__item--fluid.p-0.content-begin-body
-        .row.m-0
-            .col-lg-6.p-0.property-list-without-login.col-md-6
-                .kt-portlet.kt-portlet--height-fluid
-                    .kt-portlet__head
-                        .kt-portlet__head-label
-                            form#demo-2
-                                input#search(name="search" type="search" placeholder="Search" value!=search)                            
-                        .kt-portlet__head-toolbar
-                            input#sort(name="sort" type="hidden" value!=sort)      
-                            input#page(name="page" type="hidden" value!=page)      
-                            a.btn.btn-label-orange.btn-bold.btn-sm.dropdown-toggle(href="#" data-toggle="dropdown" aria-expanded="false")
-                                if sort == "newest"
-                                    | Newest First
-                                else if sort == "bestmatch"
-                                    | Best Match
-                                else if sort == "pricelow"
-                                    | By Price: Low to High
-                                else if sort == "pricehigh"
-                                    | By Price: High to Low
-                            .dropdown-menu.dropdown-menu-fit.dropdown-menu-right(x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(579px, 46px, 0px);")
-                                ul.kt-nav
-                                    li.kt-nav__item
-                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=newest")
-                                            span.kt-nav__link-text
-                                                | Newest First
-                                    li.kt-nav__item
-                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=bestmatch")
-                                            span.kt-nav__link-text
-                                                | Best Match
-                                    li.kt-nav__item
-                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=pricelow")
-                                            span.kt-nav__link-text
-                                                | By Price: Low to High
-                                    li.kt-nav__item
-                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=pricehigh")
-                                            span.kt-nav__link-text
-                                                | By Price: High to  Low
-                    .kt-portlet__body.property-list-body-box-scroll
-                        .kt-widget4
-                            #itemList.row
-                            .row.m-0
-                                .col-6
-                                    #prev_btn.btn.btn-orange.btn-md.btn-tall.btn-wide.kt-font-bold.kt-font-transform-u(data-ktwizard-type="action-next")
-                                        | < Previous 
-                                .col-6.text-right
-                                    #next_btn.btn.btn-orange.btn-md.btn-tall.btn-wide.kt-font-bold.kt-font-transform-u(data-ktwizard-type="action-next")
-                                        | Next >
-            .col-lg-6.p-0.col-md-6.d-none.d-md-block
-                #gmap.w-100.map-window-height
-                //iframe.w-100.map-window-height(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12381.476660633078!2d-108.61690557384141!3d39.12083006989756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87471d57c2c7e685%3A0x5bc954728aa0cea8!2sAppleton%2C+CO+81505%2C+USA!5e0!3m2!1sen!2sin!4v1563691761801!5m2!1sen!2sin" frameborder="0" style="border:0" allowfullscreen)
-                                                                                                                              
+
+    #kt_body.kt-body.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor.kt-grid--stretch
+        .kt-container.kt-container--fluid.kt-grid.kt-grid--ver
+            // begin:: Aside
+            input#home_id( name="home_id" type="hidden" value!=home_id)
+            button#kt_aside_close_btn.kt-aside-close
+                i.la.la-close
+            #kt_aside.kt-aside.kt-aside--fixed.kt-grid__item.kt-grid.kt-grid--desktop.kt-grid--hor-desktop
+                // begin:: Aside Menu
+                #kt_aside_menu_wrapper.kt-aside-menu-wrapper.kt-grid__item.kt-grid__item--fluid
+                    #kt_aside_menu.kt-aside-menu(data-ktmenu-vertical='1', data-ktmenu-scroll='1')
+                        ul.kt-menu__nav
+                            li.kt-menu__section.kt-menu__section--first
+                                h4.kt-menu__section-text Departments
+                                i.kt-menu__section-icon.flaticon-more-v2
+                            li.kt-menu__item(aria-haspopup='true')
+                                a.kt-menu__link(href='#')
+                                    i.kt-menu__link-icon.flaticon-suitcase
+                                    span.kt-menu__link-text Listing
+                            li.kt-menu__item(aria-haspopup='true')
+                                a.kt-menu__link(href='#')
+                                    i.kt-menu__link-icon.flaticon-suitcase
+                                    span.kt-menu__link-text Application
+            #kt_content.kt-content.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor
+                #kt_subheader.kt-subheader.kt-grid__item
+                    .kt-container.kt-container--fluid
+                        .kt-container.kt-container--fluid.kt-grid__item.kt-grid__item--fluid(style="padding: 0px !important;")
+                            .col-lg-6.p-0.property-list-without-login.col-md-6
+                                .kt-portlet.kt-portlet--height-fluid
+                                    .kt-portlet__head
+                                        .kt-portlet__head-label
+                                            form#demo-2
+                                                input#search(name="search" type="search" placeholder="Search" value!=search)                            
+                                        .kt-portlet__head-toolbar
+                                            input#sort(name="sort" type="hidden" value!=sort)      
+                                            input#page(name="page" type="hidden" value!=page)      
+                                            a.btn.btn-label-orange.btn-bold.btn-sm.dropdown-toggle(href="#" data-toggle="dropdown" aria-expanded="false")
+                                                if sort == "newest"
+                                                    | Newest First
+                                                else if sort == "bestmatch"
+                                                    | Best Match
+                                                else if sort == "pricelow"
+                                                    | By Price: Low to High
+                                                else if sort == "pricehigh"
+                                                    | By Price: High to Low
+                                            .dropdown-menu.dropdown-menu-fit.dropdown-menu-right(x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(579px, 46px, 0px);")
+                                                ul.kt-nav
+                                                    li.kt-nav__item
+                                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=newest")
+                                                            span.kt-nav__link-text
+                                                                | Newest First
+                                                    li.kt-nav__item
+                                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=bestmatch")
+                                                            span.kt-nav__link-text
+                                                                | Best Match
+                                                    li.kt-nav__item
+                                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=pricelow")
+                                                            span.kt-nav__link-text
+                                                                | By Price: Low to High
+                                                    li.kt-nav__item
+                                                        a.kt-nav__link(href="http://inquilinos.alquilerista.com/?search=" + search + "&sort=pricehigh")
+                                                            span.kt-nav__link-text
+                                                                | By Price: High to  Low
+                                    .kt-portlet__body.property-list-body-box-scroll
+                                        .kt-widget4
+                                            #itemList.row
+                                            .row.m-0
+                                                .col-6
+                                                    #prev_btn.btn.btn-orange.btn-md.btn-tall.btn-wide.kt-font-bold.kt-font-transform-u(data-ktwizard-type="action-next")
+                                                        | < Previous 
+                                                .col-6.text-right
+                                                    #next_btn.btn.btn-orange.btn-md.btn-tall.btn-wide.kt-font-bold.kt-font-transform-u(data-ktwizard-type="action-next")
+                                                        | Next >
+                            .col-lg-6.p-0.col-md-6.d-none.d-md-block
+                                #gmap.w-100.map-window-height
+                                //iframe.w-100.map-window-height(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12381.476660633078!2d-108.61690557384141!3d39.12083006989756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87471d57c2c7e685%3A0x5bc954728aa0cea8!2sAppleton%2C+CO+81505%2C+USA!5e0!3m2!1sen!2sin!4v1563691761801!5m2!1sen!2sin" frameborder="0" style="border:0" allowfullscreen)
+                                                                                                                                            
 
